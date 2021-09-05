@@ -1,0 +1,15 @@
+include: package:lints/recommended.yaml
+analyzer:
+  errors:
+    missing_required_param: error
+    prefer_const_declarations: error
+    prefer_const_constructors: error
+    sort_constructors_first: warning
+
+
+linter:
+  rules:
+    missing_required_param: true
+    prefer_const_declarations: true
+    prefer_const_constructors: true
+    sort_constructors_first: true
