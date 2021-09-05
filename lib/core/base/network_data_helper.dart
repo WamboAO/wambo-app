@@ -20,7 +20,7 @@ mixin NetworkDataHelper {
           FetchDataException('O pedido demorou muito. Tenta novamente'));
     } on IOException {
       return Left(
-          FetchDataException('Operação de input/output falhou ou interpretou'));
+          FetchDataException('Operação de input/output falhou'));
     } on Exception  {
       return Left(FetchDataException('Erro desconhecido'));
     }  
