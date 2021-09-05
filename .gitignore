@@ -9,6 +9,7 @@
 .buildlog/
 .history
 .svn/
+.vscode
 lib/core/app/setup.**.dart
 
 # IntelliJ related
