@@ -1,5 +1,7 @@
 include: package:lints/recommended.yaml
 analyzer:
+  exclude:  [ lib/core/app/*.dart]
+
   errors:
     missing_required_param: error
     prefer_const_declarations: error
