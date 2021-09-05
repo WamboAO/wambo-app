@@ -1,0 +1,6 @@
+flutter_icons:
+  android: "launcher_icon"
+  ios: true
+  remove_alpha_ios: true
+  image_path_ios: "assets/images/launcher/wambo_icon_ios.png"
+  image_path_android: "assets/images/launcher/wambo_icon_android.png"
