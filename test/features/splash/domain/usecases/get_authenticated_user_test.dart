@@ -1,7 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
-import 'package:wambo/core/base/exception_helpers.dart';
+import 'package:wambo/core/errors/failures.dart';
 import 'package:wambo/core/usecase/usecase.dart';
 import 'package:wambo/features/splash/domain/entities/authenticated_user_entity.dart';
 import 'package:wambo/features/splash/domain/repositories/authenticated_user_repository.dart';
@@ -23,20 +23,20 @@ void main() {
         AuthenticatedUserEntity(token: "", userId: 0, refreshToken: "", isFirstTime: false);
     test('should get authenticated user from the repository', () async {
       when(() => repository.getAuthenticatedUserLocaly()).thenAnswer(
-          (_) async => Right<ExceptionHelper, AuthenticatedUserEntity>(tAuth));
+          (_) async => Right<Failure, AuthenticatedUserEntity>(tAuth));
 
       final result = await usecase(tParams);
 
       expect(result, Right(tAuth));
       verify(() => repository.getAuthenticatedUserLocaly()).called(1);
     });
-    test('should get FetchDataException when an random error occurs', () async {
+    test('should get ServerFailure when an random error occurs', () async {
       when(() => repository.getAuthenticatedUserLocaly()).thenAnswer(
-          (_) async => left<ExceptionHelper, AuthenticatedUserEntity>(FetchDataException()));
+          (_) async => Left<Failure, AuthenticatedUserEntity>(FetchDataFailure("hello")));
 
       final result = await usecase(tParams);
 
-      expect(result, left(FetchDataException()));
+      expect(result, Left(FetchDataFailure()));
       verify(() => repository.getAuthenticatedUserLocaly()).called(1);
     });
   });
