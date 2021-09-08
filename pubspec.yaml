@@ -26,6 +26,7 @@ dependencies:
   dartz: ^0.10.0
   dio: ^4.0.0
   equatable: ^2.0.3
+  faker: ^2.0.0
   flutter:
     sdk: flutter
   flutter_hooks: ^0.18.0
@@ -37,7 +38,6 @@ dev_dependencies:
   build_runner: ^2.1.2
   flutter_dotenv: ^5.0.2
   flutter_launcher_icons: ^0.9.2
-  flutter_native_splash: ^1.2.1
   flutter_test:
     sdk: flutter
   lints: ^1.0.1
