@@ -4,8 +4,8 @@ class AuthenticatedUserModel extends AuthenticatedUserEntity {
   AuthenticatedUserModel(
       {required String token,
       required String refreshToken,
-      required int userId,
-      required bool isFirstTime})
+      int userId = 0,
+      bool isFirstTime = true})
       : super(
             token: token,
             refreshToken: refreshToken,
