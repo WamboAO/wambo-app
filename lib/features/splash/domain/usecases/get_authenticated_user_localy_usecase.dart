@@ -1,4 +1,3 @@
-import 'package:wambo/core/errors/exception.dart';
 import 'package:dartz/dartz.dart';
 import 'package:wambo/core/errors/failures.dart';
 import 'package:wambo/core/usecase/usecase.dart';
