@@ -1,21 +1,18 @@
 import 'package:equatable/equatable.dart';
 
 abstract class ExceptionHelper extends Equatable implements Exception {
-   ExceptionHelper([this._message]);
+  ExceptionHelper([this._message]);
   // ignore: prefer_typing_uninitialized_variables
-  final _message; 
- 
+  final _message;
 
   @override
-    String toString() {
-      return '$_message';
-    }
+  String toString() {
+    return "$_message";
+  }
 }
 
- 
 class FetchDataException extends ExceptionHelper {
-  FetchDataException([String? message])
-      : super(message);
+  FetchDataException([String? message]) : super(message);
 
   @override
   List<Object?> get props => [];
@@ -23,43 +20,24 @@ class FetchDataException extends ExceptionHelper {
 
 class BadRequestException extends ExceptionHelper {
   BadRequestException([String? message]) : super(message);
-
-   @override
+  @override
   List<Object?> get props => [];
 }
 
 class UnauthorisedException extends ExceptionHelper {
   UnauthorisedException([String? message]) : super(message);
-   @override
+  @override
   List<Object?> get props => [];
 }
 
 class InvalidInputException extends ExceptionHelper {
   InvalidInputException([String? message]) : super(message);
-   @override
-  List<Object?> get props => [];
-}
-
-class InvalidCredentialsException extends ExceptionHelper {
-  InvalidCredentialsException([String? message]) : super(message);
-   @override
+  @override
   List<Object?> get props => [];
 }
 
 class NotFoundException extends ExceptionHelper {
   NotFoundException([String? message]) : super(message);
-   @override
-  List<Object?> get props => [];
-}
-
-class ForbiddenException extends ExceptionHelper {
-  ForbiddenException([String? message]) : super(message);
-   @override
-  List<Object?> get props => [];
-}
-
-class InternalServerException extends ExceptionHelper {
-  InternalServerException([String? message]) : super(message);
-   @override
+  @override
   List<Object?> get props => [];
 }

@@ -1,5 +1,6 @@
-import 'package:wambo/core/base/exception_helpers.dart';
+import 'package:wambo/core/errors/exception.dart';
 import 'package:dartz/dartz.dart';
+import 'package:wambo/core/errors/failures.dart';
 import 'package:wambo/core/usecase/usecase.dart';
 import 'package:wambo/features/splash/domain/entities/authenticated_user_entity.dart';
 import 'package:wambo/features/splash/domain/repositories/authenticated_user_repository.dart';
@@ -11,7 +12,7 @@ class GetAuthenticatedUserLocaly
 
   
   @override
-  Future<Either<ExceptionHelper, AuthenticatedUserEntity>> call(
+  Future<Either<Failure, AuthenticatedUserEntity>> call(
       NoParams params) async {
     return await repository.getAuthenticatedUserLocaly();
   }
