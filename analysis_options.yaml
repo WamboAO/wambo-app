@@ -7,6 +7,8 @@ analyzer:
     prefer_const_declarations: error
     prefer_const_constructors: error
     sort_constructors_first: warning
+    avoid_unused_constructor_parameters: warning
+    avoid_print: warning
 
 
 linter:
@@ -15,3 +17,5 @@ linter:
     prefer_const_declarations: true
     prefer_const_constructors: true
     sort_constructors_first: true
+    avoid_unused_constructor_parameters: true
+    avoid_print: true
