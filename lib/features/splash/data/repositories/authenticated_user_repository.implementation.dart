@@ -1,8 +1,6 @@
-import 'dart:io';
-
 import 'package:wambo/core/errors/exception.dart';
 import 'package:wambo/core/errors/failures.dart';
-import 'package:wambo/core/base/network_data_helper.dart';
+import 'package:wambo/core/mixin/network_data_mixin.dart';
 import 'package:wambo/features/splash/data/datasources/authenticated_user_datasource.dart';
 import 'package:wambo/features/splash/data/models/authenticated_user_model.dart';
 import 'package:wambo/features/splash/domain/entities/authenticated_user_entity.dart';
@@ -21,7 +19,7 @@ class AuthenticatedUserRepositoryImplementation
     try {
       final result =
           await requestFromDataSource(datasource.getAuthenticatedUserLocaly());
-
+      
       return Right(result);
     } on FetchDataException catch (e) {
       return Left(FetchDataFailure("$e"));

@@ -10,7 +10,6 @@ mixin ApiDataHelper<T> {
     switch (response.statusCode) {
       case 201:
       case 200:
-        
         return data;
       //WARNING: api's can be unrealiable so you
       //may create your own exception error message
@@ -28,3 +27,4 @@ mixin ApiDataHelper<T> {
     }
   }
 }
+
