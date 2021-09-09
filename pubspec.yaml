@@ -31,6 +31,7 @@ dependencies:
     sdk: flutter
   flutter_hooks: ^0.18.0
   logger: ^1.1.0
+  shared_preferences: ^2.0.7
   stacked: ^2.2.5
   stacked_services: ^0.8.13
 
