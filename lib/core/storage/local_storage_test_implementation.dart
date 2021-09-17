@@ -1,7 +1,10 @@
-import 'package:shared_preferences/shared_preferences.dart';
-import 'package:wambo/core/interfaces/local_storage_interface.dart';
+import 'dart:convert';
 
-class SharedLocalStorage implements ILocalStorage {
+import 'package:shared_preferences/shared_preferences.dart';
+
+import '../interfaces/local_storage_interface.dart';
+
+class SharedLocalStorageTest implements ILocalStorage {
   @override
   Future clear() async {
     var shared = await SharedPreferences.getInstance();
@@ -10,8 +13,15 @@ class SharedLocalStorage implements ILocalStorage {
 
   @override
   Future get(String key) async {
-    var shared = await SharedPreferences.getInstance();
-    return shared.get(key);
+    Map<String, Object> values = {
+      "token": "dfgdlfkgh;sdlkg;dflgkj",
+      "refresh_token": "dldfkgjdfglkh",
+      "user_id": 1,
+      "is_first_time": false
+    };
+    var value = jsonEncode(values);
+
+    return value;
   }
 
   @override
@@ -22,7 +32,7 @@ class SharedLocalStorage implements ILocalStorage {
 
   @override
   Future put(String key, dynamic value) async {
-      var shared = await SharedPreferences.getInstance();
+    var shared = await SharedPreferences.getInstance();
     if (value is bool) {
       shared.setBool(key, value);
     } else if (value is String) {
@@ -31,10 +41,8 @@ class SharedLocalStorage implements ILocalStorage {
       shared.setInt(key, value);
     } else if (value is double) {
       shared.setDouble(key, value);
-    } else if(value is List<String>){
+    } else if (value is List<String>) {
       shared.setStringList(key, value);
     }
-  
-    
   }
 }
