@@ -1,5 +1,5 @@
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:wambo/core/storage/local_storage_interface.dart';
+import 'package:wambo/core/interfaces/local_storage_interface.dart';
 
 class SharedLocalStorageService implements ILocalStorage {
   @override

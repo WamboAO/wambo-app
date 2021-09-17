@@ -1,6 +1,5 @@
 import 'dart:async';
 import 'dart:io';
-
 import '../errors/exception.dart';
 
 mixin NetworkDataHelper<T> {
@@ -16,8 +15,8 @@ mixin NetworkDataHelper<T> {
       throw FetchDataException('Formato da resposta ruim');
     } on TimeoutException {
       throw FetchDataException('O pedido demorou muito');
-    } on Exception {
-      throw FetchDataException('Erro desconhecido');
+    } on Exception catch (e) {
+      throw FetchDataException('$e');
     }
   }
 }
