@@ -30,5 +30,13 @@ void main() {
       expect(result, Right(tgeneric));
       verify(() => repository.addAuthenticatedUserLocaly(tAuth)).called(1);
     });
+     test('should return failure when errors occurs from the repository', () async {
+      when(() => repository.addAuthenticatedUserLocaly(tAuth))
+          .thenAnswer((_) async => Left<Failure, GenericEntity>(FetchDataFailure()));
+
+      final result = await usecase(tAuth);
+      expect(result, Left(FetchDataFailure()));
+      verify(() => repository.addAuthenticatedUserLocaly(tAuth)).called(1);
+    });
   });
 }

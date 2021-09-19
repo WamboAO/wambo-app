@@ -2,7 +2,6 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:wambo/core/errors/exception.dart';
 import 'package:wambo/core/interfaces/local_storage_interface.dart';
-import 'package:wambo/features/startup/data/datasources/authenticated_user_datasource.dart';
 import 'package:wambo/features/startup/data/datasources/authenticated_user_datasource_implementation.dart';
 import 'package:wambo/features/startup/data/models/authenticated_user_model.dart';
 import '../../../../mocks/authenticated_user_mock.dart';
@@ -11,7 +10,7 @@ class MockILocalStorage extends Mock implements ILocalStorage {}
 
 void main() {
   group('AuthenticatedUserDatasourceImplementationTest -', () {
-    late IAuthenticatedUserDatasource datasource;
+    late AuthenticatedUserDatasourceImplementation datasource;
     late ILocalStorage localStorage;
     setUp(() {
       localStorage = MockILocalStorage();
@@ -24,6 +23,8 @@ void main() {
         token:
             "ldfglkdfglkfdjhlkdfjghjrhlkerhtlkrejhtlfkdhglkdfhglreiuthoireuhfgldkghdslkgh3294234735lerthl453l245hl4kj5h",
         refreshToken: "43kjh534j5lkdgjh4lk6jh4536kl",
+        username: "",
+        avatar: "",
         userId: 0,
         isFirstTime: true);
     test('should call the method with the right key', () async {

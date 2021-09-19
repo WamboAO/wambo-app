@@ -6,4 +6,4 @@ final tAuth = AuthenticatedUserEntity(
     token: "sdsdfsdf",
     userId: 0,
     refreshToken: "sdfsdfasdf",
-    isFirstTime: false);
+    isFirstTime: false, avatar: '', username: '');

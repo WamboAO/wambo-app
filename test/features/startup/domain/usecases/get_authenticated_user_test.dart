@@ -20,7 +20,7 @@ void main() {
     });
     final tParams = NoParams();
     final tAuth =
-        AuthenticatedUserEntity(token: "", userId: 0, refreshToken: "", isFirstTime: false);
+        AuthenticatedUserEntity(token: "", userId: 0, refreshToken: "", isFirstTime: false, avatar: '', username: '');
     test('should get authenticated user from the repository', () async {
       when(() => repository.getAuthenticatedUserLocaly()).thenAnswer(
           (_) async => Right<Failure, AuthenticatedUserEntity>(tAuth));

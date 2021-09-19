@@ -11,8 +11,8 @@ class AddAuthenticatedUserLocaly
   final IAuthenticateUserRepository repository;
 
   @override
-  Future<Either<Failure, GenericEntity>> call(AuthenticatedUserEntity params) {
-    // TODO: implement call
-    throw UnimplementedError();
+  Future<Either<Failure, GenericEntity>> call(
+      AuthenticatedUserEntity params) async {
+    return await repository.addAuthenticatedUserLocaly(params);
   }
 }
