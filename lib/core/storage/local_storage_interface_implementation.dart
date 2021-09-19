@@ -21,20 +21,25 @@ class SharedLocalStorage implements ILocalStorage {
   }
 
   @override
-  Future put(String key, dynamic value) async {
-      var shared = await SharedPreferences.getInstance();
+  Future<bool> put(String key, dynamic value) async {
+    var shared = await SharedPreferences.getInstance();
     if (value is bool) {
       shared.setBool(key, value);
+      return true;
     } else if (value is String) {
       shared.setString(key, value);
+      return true;
     } else if (value is int) {
       shared.setInt(key, value);
+      return true;
     } else if (value is double) {
       shared.setDouble(key, value);
-    } else if(value is List<String>){
+      return true;
+    } else if (value is List<String>) {
       shared.setStringList(key, value);
+      return true;
+    } else {
+      return false;
     }
-  
-    
   }
 }
