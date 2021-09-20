@@ -10,14 +10,15 @@ class StartupService {
   ApiResponse<AuthenticatedUserEntity> response =
       ApiResponse.loading("loading...");
 
-    
+  late bool _isLoggedIn;
+  bool get isLoggedIn => _isLoggedIn;
 
   Future<ApiResponse<AuthenticatedUserEntity>>
       getAuthenticatedUserLocaly() async {
     final result = await usecase(NoParams());
 
     response = result.fold((l) => ApiResponse.error('$l'), (r) {
-
+      _isLoggedIn = r.token.isNotEmpty && r.isFirstTime == false;
       return ApiResponse.completed(r);
     });
 

@@ -1,22 +1,25 @@
 import 'dart:convert';
 
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:faker/faker.dart';
 
 import '../interfaces/local_storage_interface.dart';
 
 class SharedLocalStorageTest implements ILocalStorage {
+  final _faker = Faker();
+
   @override
   Future clear() async {
-    var shared = await SharedPreferences.getInstance();
-    return shared.clear();
+    return true;
   }
 
   @override
   Future get(String key) async {
     Map<String, Object> values = {
-      "token": "dfgdlfkgh;sdlkg;dflgkj",
-      "refresh_token": "dldfkgjdfglkh",
+      "token": _faker.jwt,
+      "refresh_token": _faker.guid,
       "user_id": 1,
+      "username": _faker.internet.userName(),
+      "avatar": _faker.image,
       "is_first_time": false
     };
     var value = jsonEncode(values);
@@ -26,30 +29,11 @@ class SharedLocalStorageTest implements ILocalStorage {
 
   @override
   Future delete(String key) async {
-    var shared = await SharedPreferences.getInstance();
-    return shared.remove(key);
+    return true;
   }
 
   @override
   Future<bool> put(String key, dynamic value) async {
-    var shared = await SharedPreferences.getInstance();
-    if (value is bool) {
-      shared.setBool(key, value);
-      return true;
-    } else if (value is String) {
-      shared.setString(key, value);
-      return true;
-    } else if (value is int) {
-      shared.setInt(key, value);
-      return true;
-    } else if (value is double) {
-      shared.setDouble(key, value);
-      return true;
-    } else if (value is List<String>) {
-      shared.setStringList(key, value);
-      return true;
-    } else {
-      return false;
-    }
+    return true;
   }
 }
