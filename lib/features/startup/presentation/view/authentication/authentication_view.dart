@@ -10,9 +10,10 @@ class AuthenticationView extends StatelessWidget {
     return ViewModelBuilder<AuthenticationViewModel>.reactive(
       builder: (context, model, child) {
         return Scaffold(
-          body: Center(
-            child: Text('${model.isLoggedin}'),
+          body: const Center(
+            child: Text( "check out auth"),
           ),
+          floatingActionButton: FloatingActionButton(onPressed: ()=> model.initialize()),
         );
       },
       viewModelBuilder: () => AuthenticationViewModel(),

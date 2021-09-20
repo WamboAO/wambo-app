@@ -15,11 +15,11 @@ class SharedLocalStorageTest implements ILocalStorage {
   @override
   Future get(String key) async {
     Map<String, Object> values = {
-      "token": _faker.jwt,
-      "refresh_token": _faker.guid,
+      "token": _faker.jwt.expired(),
+      "refresh_token": _faker.guid.guid(),
       "user_id": 1,
       "username": _faker.internet.userName(),
-      "avatar": _faker.image,
+      "avatar": _faker.image.image(),
       "is_first_time": false
     };
     var value = jsonEncode(values);

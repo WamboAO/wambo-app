@@ -13,13 +13,17 @@ class AuthenticatedUserDatasourceImplementation
 
   @override
   Future<AuthenticatedUserModel> getAuthenticatedUserLocaly() async {
-    final response = await storage.get("auth");
+    try {
+      final response = await storage.get("auth");
 
-    if (response != null) {
-      var data = json.decode(response);
-      return AuthenticatedUserModel.fromJson(data);
-    } else {
-      throw FetchDataException('O que procuras não existe');
+      if (response != null) {
+        var data = json.decode(response);
+        return AuthenticatedUserModel.fromJson(data);
+      } else {
+        throw FetchDataException('O que procuras não existe');
+      }
+    } catch (e) {
+      throw FetchDataException('$e');
     }
   }
 }

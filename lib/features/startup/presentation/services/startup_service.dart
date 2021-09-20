@@ -10,7 +10,7 @@ class StartupService {
   ApiResponse<AuthenticatedUserEntity> response =
       ApiResponse.loading("loading...");
 
-  late bool _isLoggedIn;
+  late bool _isLoggedIn = false;
   bool get isLoggedIn => _isLoggedIn;
 
   Future<ApiResponse<AuthenticatedUserEntity>>

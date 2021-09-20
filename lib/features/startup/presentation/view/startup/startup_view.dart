@@ -14,9 +14,8 @@ class StartupView extends StatelessWidget {
           title: 'Wambo',
           locale: model.aoLocale,
           navigatorKey: model.globalKey,
-         onGenerateRoute: StackedRouter().onGenerateRoute,
+          onGenerateRoute: StackedRouter().onGenerateRoute,
           debugShowCheckedModeBanner: model.env == "debug" ? true: false,
-          
         );
       },
       viewModelBuilder: () => StartupViewModel(),
