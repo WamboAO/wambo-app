@@ -25,8 +25,8 @@ void setupLocator({String? enviroment}) {
   locator.registerLazySingleton(() => DialogService());
   
   //DDD
-  startup(enviroment: enviroment);
-  auth(enviroment: enviroment);
+  startup();
+  auth();
   //CORE
   if (enviroment == 'debug') {
     locator
@@ -35,11 +35,13 @@ void setupLocator({String? enviroment}) {
   if (enviroment == 'dev') {
     locator.registerLazySingleton<ILocalStorage>(() => SharedLocalStorage());
   }
-  if (enviroment == 'prod') {}
+  if (enviroment == 'prod') {
+    locator.registerLazySingleton<ILocalStorage>(() => SharedLocalStorage());
+  }
 }
 
-void startup({String? enviroment}) {
-  locator.registerFactory(() => StartupService(locator()));
+void startup() {
+  locator.registerLazySingleton(() => StartupService(locator()));
   locator.registerLazySingleton(() => GetAuthenticatedUserLocaly(locator()));
   locator.registerLazySingleton<IAuthenticatedUserRepository>(
       () => AuthenticatedUserRepositoryImplementation(locator()));
@@ -47,8 +49,8 @@ void startup({String? enviroment}) {
       () => AuthenticatedUserDatasourceImplementation(locator()));
 }
 
-void auth({String? enviroment}) {
-  locator.registerFactory(() => AuthService(locator()));
+void auth() {
+  locator.registerLazySingleton(() => AuthService(locator()));
   locator.registerLazySingleton(() => AddAuthenticatedUserLocaly(locator()));
   locator.registerLazySingleton<IAuthenticateUserRepository>(
       () => AuthenticateUserRepositoryImplementation(locator()));
