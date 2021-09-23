@@ -3,9 +3,10 @@ import 'package:wambo/core/interfaces/local_storage_interface.dart';
 
 class SharedLocalStorage implements ILocalStorage {
   @override
-  Future clear() async {
-    var shared = await SharedPreferences.getInstance();
-    return shared.clear();
+  Future<bool> clear() async {
+    SharedPreferences shared = await SharedPreferences.getInstance();
+    bool response = await shared.clear();
+    return response;
   }
 
   @override
@@ -15,31 +16,33 @@ class SharedLocalStorage implements ILocalStorage {
   }
 
   @override
-  Future delete(String key) async {
+  Future<bool> delete(String key) async {
     var shared = await SharedPreferences.getInstance();
-    return shared.remove(key);
+    bool response = await shared.remove(key);
+    return response;
   }
 
   @override
   Future<bool> put(String key, dynamic value) async {
     var shared = await SharedPreferences.getInstance();
+    bool response = false;
     if (value is bool) {
-      shared.setBool(key, value);
-      return true;
+      response = await shared.setBool(key, value);
+      return response;
     } else if (value is String) {
-      shared.setString(key, value);
-      return true;
+      response = await shared.setString(key, value);
+      return response;
     } else if (value is int) {
-      shared.setInt(key, value);
-      return true;
+      response = await shared.setInt(key, value);
+      return response;
     } else if (value is double) {
-      shared.setDouble(key, value);
-      return true;
+      response = await shared.setDouble(key, value);
+      return response;
     } else if (value is List<String>) {
-      shared.setStringList(key, value);
-      return true;
+      response = await shared.setStringList(key, value);
+      return response;
     } else {
-      return false;
+      return response;
     }
   }
 }

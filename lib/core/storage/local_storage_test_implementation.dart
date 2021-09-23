@@ -8,7 +8,7 @@ class SharedLocalStorageTest implements ILocalStorage {
   final _faker = Faker();
 
   @override
-  Future clear() async {
+  Future<bool> clear() async {
     return true;
   }
 
@@ -28,7 +28,7 @@ class SharedLocalStorageTest implements ILocalStorage {
   }
 
   @override
-  Future delete(String key) async {
+  Future<bool> delete(String key) async {
     return true;
   }
 
