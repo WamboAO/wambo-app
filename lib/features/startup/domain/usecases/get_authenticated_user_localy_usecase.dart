@@ -11,7 +11,6 @@ class GetAuthenticatedUserLocaly
 
   @override
   Future<Either<Failure, AuthenticatedUserEntity>> call(NoParams params) async {
-    await Future.delayed(const Duration(seconds: 3));
     return await repository.getAuthenticatedUserLocaly();
   }
 }
