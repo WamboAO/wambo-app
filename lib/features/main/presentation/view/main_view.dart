@@ -9,7 +9,9 @@ class MainView extends StatelessWidget {
  Widget build(BuildContext context) {
    return ViewModelBuilder<MainViewModel>.reactive(
      builder: (context, model, child) {
-        return const Scaffold();
+        return const Scaffold(
+          body: Center(child: Text("mainview"),),
+        );
         },
      viewModelBuilder: () => MainViewModel(),
    );
