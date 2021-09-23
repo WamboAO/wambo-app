@@ -26,7 +26,7 @@ void setupLocator({String? enviroment}) {
   
   //DDD
   startup();
-  auth();
+  login();
   //CORE
   if (enviroment == 'debug') {
     locator
@@ -49,7 +49,8 @@ void startup() {
       () => AuthenticatedUserDatasourceImplementation(locator()));
 }
 
-void auth() {
+void login() {
+  //TODO: usecases: add user to localStorage and login user
   locator.registerLazySingleton(() => AuthService(locator()));
   locator.registerLazySingleton(() => AddAuthenticatedUserLocaly(locator()));
   locator.registerLazySingleton<IAuthenticateUserRepository>(
