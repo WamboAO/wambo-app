@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
-const Color kcPrimary =  Color(0xff283559);
+const Color kcPrimary = Color(0xff26458F);
+const Color kcSecondary = Color(0xffE81463);
 
 //textstyle
 const TextStyle ktsMediumBodyText = TextStyle(
@@ -13,4 +14,4 @@ const TextStyle ktsSmallBodyText = TextStyle(
   fontSize: kBodyTextSize,
 );
 //font sizing
-const double kBodyTextSize = 12.0;
+const double kBodyTextSize = 14.0;
