@@ -12,7 +12,7 @@ An e-commerce Saas.
 
 ## High-level usecases
 #### Authentication
-* [ ] App should check if user is Authenticated. If yes, it should return main feature. Else, an Authentication screen should be presented.
+* [X] App should check if user is Authenticated. If yes, it should return main feature. Else, an Authentication screen should be presented.
 * [ ] Authentication should have social and email/password fields.
 * [ ] If user is not logged in, he should have the option to login with facebook or with email. I case the user is not ready he can authicate later.
 * [ ] If user is login and minized the app, It should refresh the user's token.
