@@ -10,7 +10,7 @@
 .history
 .svn/
 .vscode
-lib/core/app/setup.**.dart
+lib/app/setup.**.dart
 
 # IntelliJ related
 *.iml
