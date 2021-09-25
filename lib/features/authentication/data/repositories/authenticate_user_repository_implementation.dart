@@ -1,9 +1,9 @@
 import 'package:wambo/core/errors/exception.dart';
-import 'package:wambo/features/login/data/datasources/authenticate_user_datasource.dart';
+import 'package:wambo/features/authentication/data/datasources/authenticate_user_datasource.dart';
 import 'package:wambo/features/startup/domain/entities/authenticated_user_entity.dart';
 import 'package:wambo/core/errors/failures.dart';
 import 'package:dartz/dartz.dart';
-import 'package:wambo/features/login/domain/repositories/authenticate_user_repository.dart';
+import 'package:wambo/features/authentication/domain/repositories/authenticate_user_repository.dart';
 
 class AuthenticateUserRepositoryImplementation
     implements IAuthenticateUserRepository {

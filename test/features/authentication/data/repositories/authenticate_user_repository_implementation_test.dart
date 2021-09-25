@@ -3,8 +3,8 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:wambo/core/errors/exception.dart';
 import 'package:wambo/core/errors/failures.dart';
-import 'package:wambo/features/login/data/datasources/authenticate_user_datasource.dart';
-import 'package:wambo/features/login/data/repositories/authenticate_user_repository_implementation.dart';
+import 'package:wambo/features/authentication/data/datasources/authenticate_user_datasource.dart';
+import 'package:wambo/features/authentication/data/repositories/authenticate_user_repository_implementation.dart';
 
 import '../../../../mocks/authenticated_user_entity_mock.dart';
 

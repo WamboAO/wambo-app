@@ -4,7 +4,7 @@ import 'package:mocktail/mocktail.dart';
 import 'package:wambo/core/errors/exception.dart';
 import 'package:wambo/core/interfaces/local_storage_interface.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:wambo/features/login/data/datasources/authenticate_user_datasource_implementation.dart';
+import 'package:wambo/features/authentication/data/datasources/authenticate_user_datasource_implementation.dart';
 import 'package:wambo/features/startup/data/models/authenticated_user_model.dart';
 
 import '../../../../mocks/authenticated_user_entity_mock.dart';

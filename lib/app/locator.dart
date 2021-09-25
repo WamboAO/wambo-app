@@ -1,14 +1,14 @@
 import 'package:get_it/get_it.dart';
 import 'package:stacked_services/stacked_services.dart';
-import 'package:wambo/features/login/data/datasources/authenticate_user_datasource.dart';
-import 'package:wambo/features/login/data/datasources/authenticate_user_datasource_implementation.dart';
-import 'package:wambo/features/login/domain/usecases/add_authenticated_user_localy_usecase.dart';
+import 'package:wambo/features/authentication/presentation/services/authentication_service.dart';
+import 'package:wambo/features/authentication/data/datasources/authenticate_user_datasource.dart';
+import 'package:wambo/features/authentication/data/datasources/authenticate_user_datasource_implementation.dart';
+import 'package:wambo/features/authentication/domain/usecases/add_authenticated_user_localy_usecase.dart';
 import 'package:wambo/features/startup/domain/usecases/get_authenticated_user_localy_usecase.dart';
-import 'package:wambo/features/login/presentation/services/auth_service.dart';
 import 'package:wambo/features/startup/presentation/services/startup_service.dart';
-import 'package:wambo/features/login/domain/repositories/authenticate_user_repository.dart';
+import 'package:wambo/features/authentication/domain/repositories/authenticate_user_repository.dart';
 import 'package:wambo/features/startup/domain/repositories/authenticated_user_repository.dart';
-import 'package:wambo/features/login/data/repositories/authenticate_user_repository_implementation.dart';
+import 'package:wambo/features/authentication/data/repositories/authenticate_user_repository_implementation.dart';
 import 'package:wambo/features/startup/data/repositories/authenticated_user_repository.implementation.dart';
 import 'package:wambo/features/startup/data/datasources/authenticated_user_datasource.dart';
 import 'package:wambo/features/startup/data/datasources/authenticated_user_datasource_implementation.dart';
@@ -26,7 +26,7 @@ void setupLocator({String? enviroment}) {
   
   //DDD
   startup();
-  login();
+  authentication();
   //CORE
   if (enviroment == 'debug') {
     locator
@@ -49,9 +49,9 @@ void startup() {
       () => AuthenticatedUserDatasourceImplementation(locator()));
 }
 
-void login() {
+void authentication() {
   //TODO: usecases: add user to localStorage and login user
-  locator.registerLazySingleton(() => AuthService(locator()));
+  locator.registerLazySingleton(() => AuthenticationService(locator()));
   locator.registerLazySingleton(() => AddAuthenticatedUserLocaly(locator()));
   locator.registerLazySingleton<IAuthenticateUserRepository>(
       () => AuthenticateUserRepositoryImplementation(locator()));

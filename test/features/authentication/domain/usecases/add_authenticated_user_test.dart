@@ -2,8 +2,8 @@ import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:wambo/core/errors/failures.dart';
-import 'package:wambo/features/login/domain/repositories/authenticate_user_repository.dart';
-import 'package:wambo/features/login/domain/usecases/add_authenticated_user_localy_usecase.dart';
+import 'package:wambo/features/authentication/domain/repositories/authenticate_user_repository.dart';
+import 'package:wambo/features/authentication/domain/usecases/add_authenticated_user_localy_usecase.dart';
 
 import '../../../../mocks/authenticated_user_entity_mock.dart';
 
