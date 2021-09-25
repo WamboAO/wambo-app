@@ -9,8 +9,11 @@ class MainView extends StatelessWidget {
  Widget build(BuildContext context) {
    return ViewModelBuilder<MainViewModel>.reactive(
      builder: (context, model, child) {
-        return const Scaffold(
-          body: Center(child: Text("mainview"),),
+        return WillPopScope(
+          onWillPop:  () async => false,
+          child: const Scaffold(
+            body: Center(child: Text("mainview"),),
+          ),
         );
         },
      viewModelBuilder: () => MainViewModel(),

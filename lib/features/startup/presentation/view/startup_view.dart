@@ -22,7 +22,7 @@ class StartupView extends StatelessWidget {
           navigatorKey: model.globalKey,
           onGenerateRoute: StackedRouter().onGenerateRoute,
           initialRoute:
-              model.isLoggedIn == true ? Routes.mainView : Routes.loginView,
+              model.isLoggedIn == true ? Routes.mainView : Routes.authenticationView,
           debugShowCheckedModeBanner: model.env == "debug" ? true : false,
         );
       },

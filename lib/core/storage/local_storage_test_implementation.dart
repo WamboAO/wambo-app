@@ -20,7 +20,7 @@ class SharedLocalStorageTest implements ILocalStorage {
       "user_id": 1,
       "username": _faker.internet.userName(),
       "avatar": _faker.image.image(),
-      "is_first_time": false
+      "is_first_time": true
     };
     var value = jsonEncode(values);
 
