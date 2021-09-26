@@ -20,7 +20,9 @@ class AuthenticationViewModel extends BaseViewModel {
         token: "NO TOKEN",
         userId: 0,
         avatar: "",
-        username: "",
+        firstName: "",
+        lastName: "",
+        phone: "",
         refreshToken: "",
         isFirstTime: false);
     log.i(userAuth);

@@ -27,7 +27,9 @@ class AuthenticateUserDatasourceImplementation
     AuthenticatedUserModel _auth = AuthenticatedUserModel(
         token: userAuth.token,
         refreshToken: userAuth.refreshToken,
-        username: userAuth.username,
+        firstName: userAuth.firstName,
+        lastName: userAuth.lastName,
+        phone: userAuth.phone,
         avatar: userAuth.avatar,
         userId: userAuth.userId,
         isFirstTime: userAuth.isFirstTime);

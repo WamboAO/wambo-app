@@ -21,10 +21,9 @@ void main() {
     final tAuthenticatedUserModel = AuthenticatedUserModel(
         token: "token",
         refreshToken: "refreshToken",
-        username: "",
         avatar: "",
         userId: 1,
-        isFirstTime: true);
+        isFirstTime: true, firstName: '', lastName: '', phone: '');
     test('should return Authenticated User model when it calls the datasource',
         () async {
       when(() => datasource.getAuthenticatedUserLocaly())

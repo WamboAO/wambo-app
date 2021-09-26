@@ -5,11 +5,11 @@ import 'package:wambo/core/errors/failures.dart';
 import 'package:wambo/core/interfaces/remote_interface.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:wambo/core/mixins/api_data_mixin.dart';
-import 'package:wambo/core/mixins/network_data_mixin.dart';
 import 'package:http/http.dart' as http;
+import 'package:wambo/core/mixins/enpoint_data_mixin.dart';
 
 class RemoteImplementation
-    with NetworkDataHelper<http.Response>, ApiDataHelper
+    with EndpointDataHelper<http.Response>, ApiDataHelper
     implements IRemote {
 
   final _client = http.Client();
@@ -24,7 +24,7 @@ class RemoteImplementation
       var uri = Uri.encodeFull('$baseURL/$query');
       var url = Uri.parse(uri);
 
-      http.Response response = await requestFromDataSource(_client.delete(url,
+      http.Response response = await requestFromEndpoint(_client.delete(url,
           headers: header,
           body: body != null ? json.encode(body.toJson()) : null));
       Map<String, dynamic> responseJson = returnResponse(response);
@@ -43,7 +43,7 @@ class RemoteImplementation
       var url = Uri.parse(uri);
 
       http.Response response =
-          await requestFromDataSource(_client.get(url, headers: header));
+          await requestFromEndpoint(_client.get(url, headers: header));
       Map<String, dynamic> responseJson = returnResponse(response);
 
       return responseJson;
@@ -59,7 +59,7 @@ class RemoteImplementation
       var uri = Uri.encodeFull('$baseURL/$query');
       var url = Uri.parse(uri);
 
-      http.Response response = await requestFromDataSource(_client.patch(url,
+      http.Response response = await requestFromEndpoint(_client.patch(url,
           headers: header,
           body: body != null ? json.encode(body.toJson()) : null));
       Map<String, dynamic> responseJson = returnResponse(response);
@@ -77,7 +77,7 @@ class RemoteImplementation
       var uri = Uri.encodeFull('$baseURL/$query');
       var url = Uri.parse(uri);
 
-      http.Response response = await requestFromDataSource(_client.post(url,
+      http.Response response = await requestFromEndpoint(_client.post(url,
           headers: header,
           body: body != null ? json.encode(body.toJson()) : null));
       Map<String, dynamic> responseJson = returnResponse(response);
@@ -95,7 +95,7 @@ class RemoteImplementation
       var uri = Uri.encodeFull('$baseURL/$query');
       var url = Uri.parse(uri);
 
-      http.Response response = await requestFromDataSource(_client.put(url,
+      http.Response response = await requestFromEndpoint(_client.put(url,
           headers: header,
           body: body != null ? json.encode(body.toJson()) : null));
       Map<String, dynamic> responseJson = returnResponse(response);

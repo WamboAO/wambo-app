@@ -2,8 +2,8 @@ import 'dart:async';
 import 'dart:io';
 import '../errors/exception.dart';
 
-mixin NetworkDataHelper<T> {
-  Future<T> requestFromDataSource(Future<T> request) async {
+mixin EndpointDataHelper<T> {
+  Future<T> requestFromEndpoint(Future<T> request) async {
     try {
       final result = await request;
       return result;
@@ -20,3 +20,5 @@ mixin NetworkDataHelper<T> {
     }
   }
 }
+
+

@@ -28,7 +28,9 @@ void main() {
        AuthenticatedUserModel _auth = AuthenticatedUserModel(
           token: tAuth.token,
           refreshToken: tAuth.refreshToken,
-          username: tAuth.username,
+          firstName: tAuth.firstName,
+          lastName: tAuth.lastName,
+          phone: tAuth.lastName,
           avatar: tAuth.avatar,
           userId: tAuth.userId,
           isFirstTime: tAuth.isFirstTime);
@@ -43,7 +45,9 @@ void main() {
        AuthenticatedUserModel _auth = AuthenticatedUserModel(
           token: tAuth.token,
           refreshToken: tAuth.refreshToken,
-          username: tAuth.username,
+          firstName: tAuth.firstName,
+          lastName: tAuth.lastName,
+          phone: tAuth.lastName,
           avatar: tAuth.avatar,
           userId: tAuth.userId,
           isFirstTime: tAuth.isFirstTime);
@@ -55,10 +59,12 @@ void main() {
 
     test('should return FetchDataException when the call is unsucessful', () async {
       when(() => localStorage.put(any(), any())).thenThrow(FetchDataException());
-      AuthenticatedUserModel _auth = AuthenticatedUserModel(
+    AuthenticatedUserModel _auth = AuthenticatedUserModel(
           token: tAuth.token,
           refreshToken: tAuth.refreshToken,
-          username: tAuth.username,
+          firstName: tAuth.firstName,
+          lastName: tAuth.lastName,
+          phone: tAuth.lastName,
           avatar: tAuth.avatar,
           userId: tAuth.userId,
           isFirstTime: tAuth.isFirstTime);

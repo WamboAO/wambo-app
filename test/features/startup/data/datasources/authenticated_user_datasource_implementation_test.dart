@@ -23,7 +23,9 @@ void main() {
         token:
             "ldfglkdfglkfdjhlkdfjghjrhlkerhtlkrejhtlfkdhglkdfhglreiuthoireuhfgldkghdslkgh3294234735lerthl453l245hl4kj5h",
         refreshToken: "43kjh534j5lkdgjh4lk6jh4536kl",
-        username: "",
+        firstName: "",
+        lastName: "",
+        phone: "",
         avatar: "",
         userId: 0,
         isFirstTime: true);

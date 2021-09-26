@@ -4,7 +4,9 @@ class AuthenticatedUserModel extends AuthenticatedUserEntity {
   AuthenticatedUserModel(
       {required String token,
       required String refreshToken,
-      required String username,
+      required String firstName,
+      required String lastName,
+      required String phone,
       required String avatar,
       int userId = 0,
       bool isFirstTime = true})
@@ -12,7 +14,9 @@ class AuthenticatedUserModel extends AuthenticatedUserEntity {
             token: token,
             refreshToken: refreshToken,
             userId: userId,
-            username: username,
+            firstName: firstName,
+            lastName: lastName,
+            phone: phone,
             avatar: avatar,
             isFirstTime: isFirstTime);
 
@@ -21,7 +25,9 @@ class AuthenticatedUserModel extends AuthenticatedUserEntity {
           token: json['token'],
           refreshToken: json['refresh_token'],
           userId: json['user_id'],
-          username: json['username'],
+          firstName: json['first_name'],
+          lastName: json['last_name'],
+          phone: json['phone'],
           avatar: json['avatar'],
           isFirstTime: json['is_first_time']);
 
@@ -29,7 +35,9 @@ class AuthenticatedUserModel extends AuthenticatedUserEntity {
         'token': token,
         'refresh_token': refreshToken,
         'user_id': userId,
-        'username': username,
+        'first_name': firstName,
+        'last_name': lastName,
+        'phone': phone,
         'avatar': avatar,
         'is_first_time': isFirstTime,
       };
