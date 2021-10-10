@@ -5,10 +5,10 @@ class AuthenticatedUserEntity extends Equatable {
       {required this.token,
       required this.refreshToken,
       required this.userId,
-      required this.avatar,
+      this.avatar,
       required this.firstName,
       required this.email,
-      required this.phone,
+       this.phone,
       required this.lastName,
       required this.isFirstTime});
 
@@ -17,8 +17,8 @@ class AuthenticatedUserEntity extends Equatable {
   final String email;
   final String firstName;
   final String lastName;
-  final String phone;
-  final String avatar;
+  final String? phone;
+  final String? avatar;
   final bool isFirstTime;
   final String refreshToken;
 

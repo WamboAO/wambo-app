@@ -6,9 +6,9 @@ class AuthenticatedUserModel extends AuthenticatedUserEntity {
       required String refreshToken,
       required String firstName,
       required String lastName,
-      required String phone,
+       String? phone,
       required String email,
-      required String avatar,
+       String? avatar,
       int userId = 0,
       bool isFirstTime = true})
       : super(
