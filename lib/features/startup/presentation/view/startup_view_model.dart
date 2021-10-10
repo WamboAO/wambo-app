@@ -20,6 +20,7 @@ class StartupViewModel extends BaseViewModel {
   AuthenticatedUserEntity get currentUser => _startupService.currentUser;
   AuthenticatedUserEntity get noAuthUser => AuthenticatedUserEntity(
       token: "NO TOKEN",
+      email: "",
       userId: 0,
       avatar: "",
       firstName: "",

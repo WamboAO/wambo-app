@@ -1,4 +1,3 @@
-
 import 'imports.dart';
 
 final GetIt locator = GetIt.I;
@@ -36,11 +35,18 @@ void startup() {
 }
 
 void authentication() {
-
   locator.registerLazySingleton(() => AuthenticationService(locator()));
   locator.registerLazySingleton(() => AddAuthenticatedUserLocaly(locator()));
+  locator
+      .registerLazySingleton(() => AuthenticationWithSocialUsecase(locator()));
   locator.registerLazySingleton<IAuthenticateUserRepository>(
       () => AuthenticateUserRepositoryImplementation(locator()));
+  locator.registerLazySingleton<IAuthenticationWithSocialRepository>(
+      () => AuthenticationWithSocialRepositoryImplementation(locator()));
+  locator.registerLazySingleton<IAuthenticationWithSocialDatasource>(
+      () => AuthenticationWithSocialDatasourceImplementation(locator()));
+  locator.registerLazySingleton<ISocialLogin>(
+      () => SocialInterfaceImplementation());
   locator.registerLazySingleton<IAuthenticateUserDatasource>(
       () => AuthenticateUserDatasourceImplementation(locator()));
 }
