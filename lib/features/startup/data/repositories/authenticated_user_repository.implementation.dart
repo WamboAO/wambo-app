@@ -1,4 +1,3 @@
-import 'package:wambo/core/errors/exception.dart';
 import 'package:wambo/core/errors/failures.dart';
 import 'package:wambo/core/mixins/repository_data_mixin.dart';
 import 'package:wambo/features/startup/data/datasources/authenticated_user_datasource.dart';
@@ -16,7 +15,8 @@ class AuthenticatedUserRepositoryImplementation
   @override
   Future<Either<Failure, AuthenticatedUserEntity>>
       getAuthenticatedUserLocaly() async {
+   
     return await requestFromRepository(datasource.getAuthenticatedUserLocaly());
-    
+   
   }
 }
