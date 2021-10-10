@@ -18,6 +18,16 @@ class StartupViewModel extends BaseViewModel {
   //CURRENT USER INFO
   bool get isLoggedIn => _startupService.isLoggedIn;
   AuthenticatedUserEntity get currentUser => _startupService.currentUser;
+  AuthenticatedUserEntity get noAuthUser => AuthenticatedUserEntity(
+      token: "NO TOKEN",
+      userId: 0,
+      avatar: "",
+      firstName: "",
+      lastName: "",
+      phone: "",
+      refreshToken: "",
+      isFirstTime: false);
+
   Future<ApiResponse<AuthenticatedUserEntity>> get getAuthenticatedUserLocaly =>
       _startupService.getAuthenticatedUserLocaly();
 }
