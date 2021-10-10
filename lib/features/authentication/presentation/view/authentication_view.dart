@@ -9,7 +9,8 @@ import 'package:wambo/features/authentication/presentation/widgets/registration_
 import 'package:wambo/features/authentication/presentation/widgets/top_header_widget.dart';
 
 class AuthenticationView extends StatelessWidget {
-  const AuthenticationView({Key? key}) : super(key: key);
+  const AuthenticationView({Key? key, required this.pageController}) : super(key: key);
+  final PageController pageController;
   @override
   Widget build(BuildContext context) {
     return ViewModelBuilder<AuthenticationViewModel>.nonReactive(
@@ -38,8 +39,8 @@ class AuthenticationView extends StatelessWidget {
                           percentage: 0.4,
                         )),
                     Registration(
-                      apple: () => print("apple"),
-                      facebook: () => print("facebook"),
+                      apple: () => model.loginWithApple(),
+                      facebook: () => model.loginWithFacebook(),
                       email: () => print("email"),
                     )
                   ],
@@ -48,8 +49,8 @@ class AuthenticationView extends StatelessWidget {
             ),
           ),
           bottomNavigationBar: Contracts(
-            terms: ()=> print("terms"),
-            privacy: ()=> print("privacy"),
+            terms: () => print("terms"),
+            privacy: () => print("privacy"),
           ),
         );
       },
@@ -57,4 +58,3 @@ class AuthenticationView extends StatelessWidget {
     );
   }
 }
-
