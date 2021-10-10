@@ -2,40 +2,39 @@ import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:wambo/core/errors/failures.dart';
-import 'package:wambo/core/interfaces/usecase_interface.dart';
-import 'package:wambo/features/authentication/domain/repositories/authentication_with_facebook_repository.dart';
-import 'package:wambo/features/authentication/domain/usecases/authentication_with_facebook_usecase.dart';
-import 'package:wambo/features/startup/domain/entities/authenticated_user_entity.dart';
-
+import 'package:wambo/core/utils/enums.dart';
+import 'package:wambo/features/authentication/domain/entities/user_registration_crendentials_entities.dart';
+import 'package:wambo/features/authentication/domain/repositories/authentication_with_social_repository.dart';
+import 'package:wambo/features/authentication/domain/usecases/authentication_with_social_usecase.dart';
 import '../../../../mocks/authenticated_user_entity_mock.dart';
 
-class MockAuthenticationWithFacebookRepository extends Mock
-    implements AuthenticationWithFacebookRepository {}
+class MockAuthenticationWithSocialRepository extends Mock
+    implements IAuthenticationWithSocialRepository {}
 
 void main() {
-  late AuthenticationWithFacebookUsecase usecase;
-  late AuthenticationWithFacebookRepository repository;
-  group('AuthenticationWithFacebookUsecaseTest -', () {
+  late AuthenticationWithSocialUsecase usecase;
+  late IAuthenticationWithSocialRepository repository;
+  group('AuthenticationWithSocialUsecaseTest -', () {
     setUp(() {
-      repository = MockAuthenticationWithFacebookRepository();
-      usecase = AuthenticationWithFacebookUsecase(repository);
+      repository = MockAuthenticationWithSocialRepository();
+      usecase = AuthenticationWithSocialUsecase(repository);
     });
-    final tNoParams = NoParams();
+   Social tNoParams = Social.facebook;
     test('should return AuthenticatedUser from repository', () async {
-      when(() => repository.loginWithFacebook()).thenAnswer(
-          (_) async => Right<Failure, AuthenticatedUserEntity>(tAuth));
+      when(() => repository.loginWithSocial(tNoParams)).thenAnswer(
+          (_) async => Right<Failure, UserRegistrationCredentialsEntity>(tUserRegistration));
 
       final result = await usecase(tNoParams);
-      expect(result, Right(tAuth));
-      verify(() => repository.loginWithFacebook()).called(1);
+      expect(result, Right(tUserRegistration));
+      verify(() => repository.loginWithSocial(tNoParams)).called(1);
     });
     test('should return failure when errors occurs from the repository', () async {
-      when(() => repository.loginWithFacebook())
-          .thenAnswer((_) async => Left<Failure, AuthenticatedUserEntity>(FetchDataFailure()));
+      when(() => repository.loginWithSocial(tNoParams))
+          .thenAnswer((_) async => Left<Failure, UserRegistrationCredentialsEntity>(FetchDataFailure()));
 
       final result = await usecase(tNoParams);
       expect(result, Left(FetchDataFailure()));
-      verify(() => repository.loginWithFacebook()).called(1);
+      verify(() => repository.loginWithSocial(tNoParams)).called(1);
     });
   });
 }
