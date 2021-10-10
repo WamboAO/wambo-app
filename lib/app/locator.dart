@@ -1,20 +1,5 @@
-import 'package:get_it/get_it.dart';
-import 'package:stacked_services/stacked_services.dart';
-import 'package:wambo/features/authentication/presentation/services/authentication_service.dart';
-import 'package:wambo/features/authentication/data/datasources/authenticate_user_datasource.dart';
-import 'package:wambo/features/authentication/data/datasources/authenticate_user_datasource_implementation.dart';
-import 'package:wambo/features/authentication/domain/usecases/add_authenticated_user_localy_usecase.dart';
-import 'package:wambo/features/startup/domain/usecases/get_authenticated_user_localy_usecase.dart';
-import 'package:wambo/features/startup/presentation/services/startup_service.dart';
-import 'package:wambo/features/authentication/domain/repositories/authenticate_user_repository.dart';
-import 'package:wambo/features/startup/domain/repositories/authenticated_user_repository.dart';
-import 'package:wambo/features/authentication/data/repositories/authenticate_user_repository_implementation.dart';
-import 'package:wambo/features/startup/data/repositories/authenticated_user_repository.implementation.dart';
-import 'package:wambo/features/startup/data/datasources/authenticated_user_datasource.dart';
-import 'package:wambo/features/startup/data/datasources/authenticated_user_datasource_implementation.dart';
-import 'package:wambo/core/interfaces/local_storage_interface.dart';
-import 'package:wambo/core/storage/local_storage_interface_implementation.dart';
-import 'package:wambo/core/storage/local_storage_test_implementation.dart';
+
+import 'imports.dart';
 
 final GetIt locator = GetIt.I;
 
@@ -23,7 +8,8 @@ void setupLocator({String? enviroment}) {
   locator.registerLazySingleton(() => NavigationService());
   locator.registerLazySingleton(() => SnackbarService());
   locator.registerLazySingleton(() => DialogService());
-  
+  locator.registerLazySingleton(() => StartupViewModel());
+
   //DDD
   startup();
   authentication();
@@ -50,7 +36,7 @@ void startup() {
 }
 
 void authentication() {
-  //TODO: usecases: add user to localStorage and login user
+
   locator.registerLazySingleton(() => AuthenticationService(locator()));
   locator.registerLazySingleton(() => AddAuthenticatedUserLocaly(locator()));
   locator.registerLazySingleton<IAuthenticateUserRepository>(
