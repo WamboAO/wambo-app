@@ -7,12 +7,14 @@ class AuthenticatedUserEntity extends Equatable {
       required this.userId,
       required this.avatar,
       required this.firstName,
+      required this.email,
       required this.phone,
       required this.lastName,
       required this.isFirstTime});
 
   final String token;
   final int userId;
+  final String email;
   final String firstName;
   final String lastName;
   final String phone;
@@ -21,6 +23,15 @@ class AuthenticatedUserEntity extends Equatable {
   final String refreshToken;
 
   @override
-  List<Object?> get props =>
-      [token, userId, firstName, phone, lastName, avatar, isFirstTime, refreshToken];
+  List<Object?> get props => [
+        token,
+        userId,
+        firstName,
+        phone,
+        email,
+        lastName,
+        avatar,
+        isFirstTime,
+        refreshToken
+      ];
 }

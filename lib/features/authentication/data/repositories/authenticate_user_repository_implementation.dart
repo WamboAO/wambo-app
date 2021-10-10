@@ -16,6 +16,6 @@ class AuthenticateUserRepositoryImplementation
       AuthenticatedUserEntity userAuth) async {
     return await requestFromRepository(
         datasource.addAuthenticatedUserLocaly(userAuth));
-    
+   
   }
 }

@@ -28,7 +28,7 @@ void main() {
         phone: "",
         avatar: "",
         userId: 0,
-        isFirstTime: true);
+        isFirstTime: true, email: '');
     test('should call the method with the right key', () async {
       when(() => localStorage.get(any()))
           .thenAnswer((_) async => authenticatedUserMock);

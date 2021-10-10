@@ -27,6 +27,7 @@ void main() {
       when(() => localStorage.put(any(), any())).thenAnswer((_) async => true);
        AuthenticatedUserModel _auth = AuthenticatedUserModel(
           token: tAuth.token,
+          email: tAuth.email,
           refreshToken: tAuth.refreshToken,
           firstName: tAuth.firstName,
           lastName: tAuth.lastName,
@@ -44,6 +45,7 @@ void main() {
       when(() => localStorage.put(any(), any())).thenAnswer((_) async => true);
        AuthenticatedUserModel _auth = AuthenticatedUserModel(
           token: tAuth.token,
+           email: tAuth.email,
           refreshToken: tAuth.refreshToken,
           firstName: tAuth.firstName,
           lastName: tAuth.lastName,
@@ -61,6 +63,7 @@ void main() {
       when(() => localStorage.put(any(), any())).thenThrow(FetchDataException());
     AuthenticatedUserModel _auth = AuthenticatedUserModel(
           token: tAuth.token,
+           email: tAuth.email,
           refreshToken: tAuth.refreshToken,
           firstName: tAuth.firstName,
           lastName: tAuth.lastName,

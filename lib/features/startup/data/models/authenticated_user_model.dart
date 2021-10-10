@@ -7,10 +7,12 @@ class AuthenticatedUserModel extends AuthenticatedUserEntity {
       required String firstName,
       required String lastName,
       required String phone,
+      required String email,
       required String avatar,
       int userId = 0,
       bool isFirstTime = true})
       : super(
+           email: email,
             token: token,
             refreshToken: refreshToken,
             userId: userId,
@@ -23,6 +25,7 @@ class AuthenticatedUserModel extends AuthenticatedUserEntity {
   factory AuthenticatedUserModel.fromJson(Map<String, dynamic> json) =>
       AuthenticatedUserModel(
           token: json['token'],
+          email: json['email'],
           refreshToken: json['refresh_token'],
           userId: json['user_id'],
           firstName: json['first_name'],
@@ -33,6 +36,7 @@ class AuthenticatedUserModel extends AuthenticatedUserEntity {
 
   Map<String, dynamic> toJson() => {
         'token': token,
+        'email': email,
         'refresh_token': refreshToken,
         'user_id': userId,
         'first_name': firstName,

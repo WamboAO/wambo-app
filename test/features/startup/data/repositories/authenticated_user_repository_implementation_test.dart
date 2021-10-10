@@ -26,6 +26,7 @@ void main() {
 
     final tAuthenticatedUserModel = AuthenticatedUserModel(
         token: "token",
+         email: "",
         refreshToken: "refreshToken",
         avatar: "",
         userId: 1,
