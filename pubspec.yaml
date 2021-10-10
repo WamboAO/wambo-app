@@ -45,7 +45,6 @@ dev_dependencies:
   flutter_launcher_icons: ^0.9.2
   flutter_test:
     sdk: flutter
-  http_mock_adapter: ^0.3.2
   lints: ^1.0.1
   mocktail: ^0.1.4
   stacked_generator: null
