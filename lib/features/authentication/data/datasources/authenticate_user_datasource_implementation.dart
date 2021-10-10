@@ -25,6 +25,7 @@ class AuthenticateUserDatasourceImplementation
 
   String encodeData(AuthenticatedUserEntity userAuth) {
     AuthenticatedUserModel _auth = AuthenticatedUserModel(
+      email: userAuth.email,
         token: userAuth.token,
         refreshToken: userAuth.refreshToken,
         firstName: userAuth.firstName,
