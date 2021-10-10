@@ -36,6 +36,7 @@ void startup() {
 
 void authentication() {
   locator.registerLazySingleton(() => AuthenticationService(locator()));
+  locator.registerLazySingleton(() => SocialAuthenticationService(locator()));
   locator.registerLazySingleton(() => AddAuthenticatedUserLocaly(locator()));
   locator
       .registerLazySingleton(() => AuthenticationWithSocialUsecase(locator()));

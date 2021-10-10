@@ -23,3 +23,4 @@ export  'package:wambo/features/authentication/data/datasources/authentication_w
 export  'package:wambo/features/authentication/data/repositories/authentication_with_social_repository_implementation.dart';
 export  'package:wambo/features/authentication/domain/repositories/authentication_with_social_repository.dart';
 export  'package:wambo/features/authentication/domain/usecases/authentication_with_social_usecase.dart';
+export 'package:wambo/features/authentication/presentation/services/social_authentication_service.dart';
