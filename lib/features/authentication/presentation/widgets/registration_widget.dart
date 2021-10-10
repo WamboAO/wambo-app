@@ -22,53 +22,55 @@ class Registration extends StatelessWidget {
     return Container(
       margin: EdgeInsets.symmetric(
           vertical: screenHeightPercentage(context, percentage: 0.065)),
-      child: Column(
-        children: [
-          ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                  elevation: 5,
-                  primary: Colors.white,
-                  fixedSize: Size.fromWidth(
-                      screenWidthPercentage(context, percentage: 0.75)),
-                  padding: const EdgeInsets.all(20)),
-              onPressed: () => facebook(),
-              child: Text(
-                "Continua com Facebook",
-                style: ktsLargeBodyText.copyWith(color: Colors.blue),
-              )),
-          SizedBox(
-            height: screenHeightPercentage(context, percentage: 0.02),
-          ),
-          if (Platform.isIOS) ...[
+      child: FittedBox(
+        child: Column(
+          children: [
             ElevatedButton(
                 style: ElevatedButton.styleFrom(
                     elevation: 5,
-                    primary: Colors.black,
+                    primary: Colors.white,
                     fixedSize: Size.fromWidth(
                         screenWidthPercentage(context, percentage: 0.75)),
                     padding: const EdgeInsets.all(20)),
-                onPressed: () => apple(),
+                onPressed: () => facebook(),
                 child: Text(
-                  "Continua com Apple",
-                  style: ktsLargeBodyText.copyWith(color: Colors.white),
+                  "Continua com Facebook",
+                  style: ktsLargeBodyText.copyWith(color: Colors.blue),
                 )),
             SizedBox(
               height: screenHeightPercentage(context, percentage: 0.02),
             ),
+            if (Platform.isIOS) ...[
+              ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                      elevation: 5,
+                      primary: Colors.black,
+                      fixedSize: Size.fromWidth(
+                          screenWidthPercentage(context, percentage: 0.75)),
+                      padding: const EdgeInsets.all(20)),
+                  onPressed: () => apple(),
+                  child: Text(
+                    "Continua com Apple",
+                    style: ktsLargeBodyText.copyWith(color: Colors.white),
+                  )),
+              SizedBox(
+                height: screenHeightPercentage(context, percentage: 0.02),
+              ),
+            ],
+            ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                    elevation: 3,
+                    primary: kcPrimary,
+                    fixedSize: Size.fromWidth(
+                        screenWidthPercentage(context, percentage: 0.75)),
+                    padding: const EdgeInsets.all(20)),
+                onPressed: () => email(),
+                child: Text(
+                  "Inscreve-se com Email",
+                  style: ktsLargeBodyText.copyWith(color: Colors.white),
+                )),
           ],
-          ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                  elevation: 3,
-                  primary: kcPrimary,
-                  fixedSize: Size.fromWidth(
-                      screenWidthPercentage(context, percentage: 0.75)),
-                  padding: const EdgeInsets.all(20)),
-              onPressed: () => email(),
-              child: Text(
-                "Inscreve-se com Email",
-                style: ktsLargeBodyText.copyWith(color: Colors.white),
-              )),
-        ],
+        ),
       ),
     );
   }
