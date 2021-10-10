@@ -6,6 +6,7 @@ import 'package:wambo/app/setup.router.dart';
 import 'package:wambo/core/mixins/status_checker_mixin.dart';
 import 'package:wambo/core/utils/enums.dart';
 import 'package:wambo/features/authentication/presentation/services/authentication_service.dart';
+import 'package:wambo/features/authentication/presentation/services/social_authentication_service.dart';
 import 'package:wambo/features/startup/domain/entities/authenticated_user_entity.dart';
 import 'package:wambo/features/startup/presentation/view/startup_view_model.dart';
 
@@ -19,6 +20,7 @@ class AuthenticationViewModel extends BaseViewModel with StatusCheckerMixin {
   final _authenticateService = locator<AuthenticationService>();
   final _startupViewModel = locator<StartupViewModel>();
   final _dialogService = locator<DialogService>();
+  final _socialAuthService = locator<SocialAuthenticationService>();
 
   //USER INFO
   AuthenticatedUserEntity get noAuthUser => _startupViewModel.noAuthUser;
@@ -31,13 +33,26 @@ class AuthenticationViewModel extends BaseViewModel with StatusCheckerMixin {
     statusChecker(result.status,
         onError: () async => await _dialogService.showDialog(
             title: "Erro", description: result.message),
-        onComplete: () async =>
-            await getAuthenticatedUserGoToMain());
+        onComplete: () async => await getAuthenticatedUserGoToMain());
   }
 
   //TODO: LOGIN - BUTTON
   //TODO: FACEBOOK - BUTTON
+  Future loginWithFacebook() async {
+    final result = await _socialAuthService.loginWithSocial(Social.facebook);
+    statusChecker(result.status,
+        onError: () async => await _dialogService.showDialog(
+            title: "Erro", description: result.message),
+        onComplete: () => print(""));
+  }
   //TODO: APPLE - BUTTON ONLY FOR IOS
+  Future loginWithApple() async {
+    final result = await _socialAuthService.loginWithSocial(Social.apple);
+    statusChecker(result.status,
+        onError: () async => await _dialogService.showDialog(
+            title: "Erro", description: result.message),
+        onComplete: () => print(""));
+  }
   //TODO: TERMS - BUTTON
   //TODO: PRIVACY - BUTTON
 
