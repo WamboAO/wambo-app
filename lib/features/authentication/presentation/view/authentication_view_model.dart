@@ -37,22 +37,15 @@ class AuthenticationViewModel extends BaseViewModel with StatusCheckerMixin {
   }
 
   //TODO: LOGIN - BUTTON
-  //TODO: FACEBOOK - BUTTON
-  Future loginWithFacebook() async {
+  //TODO: SOCIAL - BUTTON
+  Future loginWithSocial(Social social) async {
     final result = await _socialAuthService.loginWithSocial(Social.facebook);
     statusChecker(result.status,
         onError: () async => await _dialogService.showDialog(
             title: "Erro", description: result.message),
-        onComplete: () => print(""));
+        onComplete: () => log.wtf(result.data));
   }
-  //TODO: APPLE - BUTTON ONLY FOR IOS
-  Future loginWithApple() async {
-    final result = await _socialAuthService.loginWithSocial(Social.apple);
-    statusChecker(result.status,
-        onError: () async => await _dialogService.showDialog(
-            title: "Erro", description: result.message),
-        onComplete: () => print(""));
-  }
+  
   //TODO: TERMS - BUTTON
   //TODO: PRIVACY - BUTTON
 

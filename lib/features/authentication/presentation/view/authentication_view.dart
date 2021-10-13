@@ -3,6 +3,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:stacked/stacked.dart';
 import 'package:wambo/core/shared/ui/sizing.dart';
 import 'package:wambo/core/shared/ui/styles.dart';
+import 'package:wambo/core/utils/enums.dart';
 import 'package:wambo/features/authentication/presentation/view/authentication_view_model.dart';
 import 'package:wambo/features/authentication/presentation/widgets/contracts_widget.dart';
 import 'package:wambo/features/authentication/presentation/widgets/registration_widget.dart';
@@ -31,7 +32,7 @@ class AuthenticationView extends StatelessWidget {
                   children: [
                     TopHeaderLogin(
                       cancel: () => model.cancelAuthentication(),
-                      login: () => print("login"),
+                      login: () => pageController.jumpToPage(0),
                     ),
                     SvgPicture.asset("assets/images/wambo-login.svg",
                         width: screenWidthPercentage(
@@ -39,8 +40,8 @@ class AuthenticationView extends StatelessWidget {
                           percentage: 0.4,
                         )),
                     Registration(
-                      apple: () => model.loginWithApple(),
-                      facebook: () => model.loginWithFacebook(),
+                      apple: () => model.loginWithSocial(Social.apple),
+                      facebook: () => model.loginWithSocial(Social.facebook),
                       email: () => print("email"),
                     )
                   ],
