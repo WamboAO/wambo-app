@@ -1,4 +1,4 @@
-package com.example.wambo
+package com.wambo
 
 import io.flutter.embedding.android.FlutterActivity
 
