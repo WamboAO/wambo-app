@@ -16,12 +16,12 @@ void setupLocator({String? enviroment}) {
   if (enviroment == 'debug') {
     locator
         .registerLazySingleton<ILocalStorage>(() => SharedLocalStorageTest());
+    locator.registerLazySingleton<IRemote>(() => RemoteTestImplementation());
   }
-  if (enviroment == 'dev') {
+
+  if (enviroment == 'dev' || enviroment == 'prod') {
     locator.registerLazySingleton<ILocalStorage>(() => SharedLocalStorage());
-  }
-  if (enviroment == 'prod') {
-    locator.registerLazySingleton<ILocalStorage>(() => SharedLocalStorage());
+    locator.registerLazySingleton<IRemote>(() => RemoteImplementation());
   }
 }
 
@@ -32,22 +32,34 @@ void startup() {
       () => AuthenticatedUserRepositoryImplementation(locator()));
   locator.registerLazySingleton<IAuthenticatedUserDatasource>(
       () => AuthenticatedUserDatasourceImplementation(locator()));
+
+//
+  locator.registerLazySingleton(() => AuthenticationService(locator()));
+  locator.registerLazySingleton(() => AddAuthenticatedUserLocaly(locator()));
+  locator.registerLazySingleton<IAuthenticateUserRepository>(
+      () => AuthenticateUserRepositoryImplementation(locator()));
+  locator.registerLazySingleton<IAuthenticateUserDatasource>(
+      () => AuthenticateUserDatasourceImplementation(locator()));
+
+//
+  locator.registerLazySingleton(() => AppConfigService(locator()));
+  locator.registerLazySingleton(() => AppConfigurationSetupUsecase(locator()));
+  locator.registerLazySingleton<IAppConfigurationSetupRepository>(
+      () => AppConfigurationSetupRepositoryImplementation(locator()));
+  locator.registerLazySingleton<IAppConfigurationDatasource>(
+      () => AppConfigurationDatasourceImplementation(locator()));
 }
 
 void authentication() {
-  locator.registerLazySingleton(() => AuthenticationService(locator()));
+  //social login
   locator.registerLazySingleton(() => SocialAuthenticationService(locator()));
-  locator.registerLazySingleton(() => AddAuthenticatedUserLocaly(locator()));
   locator
       .registerLazySingleton(() => AuthenticationWithSocialUsecase(locator()));
-  locator.registerLazySingleton<IAuthenticateUserRepository>(
-      () => AuthenticateUserRepositoryImplementation(locator()));
   locator.registerLazySingleton<IAuthenticationWithSocialRepository>(
       () => AuthenticationWithSocialRepositoryImplementation(locator()));
   locator.registerLazySingleton<IAuthenticationWithSocialDatasource>(
       () => AuthenticationWithSocialDatasourceImplementation(locator()));
   locator.registerLazySingleton<ISocialLogin>(
       () => SocialInterfaceImplementation());
-  locator.registerLazySingleton<IAuthenticateUserDatasource>(
-      () => AuthenticateUserDatasourceImplementation(locator()));
+  
 }
