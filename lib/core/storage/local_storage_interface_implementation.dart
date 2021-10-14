@@ -3,27 +3,28 @@ import 'package:wambo/core/interfaces/local_storage_interface.dart';
 
 class SharedLocalStorage implements ILocalStorage {
   @override
-  Future<bool> clear() async {
+  Future<bool> clear({String? debugType}) async {
     SharedPreferences shared = await SharedPreferences.getInstance();
     bool response = await shared.clear();
     return response;
   }
 
   @override
-  Future get(String key) async {
+  Future get({required String key, String? debugType}) async {
     var shared = await SharedPreferences.getInstance();
     return shared.get(key);
   }
 
   @override
-  Future<bool> delete(String key) async {
+  Future<bool> delete({required String key, String? debugType}) async {
     var shared = await SharedPreferences.getInstance();
     bool response = await shared.remove(key);
     return response;
   }
 
   @override
-  Future<bool> put(String key, dynamic value) async {
+  Future<bool> put(
+      {required String key, required dynamic value, String? debugType}) async {
     var shared = await SharedPreferences.getInstance();
     bool response = false;
     if (value is bool) {

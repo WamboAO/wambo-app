@@ -11,15 +11,15 @@ import 'package:wambo/core/mixins/enpoint_data_mixin.dart';
 class RemoteImplementation
     with EndpointDataHelper<http.Response>, ApiDataHelper
     implements IRemote {
-
   final _client = http.Client();
   final String baseURL = dotenv.env['BASE_URL']!;
-  
+
   @override
   Future delete(
       {required String query,
       required Map<String, String> header,
-      body}) async {
+      body,
+      String? debugType}) async {
     try {
       var uri = Uri.encodeFull('$baseURL/$query');
       var url = Uri.parse(uri);
@@ -37,7 +37,9 @@ class RemoteImplementation
 
   @override
   Future get(
-      {required String query, required Map<String, String> header}) async {
+      {required String query,
+      required Map<String, String> header,
+      String? debugType}) async {
     try {
       var uri = Uri.encodeFull('$baseURL/$query');
       var url = Uri.parse(uri);
@@ -54,7 +56,10 @@ class RemoteImplementation
 
   @override
   Future patch(
-      {required String query, required Map<String, String> header, body}) async{
+      {required String query,
+      required Map<String, String> header,
+      body,
+      String? debugType}) async {
     try {
       var uri = Uri.encodeFull('$baseURL/$query');
       var url = Uri.parse(uri);
@@ -72,7 +77,10 @@ class RemoteImplementation
 
   @override
   Future post(
-      {required String query, required Map<String, String> header, body}) async{
+      {required String query,
+      required Map<String, String> header,
+      body,
+      String? debugType}) async {
     try {
       var uri = Uri.encodeFull('$baseURL/$query');
       var url = Uri.parse(uri);
@@ -90,7 +98,10 @@ class RemoteImplementation
 
   @override
   Future put(
-      {required String query, required Map<String, String> header, body}) async{
+      {required String query,
+      required Map<String, String> header,
+      body,
+      String? debugType}) async {
     try {
       var uri = Uri.encodeFull('$baseURL/$query');
       var url = Uri.parse(uri);
@@ -105,4 +116,6 @@ class RemoteImplementation
       throw FetchDataFailure("$e");
     }
   }
+
+ 
 }

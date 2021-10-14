@@ -1,39 +1,31 @@
 import 'dart:convert';
 
-import 'package:faker/faker.dart';
+import 'package:wambo/core/storage/fake_storage_data.dart';
 
 import '../interfaces/local_storage_interface.dart';
 
 class SharedLocalStorageTest implements ILocalStorage {
-  final _faker = Faker();
-
+  final _faker = FakeLocalData();
   @override
-  Future<bool> clear() async {
+  Future<bool> clear({String? debugType}) async {
     return true;
   }
 
   @override
-  Future get(String key) async {
-    Map<String, Object> values = {
-      "token": _faker.jwt.expired(),
-      "refresh_token": _faker.guid.guid(),
-      "user_id": 1,
-      "username": _faker.internet.userName(),
-      "avatar": _faker.image.image(),
-      "is_first_time": true
-    };
-    var value = jsonEncode(values);
+  Future get({required String key, String? debugType}) async {
+    var value = jsonEncode(_faker.fakeAuthValues);
 
     return value;
   }
 
   @override
-  Future<bool> delete(String key) async {
+  Future<bool> delete({required String key, String? debugType}) async {
     return true;
   }
 
   @override
-  Future<bool> put(String key, dynamic value) async {
+  Future<bool> put(
+      {required String key, required dynamic value, String? debugType}) async {
     return true;
   }
 }
