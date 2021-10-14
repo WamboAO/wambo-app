@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:wambo/core/shared/ui/sizing.dart';
@@ -12,7 +13,6 @@ class Contracts extends StatelessWidget {
 
   final Function terms;
   final Function privacy;
-  
 
   @override
   Widget build(BuildContext context) {
@@ -24,30 +24,28 @@ class Contracts extends StatelessWidget {
             border: Border.all(
               color: kcSecondary,
             )),
-        child: RichText(
-          textAlign: TextAlign.center,
-          text: TextSpan(
+        child: AutoSizeText.rich(
+          TextSpan(
             style: ktsSmallBodyText,
             children: <TextSpan>[
-              const TextSpan(
-                  text: 'Caso continuares, concordas com os nossos '),
+               TextSpan(
+                  text: 'Caso continuares, concordas com os nossos ', style: ktsSmallBodyText.copyWith(color: kcWhite)),
               TextSpan(
                   text: 'Termos de Serviço',
                   style: ktsSmallBodyText.copyWith(
                       color: Colors.white,
                       decoration: TextDecoration.underline),
-                  recognizer: TapGestureRecognizer()
-                    ..onTap = () => terms()),
-              const TextSpan(text: ' e '),
+                  recognizer: TapGestureRecognizer()..onTap = () => terms()),
+               TextSpan(text: ' e ', style: ktsSmallBodyText.copyWith(color: kcWhite)),
               TextSpan(
                   text: 'Política de Privacidade',
                   style: ktsSmallBodyText.copyWith(
                       color: Colors.white,
                       decoration: TextDecoration.underline),
-                  recognizer: TapGestureRecognizer()
-                    ..onTap = () => privacy() )
+                  recognizer: TapGestureRecognizer()..onTap = () => privacy())
             ],
           ),
+          textAlign: TextAlign.center,
         ));
   }
 }

@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:wambo/core/shared/ui/sizing.dart';
 import 'package:wambo/core/shared/ui/styles.dart';
@@ -33,7 +34,7 @@ class Registration extends StatelessWidget {
                         screenWidthPercentage(context, percentage: 0.75)),
                     padding: const EdgeInsets.all(20)),
                 onPressed: () => facebook(),
-                child: Text(
+                child: AutoSizeText(
                   "Continua com Facebook",
                   style: ktsLargeBodyText.copyWith(color: Colors.blue),
                 )),
@@ -49,7 +50,7 @@ class Registration extends StatelessWidget {
                           screenWidthPercentage(context, percentage: 0.75)),
                       padding: const EdgeInsets.all(20)),
                   onPressed: () => apple(),
-                  child: Text(
+                  child: AutoSizeText(
                     "Continua com Apple",
                     style: ktsLargeBodyText.copyWith(color: Colors.white),
                   )),
@@ -65,7 +66,7 @@ class Registration extends StatelessWidget {
                         screenWidthPercentage(context, percentage: 0.75)),
                     padding: const EdgeInsets.all(20)),
                 onPressed: () => email(),
-                child: Text(
+                child: AutoSizeText(
                   "Inscreve-se com Email",
                   style: ktsLargeBodyText.copyWith(color: Colors.white),
                 )),

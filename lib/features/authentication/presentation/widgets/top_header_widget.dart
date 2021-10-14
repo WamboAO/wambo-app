@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:wambo/core/shared/ui/sizing.dart';
 import 'package:wambo/core/shared/ui/styles.dart';
@@ -23,7 +24,7 @@ class TopHeaderLogin extends StatelessWidget {
         children: [
           TextButton(
               onPressed: () => cancel(),
-              child: Text(
+              child: AutoSizeText(
                 "Cancelar",
                 style: ktsLargeBodyText.copyWith(color: Colors.white),
               )),
@@ -34,7 +35,7 @@ class TopHeaderLogin extends StatelessWidget {
                 side: const BorderSide(width: 1.5, color: Colors.white),
               ),
               onPressed: () => login(),
-              child: Text(
+              child: AutoSizeText(
                 "Login",
                 style: ktsLargeBodyText.copyWith(color: Colors.white),
               ))
