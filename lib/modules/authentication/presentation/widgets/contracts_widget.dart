@@ -36,7 +36,7 @@ class Contracts extends StatelessWidget {
               TextSpan(
                   text: 'Termos de Serviço',
                   style: ktsSmallBodyText.copyWith(
-                      color: backgroundColor != null? kcPrimary : kcWhite,
+                      color: backgroundColor != null? Colors.blue : kcWhite,
                       decoration: TextDecoration.underline),
                   recognizer: TapGestureRecognizer()..onTap = () => terms()),
               TextSpan(
@@ -45,7 +45,7 @@ class Contracts extends StatelessWidget {
               TextSpan(
                   text: 'Política de Privacidade',
                   style: ktsSmallBodyText.copyWith(
-                      color: backgroundColor != null? kcPrimary : kcWhite,
+                      color: backgroundColor != null? Colors.blue : kcWhite,
                       decoration: TextDecoration.underline),
                   recognizer: TapGestureRecognizer()..onTap = () => privacy())
             ],

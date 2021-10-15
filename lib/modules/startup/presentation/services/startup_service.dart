@@ -1,3 +1,4 @@
+import 'package:rxdart/rxdart.dart';
 import 'package:wambo/core/interfaces/usecase_interface.dart';
 import 'package:wambo/core/utils/data_state_response.dart';
 import 'package:wambo/modules/startup/domain/entities/authenticated_user_entity.dart';
@@ -5,17 +6,21 @@ import 'package:wambo/modules/startup/domain/usecases/get_authenticated_user_loc
 
 class StartupService {
   StartupService(this.usecase);
-  
+
   final GetAuthenticatedUserLocaly usecase;
   ApiResponse<AuthenticatedUserEntity> response =
       ApiResponse.loading("loading...");
 
   bool _isLoggedIn = false;
   bool get isLoggedIn => _isLoggedIn;
-  AuthenticatedUserEntity? get currentUser => response.data;
+  final BehaviorSubject<ApiResponse<AuthenticatedUserEntity>> _response =
+      BehaviorSubject<ApiResponse<AuthenticatedUserEntity>>.seeded(
+          ApiResponse.loading("loading..."));
 
-  Future<ApiResponse<AuthenticatedUserEntity>>
-      getAuthenticatedUserLocaly() async {
+  Stream<ApiResponse<AuthenticatedUserEntity>> get currentUser =>
+      _response.stream;
+
+  Future getAuthenticatedUserLocaly() async {
     final result = await usecase(NoParams());
 
     response = result.fold((l) => ApiResponse.error('$l'), (r) {
@@ -24,6 +29,6 @@ class StartupService {
       return ApiResponse.completed(r);
     });
 
-    return response;
+    _response.sink.add(response);
   }
 }

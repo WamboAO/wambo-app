@@ -18,10 +18,11 @@ class StartupViewModel extends BaseViewModel {
   //GLOBAL KEY FOR SERVICERS
   GlobalKey<NavigatorState>? get globalKey => StackedService.navigatorKey;
   Locale get aoLocale => const Locale('pt', 'pt_AO');
+  
   //CURRENT USER INFO
   bool get isLoggedIn => _startupService.isLoggedIn;
   AppConfigurationEntity? get appConfig => _appConfigService.appConfiguration;
-  AuthenticatedUserEntity? get currentUser => _startupService.currentUser;
+  Stream<ApiResponse<AuthenticatedUserEntity>> get currentUser => _startupService.currentUser;
   AuthenticatedUserEntity get noAuthUser => AuthenticatedUserEntity(
         token: "NO TOKEN",
         email: "",
@@ -33,6 +34,5 @@ class StartupViewModel extends BaseViewModel {
         refreshToken: "",
       );
 
-  Future<ApiResponse<AuthenticatedUserEntity>> get getAuthenticatedUserLocaly =>
-      _startupService.getAuthenticatedUserLocaly();
+  Future get getAuthenticatedUserLocaly => _startupService.getAuthenticatedUserLocaly();
 }
