@@ -19,8 +19,10 @@ class RemoteTestImplementation extends IRemote {
       required Map<String, String> header,
       String? debugType}) async {
     late Map<String, Object?> value;
-    await Future.delayed(const Duration(milliseconds: 300));
-    if (debugType == 'get_app_config') value = _fake.fakeAppConfigValues;
+    await Future.delayed(const Duration(seconds: 3));
+    if (debugType == 'get_app_config'){
+      value = _fake.fakeAppConfigValues;
+    } 
     return value;
   }
 
@@ -39,9 +41,14 @@ class RemoteTestImplementation extends IRemote {
       {required String query,
       required Map<String, String> header,
       body,
-      String? debugType}) {
-    // TODO: implement post
-    throw UnimplementedError();
+      String? debugType}) async {
+    late Map<String, Object?> value;
+    await Future.delayed(const Duration(seconds: 3));
+    if (debugType == 'authentication_register'){
+      value = _fake.fakeAuthUserResponseValues;
+    }
+      
+    return value;
   }
 
   @override
