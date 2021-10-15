@@ -1,3 +1,10 @@
+import 'package:wambo/modules/authentication/data/datasources/authentication_register_datasource.dart';
+import 'package:wambo/modules/authentication/data/datasources/authentication_register_datasource_implementation.dart';
+import 'package:wambo/modules/authentication/data/repositories/authentication_register_repository_implementation.dart';
+import 'package:wambo/modules/authentication/domain/repositories/authentication_register_repository.dart';
+import 'package:wambo/modules/authentication/domain/usecases/authentication_register_usecase.dart';
+import 'package:wambo/modules/authentication/presentation/services/register_authentication_service.dart';
+
 import 'imports.dart';
 
 final GetIt locator = GetIt.I;
@@ -34,7 +41,7 @@ void startup() {
       () => AuthenticatedUserDatasourceImplementation(locator()));
 
 //
-  locator.registerLazySingleton(() => AuthenticationService(locator()));
+  locator.registerFactory(() => AuthenticationService(locator()));
   locator.registerLazySingleton(() => AddAuthenticatedUserLocaly(locator()));
   locator.registerLazySingleton<IAuthenticateUserRepository>(
       () => AuthenticateUserRepositoryImplementation(locator()));
@@ -52,7 +59,7 @@ void startup() {
 
 void authentication() {
   //social login
-  locator.registerLazySingleton(() => SocialAuthenticationService(locator()));
+  locator.registerFactory(() => SocialAuthenticationService(locator()));
   locator
       .registerLazySingleton(() => AuthenticationWithSocialUsecase(locator()));
   locator.registerLazySingleton<IAuthenticationWithSocialRepository>(
@@ -61,5 +68,11 @@ void authentication() {
       () => AuthenticationWithSocialDatasourceImplementation(locator()));
   locator.registerLazySingleton<ISocialLogin>(
       () => SocialInterfaceImplementation());
-  
+  //register
+  locator.registerFactory(() => RegisterAuthenticationService(locator()));
+  locator.registerLazySingleton(() => AuthenticationRegisterUsecase(locator()));
+  locator.registerLazySingleton<IAuthenticationRegisterRepository>(
+      () => AuthenticationRegisterRepositoryImplementation(locator()));
+  locator.registerLazySingleton<IAuthenticationRegisterDatasource>(
+      () => AuthenticationRegisterDatasourceImplementation(locator()));
 }
