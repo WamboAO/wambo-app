@@ -1,9 +1,4 @@
-import 'package:wambo/modules/authentication/data/datasources/authentication_register_datasource.dart';
-import 'package:wambo/modules/authentication/data/datasources/authentication_register_datasource_implementation.dart';
-import 'package:wambo/modules/authentication/data/repositories/authentication_register_repository_implementation.dart';
-import 'package:wambo/modules/authentication/domain/repositories/authentication_register_repository.dart';
-import 'package:wambo/modules/authentication/domain/usecases/authentication_register_usecase.dart';
-import 'package:wambo/modules/authentication/presentation/services/register_authentication_service.dart';
+
 
 import 'imports.dart';
 
@@ -75,4 +70,19 @@ void authentication() {
       () => AuthenticationRegisterRepositoryImplementation(locator()));
   locator.registerLazySingleton<IAuthenticationRegisterDatasource>(
       () => AuthenticationRegisterDatasourceImplementation(locator()));
+
+  //login
+  locator.registerFactory(() => LoginAuthenticationService(locator()));
+  locator.registerLazySingleton(() => AuthenticationLoginUsecase(locator()));
+  locator.registerLazySingleton<IAuthenticationLoginRepository>(
+      () => AuthenticationLoginRepositoryImplementation(locator()));
+  locator.registerLazySingleton<IAuthenticationLoginDatasource>(
+      () => AuthenticationLoginDatasourceImplementation(locator()));
+  //forgot
+  locator.registerFactory(() => ResetPasswordAuthenticationService(locator()));
+  locator.registerLazySingleton(() => AuthenticationForgotPasswordUsecase(locator()));
+  locator.registerLazySingleton<IAuthenticationForgotPasswordRepository>(
+      () => AuthenticationForgotPasswordRepositoryImplementation(locator()));
+  locator.registerLazySingleton<IAuthenticationForgotPasswordDatasource>(
+      () => AuthenticationForgotPasswordDatasourceImplementation(locator()));
 }
