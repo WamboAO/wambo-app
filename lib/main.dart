@@ -3,8 +3,9 @@ import 'package:flutter/services.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:wambo/app/locator.dart';
-import 'package:wambo/features/startup/presentation/view/startup_view.dart';
-import 'features/startup/presentation/services/startup_service.dart';
+import 'package:wambo/modules/startup/presentation/view/startup_view.dart';
+import 'modules/startup/presentation/services/app_config_service.dart';
+import 'modules/startup/presentation/services/startup_service.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -17,6 +18,7 @@ Future<void> main() async {
 
   await dotenv.load(fileName: ".env").then((value) async {
     setupLocator(enviroment: dotenv.env['ENVIROMENT']);
+    await locator<AppConfigService>().appConfig();
     await locator<StartupService>().getAuthenticatedUserLocaly();
   });
 
