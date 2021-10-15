@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:stacked/stacked.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
@@ -13,6 +14,7 @@ class StartupViewModel extends BaseViewModel {
   //LOCATOR
   final _startupService = locator<StartupService>();
   final _appConfigService = locator<AppConfigService>();
+  final _snackbarService = locator<SnackbarService>();
   //ENV VARIABLE SETUP
   get env => dotenv.env['ENVIROMENT'];
   //GLOBAL KEY FOR SERVICERS
@@ -33,6 +35,13 @@ class StartupViewModel extends BaseViewModel {
         phone: "",
         refreshToken: "",
       );
+Future setSnackBar() async {
 
+    _snackbarService.registerSnackbarConfig(SnackbarConfig(
+        snackStyle: SnackStyle.GROUNDED,
+        animationDuration: const Duration(milliseconds: 300),
+        messageColor: Colors.white,
+        messageTextAlign: TextAlign.center));
+  }
   Future get getAuthenticatedUserLocaly => _startupService.getAuthenticatedUserLocaly();
 }

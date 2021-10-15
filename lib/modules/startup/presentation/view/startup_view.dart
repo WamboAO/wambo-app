@@ -10,7 +10,9 @@ class StartupView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ViewModelBuilder<StartupViewModel>.nonReactive(
+      onModelReady: (model)=> model.setSnackBar(),
       builder: (context, model, child) {
+        
         return MaterialApp(
           title: 'Wambo',
           locale: model.aoLocale,
