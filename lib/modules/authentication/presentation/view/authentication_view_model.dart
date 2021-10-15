@@ -36,7 +36,7 @@ class AuthenticationViewModel extends BaseViewModel with StatusCheckerMixin {
         onComplete: () async => await getAuthenticatedUserGoToMain());
   }
 
-  //TODO: LOGIN - BUTTON
+ 
   //TODO: SOCIAL - BUTTON
   Future loginWithSocial(Social social) async {
     final result = await _socialAuthService.loginWithSocial(Social.facebook);
