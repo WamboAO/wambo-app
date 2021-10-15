@@ -20,7 +20,7 @@ class Contracts extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
         padding: const EdgeInsets.symmetric(horizontal: 40),
-        height: screenHeightPercentage(context, percentage: 0.15),
+        height: backgroundColor != null? screenHeightPercentage(context, percentage: 0.08):screenHeightPercentage(context, percentage: 0.15),
         decoration: BoxDecoration(
             color: backgroundColor ?? kcSecondary,
             border: Border.all(
