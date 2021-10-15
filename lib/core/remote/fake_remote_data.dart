@@ -19,7 +19,11 @@ class FakeRemoteData {
           'last_name': _faker.person.lastName(),
           'phone': _faker.phoneNumber.us(),
           'email': _faker.internet.disposableEmail(),
-          'avatar': _faker.image.image(),
+          'avatar': _faker.image.image()
         }
+      };
+
+      Map<String, Object?> get fakeGenericValues => {
+        'message': 'Verifica o seu e-mail'
       };
 }
