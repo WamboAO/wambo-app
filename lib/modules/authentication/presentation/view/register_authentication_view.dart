@@ -31,7 +31,7 @@ class RegisterAuthenticationView extends HookWidget {
               backgroundColor: Colors.transparent,
               leading: IconButton(
                 icon: const Icon(Icons.arrow_back_ios, color: kcIconDark),
-                onPressed: ()async {
+                onPressed: () async {
                   if (passFocus.hasFocus ||
                       emailFocus.hasFocus ||
                       firstFocus.hasFocus ||
@@ -113,12 +113,43 @@ class _FormInput extends ViewModelWidget<RegisterAuthenticationViewModel> {
     RegisterAuthenticationViewModel model,
   ) {
     return AuthenticationLayoutWidget(
-      onPressed: () => model.register(
-          email: email.text,
-          fname: fname.text,
-          lname: lname.text,
-          password: password.text,
-          phone: phone.text),
+      onPressed: () {
+        if (passFocus.hasFocus ||
+            emailFocus.hasFocus ||
+            firstFocus.hasFocus ||
+            lastFocus.hasFocus ||
+            lastFocus.hasFocus ||
+            phoneFocus.hasFocus) {
+          passFocus.unfocus();
+          emailFocus.unfocus();
+          lastFocus.unfocus();
+          firstFocus.unfocus();
+          lastFocus.unfocus();
+          phoneFocus.unfocus();
+        }
+        model.register(
+            email: email.text,
+            fname: fname.text,
+            lname: lname.text,
+            password: password.text,
+            phone: phone.text);
+      },
+      facebook: () {
+        if (passFocus.hasFocus ||
+            emailFocus.hasFocus ||
+            firstFocus.hasFocus ||
+            lastFocus.hasFocus ||
+            lastFocus.hasFocus ||
+            phoneFocus.hasFocus) {
+          passFocus.unfocus();
+          emailFocus.unfocus();
+          lastFocus.unfocus();
+          firstFocus.unfocus();
+          lastFocus.unfocus();
+          phoneFocus.unfocus();
+        }
+        model.loginWithSocial(Social.facebook);
+      },
       isBusy: model.isBusy,
       email: email,
       phone: phone,

@@ -5,6 +5,7 @@ import 'package:wambo/app/locator.dart';
 import 'package:wambo/app/setup.logger.dart';
 import 'package:wambo/app/setup.router.dart';
 import 'package:wambo/core/mixins/status_checker_mixin.dart';
+import 'package:wambo/core/utils/enums.dart';
 import 'package:wambo/modules/authentication/domain/entities/authentication_user_reponse_entity.dart';
 import 'package:wambo/modules/authentication/domain/entities/user_registration_crendentials_entities.dart';
 import 'package:wambo/modules/authentication/presentation/services/register_authentication_service.dart';
@@ -21,6 +22,7 @@ class RegisterAuthenticationViewModel extends BaseViewModel
   final _navigationService = locator<NavigationService>();
   final _authenticationService = locator<AuthenticationService>();
   final _startupViewModel = locator<StartupViewModel>();
+  final _socialAuthService = locator<SocialAuthenticationService>();
 
   Future register(
       {required String email,
@@ -41,8 +43,11 @@ class RegisterAuthenticationViewModel extends BaseViewModel
             registrationType: "email/password");
     final result = await _registerAuthService.signup(params);
     statusChecker(result.status,
-        onError: () async => await _dialogService.showDialog(
-            title: "Erro", description: result.message),
+        onError: () async {
+      await _dialogService.showDialog(
+          title: "Erro", description: result.message);
+      return setBusy(false);
+    },
         onComplete: () async {
           log.w(result.data!);
           await addDataLocaly(result.data!);
@@ -69,5 +74,13 @@ class RegisterAuthenticationViewModel extends BaseViewModel
       setBusy(false);
       await _navigationService.replaceWith(Routes.mainView);
     });
+  }
+  
+  Future loginWithSocial(Social social) async {
+    final result = await _socialAuthService.loginWithSocial(Social.facebook);
+    statusChecker(result.status,
+        onError: () async => await _dialogService.showDialog(
+            title: "Erro", description: result.message),
+        onComplete: () => log.wtf(result.data));
   }
 }
