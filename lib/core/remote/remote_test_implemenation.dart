@@ -20,9 +20,9 @@ class RemoteTestImplementation extends IRemote {
       String? debugType}) async {
     late Map<String, Object?> value;
     await Future.delayed(const Duration(seconds: 3));
-    if (debugType == 'get_app_config'){
+    if (debugType == 'get_app_config') {
       value = _fake.fakeAppConfigValues;
-    } 
+    }
     return value;
   }
 
@@ -44,10 +44,16 @@ class RemoteTestImplementation extends IRemote {
       String? debugType}) async {
     late Map<String, Object?> value;
     await Future.delayed(const Duration(seconds: 3));
-    if (debugType == 'authentication_register'){
+    if (debugType == 'authentication_register') {
       value = _fake.fakeAuthUserResponseValues;
     }
-      
+    if (debugType == 'authentication_login') {
+      value = _fake.fakeAuthUserResponseValues;
+    }
+    if (debugType == 'authentication_forgot_password') {
+      value = _fake.fakeGenericValues;
+    }
+
     return value;
   }
 
