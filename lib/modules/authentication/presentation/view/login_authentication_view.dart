@@ -1,8 +1,5 @@
-import 'package:auto_size_text/auto_size_text.dart';
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
-import 'package:wambo/core/shared/ui/sizing.dart';
 import 'package:wambo/core/shared/ui/styles.dart';
 import 'package:wambo/core/utils/enums.dart';
 import 'package:wambo/modules/authentication/presentation/view/login_authentication_view_model.dart';
@@ -26,7 +23,7 @@ class LoginAuthenticationView extends StatelessWidget {
               onPressed: () => pageController.jumpToPage(0),
             ),
           ),
-          body: const AuthenticationLayoutWidget(layoutType: LayoutType.login,)        );
+          body: AuthenticationLayoutWidget(layoutType: LayoutType.login, onForgot: ()=> pageController.jumpToPage(3),)        );
       },
       viewModelBuilder: () => LoginAuthenticationViewModel(),
     );
