@@ -29,7 +29,7 @@ dependencies:
   faker: ^2.0.0
   flutter:
     sdk: flutter
-  flutter_hooks: ^0.18.0
+  flutter_hooks: ^0.17.0
   flutter_login_facebook: ^1.1.0
   flutter_svg: ^0.22.0
   get_it: ^7.2.0
@@ -39,6 +39,7 @@ dependencies:
   rxdart: ^0.27.2
   shared_preferences: ^2.0.7
   stacked: ^2.2.5
+  stacked_hooks: ^0.2.1
   stacked_services: ^0.8.13
 # the_apple_sign_in: ^1.1.1
 dev_dependencies:
