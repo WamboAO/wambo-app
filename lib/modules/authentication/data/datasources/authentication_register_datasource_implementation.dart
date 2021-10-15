@@ -1,4 +1,4 @@
-import 'package:wambo/app/imports.dart';
+import 'package:wambo/core/interfaces/remote_interface.dart';
 import 'package:wambo/core/shared/helpers/api_header_helpers.dart';
 import 'package:wambo/modules/authentication/data/datasources/authentication_register_datasource.dart';
 import 'package:wambo/modules/authentication/data/models/user_registration_credentials_model.dart';
