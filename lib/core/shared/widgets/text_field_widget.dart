@@ -10,8 +10,10 @@ class NewFormTextField extends StatefulWidget {
     this.isPass = false,
     required this.icon,
     required this.text,
+    this.textInputAction,
     required this.controller,
     required this.formater,
+     this.onFieldSubmitted,
   }) : super(key: key);
 
   final FocusNode? focus;
@@ -21,6 +23,8 @@ class NewFormTextField extends StatefulWidget {
   final TextEditingController controller;
   final bool isPass;
   final FilteringTextInputFormatter formater;
+  final Function(String)? onFieldSubmitted;
+  final TextInputAction? textInputAction;
 
   @override
   _NewFormTextFieldState createState() => _NewFormTextFieldState();
@@ -42,6 +46,8 @@ class _NewFormTextFieldState extends State<NewFormTextField> {
       ),
       child: TextFormField(
         focusNode: widget.focus,
+        textInputAction: widget.textInputAction,
+        onFieldSubmitted: widget.onFieldSubmitted,
         inputFormatters: [widget.formater],
         obscureText: widget.isPass ? !_passwordVisible : false,
         controller: widget.controller,
@@ -53,14 +59,14 @@ class _NewFormTextFieldState extends State<NewFormTextField> {
           contentPadding: const EdgeInsets.symmetric(vertical: 17),
           filled: true,
           fillColor: Colors.white.withOpacity(0.3),
-          enabledBorder:  const OutlineInputBorder(
+          enabledBorder: const OutlineInputBorder(
             borderSide: BorderSide(color: Colors.black),
-            borderRadius:  BorderRadius.all(Radius.circular(4.0)),
+            borderRadius: BorderRadius.all(Radius.circular(4.0)),
           ),
           // errorBorder: OutlineInputBorder(),
           focusedBorder: const OutlineInputBorder(
             borderSide: BorderSide(color: Colors.blue),
-            borderRadius:  BorderRadius.all(Radius.circular(4.0)),
+            borderRadius: BorderRadius.all(Radius.circular(4.0)),
           ),
           focusedErrorBorder: const OutlineInputBorder(
             borderSide: BorderSide(color: Colors.red),
@@ -69,7 +75,6 @@ class _NewFormTextFieldState extends State<NewFormTextField> {
           prefixIcon: Icon(
             widget.icon,
             size: 30,
-         
           ),
           suffixIcon: widget.isPass
               ? GestureDetector(
@@ -78,7 +83,12 @@ class _NewFormTextFieldState extends State<NewFormTextField> {
                       _passwordVisible = !_passwordVisible;
                     });
                   },
-                  child: _passwordVisible ?  const Icon(Icons.visibility, color: Colors.blue) :  const Icon(Icons.visibility_off, color: kcIconDark,),
+                  child: _passwordVisible
+                      ? const Icon(Icons.visibility, color: Colors.blue)
+                      : const Icon(
+                          Icons.visibility_off,
+                          color: kcIconDark,
+                        ),
                 )
               : null,
         ),
