@@ -25,12 +25,14 @@ class AuthenticationLayoutWidget extends StatelessWidget {
       required this.emailFocus,
       this.firstFocus,
       this.lastfocus,
+      this.privacy,
+      this.terms,
       this.phoneFocus,
       this.passFocus})
       : super(key: key);
   final LayoutType layoutType;
   final bool isBusy;
-  final Function? onForgot, onPressed, facebook;
+  final Function? onForgot, onPressed, facebook, terms, privacy;
   final TextEditingController email;
   final FocusNode emailFocus;
   final FocusNode? firstFocus, lastfocus, phoneFocus, passFocus;
@@ -97,6 +99,8 @@ class AuthenticationLayoutWidget extends StatelessWidget {
               _RegisterWidget(
                 facebook: () => facebook!(),
                 onPressed: () => onPressed!(),
+                terms: ()=> terms!(),
+                privacy: ()=>privacy!(),
                 isBusy: isBusy,
                 fname: fname!,
                 lname: lname!,
@@ -181,6 +185,8 @@ class _RegisterWidget extends StatelessWidget {
       required this.email,
       required this.isBusy,
       required this.onPressed,
+      required this.terms,
+      required this.privacy,
       required this.password,
       required this.phone,
       required this.emailFocus,
@@ -191,7 +197,7 @@ class _RegisterWidget extends StatelessWidget {
       : super(key: key);
   final TextEditingController fname, lname, email, phone, password;
   final FocusNode firstFocus, lastFocus, emailFocus, phoneFocus, passFocus;
-  final Function facebook, onPressed;
+  final Function facebook, onPressed, terms, privacy;
   final bool isBusy;
 
   @override
@@ -287,8 +293,8 @@ class _RegisterWidget extends StatelessWidget {
         ),
         Contracts(
           backgroundColor: Colors.transparent,
-          terms: () => print("terms"),
-          privacy: () => print("privacy"),
+          terms: () => terms(),
+          privacy: () => privacy(),
         ),
         BusyBtn(
           busy: isBusy,
