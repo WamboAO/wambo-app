@@ -7,9 +7,11 @@ import 'package:wambo/core/utils/enums.dart';
 import 'package:wambo/modules/authentication/presentation/widgets/contracts_widget.dart';
 
 class AuthenticationLayoutWidget extends StatelessWidget {
-  const AuthenticationLayoutWidget({Key? key, required this.layoutType})
+  const AuthenticationLayoutWidget(
+      {Key? key, required this.layoutType, this.onForgot})
       : super(key: key);
   final LayoutType layoutType;
+  final Function? onForgot;
 
   @override
   Widget build(BuildContext context) {
@@ -37,14 +39,39 @@ class AuthenticationLayoutWidget extends StatelessWidget {
             SizedBox(
               height: screenWidthPercentage(context, percentage: 0.1),
             ),
-            if (layoutType == LayoutType.login) ...[const _LoginWidget()],
-            if (layoutType == LayoutType.register) ...[
-              const _RegisterWidget()
+            if (layoutType == LayoutType.login) ...[
+              _LoginWidget(
+                onForgot: () => onForgot!(),
+              )
             ],
-            if (layoutType == LayoutType.forgot) ...[],
+            if (layoutType == LayoutType.register) ...[const _RegisterWidget()],
+            if (layoutType == LayoutType.forgot) ...[const _ForgotPasswordWidget()],
           ],
         ),
       ),
+    );
+  }
+}
+
+class _ForgotPasswordWidget extends StatelessWidget {
+  const _ForgotPasswordWidget({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        const Placeholder(
+          fallbackWidth: double.infinity,
+          fallbackHeight: 45,
+        ),
+        SizedBox(
+          height: screenWidthPercentage(context, percentage: 0.1),
+        ),
+        const Placeholder(
+          fallbackWidth: double.infinity,
+          fallbackHeight: 45,
+        ),
+      ],
     );
   }
 }
@@ -61,24 +88,25 @@ class _RegisterWidget extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-             const Expanded(
-               flex: 8,
-               child:  Placeholder(
-            fallbackWidth: double.infinity,
-            fallbackHeight: 45,
-          ),),
-          const Spacer(),
-          const Expanded(
-            flex: 8,
-            child:  Placeholder(
-          
-            fallbackWidth: double.infinity,
-            fallbackHeight: 45,
-          ),)
+              const Expanded(
+                flex: 8,
+                child: Placeholder(
+                  fallbackWidth: double.infinity,
+                  fallbackHeight: 45,
+                ),
+              ),
+              const Spacer(),
+              const Expanded(
+                flex: 8,
+                child: Placeholder(
+                  fallbackWidth: double.infinity,
+                  fallbackHeight: 45,
+                ),
+              )
             ],
           ),
         ),
-         SizedBox(
+        SizedBox(
           height: screenWidthPercentage(context, percentage: 0.04),
         ),
         const Placeholder(
@@ -104,15 +132,14 @@ class _RegisterWidget extends StatelessWidget {
         ),
         Contracts(
           backgroundColor: Colors.transparent,
-            terms: () => print("terms"),
-            privacy: () => print("privacy"),
-          ),
-          
+          terms: () => print("terms"),
+          privacy: () => print("privacy"),
+        ),
         const Placeholder(
           fallbackWidth: double.infinity,
           fallbackHeight: 45,
         ),
-         SizedBox(
+        SizedBox(
           height: screenWidthPercentage(context, percentage: 0.04),
         ),
         const Placeholder(
@@ -125,7 +152,8 @@ class _RegisterWidget extends StatelessWidget {
 }
 
 class _LoginWidget extends StatelessWidget {
-  const _LoginWidget({Key? key}) : super(key: key);
+  const _LoginWidget({Key? key, required this.onForgot}) : super(key: key);
+  final Function onForgot;
 
   @override
   Widget build(BuildContext context) {
@@ -143,7 +171,7 @@ class _LoginWidget extends StatelessWidget {
           fallbackHeight: 45,
         ),
         SizedBox(
-          height: screenWidthPercentage(context, percentage: 0.01),
+          height: screenWidthPercentage(context, percentage: 0.035),
         ),
         AutoSizeText.rich(
           TextSpan(
@@ -153,8 +181,7 @@ class _LoginWidget extends StatelessWidget {
                   text: 'Esqueceu a Senha?',
                   style: ktsLargeBodyText.copyWith(
                       fontWeight: FontWeight.bold, color: kcPrimary),
-                  recognizer: TapGestureRecognizer()
-                    ..onTap = () => print("forgot")),
+                  recognizer: TapGestureRecognizer()..onTap = () => onForgot()),
             ],
           ),
           textAlign: TextAlign.center,
@@ -185,7 +212,6 @@ class _LoginWidget extends StatelessWidget {
           fallbackWidth: double.infinity,
           fallbackHeight: 45,
         ),
-        
       ],
     );
   }
