@@ -12,17 +12,21 @@ class NewFormTextField extends StatefulWidget {
     required this.text,
     this.textInputAction,
     required this.controller,
+    this.textCapitalization,
+    this.onChanged,
     required this.formater,
-     this.onFieldSubmitted,
+    this.onFieldSubmitted,
   }) : super(key: key);
 
   final FocusNode? focus;
   final TextInputType keyboardType;
   final IconData icon;
   final String text;
+  final  Function(String)? onChanged;
   final TextEditingController controller;
   final bool isPass;
-  final FilteringTextInputFormatter formater;
+  final TextCapitalization? textCapitalization;
+  final List<TextInputFormatter> formater;
   final Function(String)? onFieldSubmitted;
   final TextInputAction? textInputAction;
 
@@ -45,16 +49,20 @@ class _NewFormTextFieldState extends State<NewFormTextField> {
         vertical: 2,
       ),
       child: TextFormField(
+        textCapitalization: widget.textCapitalization !=null? widget.textCapitalization! : TextCapitalization.none,
         focusNode: widget.focus,
         textInputAction: widget.textInputAction,
         onFieldSubmitted: widget.onFieldSubmitted,
-        inputFormatters: [widget.formater],
+        inputFormatters: widget.formater,
         obscureText: widget.isPass ? !_passwordVisible : false,
         controller: widget.controller,
+        onChanged: widget.onChanged,
+        autovalidateMode: AutovalidateMode.onUserInteraction,
         style: ktsMediumBodyText.copyWith(color: kcIconDark),
         keyboardType: widget.keyboardType,
         decoration: InputDecoration(
           hintText: widget.text,
+          errorStyle: ktsSmallBodyText.copyWith(color: Colors.red),
           hintStyle: ktsMediumBodyText.copyWith(color: kcIconLight),
           contentPadding: const EdgeInsets.symmetric(vertical: 17),
           filled: true,
@@ -63,7 +71,10 @@ class _NewFormTextFieldState extends State<NewFormTextField> {
             borderSide: BorderSide(color: Colors.black),
             borderRadius: BorderRadius.all(Radius.circular(4.0)),
           ),
-          // errorBorder: OutlineInputBorder(),
+          errorBorder: const OutlineInputBorder(
+            borderSide: BorderSide(color: Colors.red),
+            borderRadius: BorderRadius.all(Radius.circular(4.0)),
+          ),
           focusedBorder: const OutlineInputBorder(
             borderSide: BorderSide(color: Colors.blue),
             borderRadius: BorderRadius.all(Radius.circular(4.0)),
