@@ -15,11 +15,11 @@ class AuthenticationRegisterDatasourceImplementation implements IAuthenticationR
   Future<AuthenticationUserResponseModel> signup(UserRegistrationCredentialsEntity params) async {
     try {
       UserRegistrationCredentialsModel body = UserRegistrationCredentialsModel(
-        firstName: params.firstName,
-        lastName: params.lastName,
-        phone: params.phone,
-        email: params.email,
-        password: params.password,
+        firstName: params.firstName!.trim(),
+        lastName: params.lastName!.trim(),
+        phone: "+244${params.phone!.replaceAll(" ", "").trim()}",
+        email: params.email!.trim(),
+        password: params.password!.trim(),
         registrationType: params.registrationType
         );
       final response = await client.post(query: "", header: _header.setHeaders(), body: body, debugType: "authentication_register");

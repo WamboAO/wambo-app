@@ -15,8 +15,8 @@ class AuthenticationLoginDatasourceImplementation implements IAuthenticationLogi
   Future<AuthenticationUserResponseModel> login(UserRegistrationCredentialsEntity params) async{
      try {
       UserRegistrationCredentialsModel body = UserRegistrationCredentialsModel(
-        email: params.email,
-        password: params.password,
+        email: params.email!.trim(),
+        password: params.password!.trim(),
         registrationType: params.registrationType
         );
       final response = await client.post(query: "", header: _header.setHeaders(), body: body, debugType: "authentication_login");
