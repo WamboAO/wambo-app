@@ -20,9 +20,10 @@ class AuthenticationRegisterUsecase
     
     final emailValidation = validateEmail(params.email);
     final passwordValidation = validatePass(params.password);
+     final phoneValidation = validatePhone(params.phone);
     final fNameValidation = validateValue(params.firstName, "Primeiro nome");
     final flastValidation = validateValue(params.lastName, "Último nome");
-    final phoneValidation = validateValue(params.phone, "Telefone");
+   
     
     if (emailValidation != null) {
       return Left(emailValidation);
