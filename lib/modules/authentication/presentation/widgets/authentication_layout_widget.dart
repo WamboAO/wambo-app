@@ -8,6 +8,7 @@ import 'package:wambo/core/shared/widgets/busy_button_widget.dart';
 import 'package:wambo/core/shared/widgets/text_field_widget.dart';
 import 'package:wambo/core/utils/enums.dart';
 import 'package:wambo/modules/authentication/presentation/widgets/contracts_widget.dart';
+import 'package:flutter_multi_formatter/flutter_multi_formatter.dart';
 
 class AuthenticationLayoutWidget extends StatelessWidget {
   const AuthenticationLayoutWidget(
@@ -99,8 +100,8 @@ class AuthenticationLayoutWidget extends StatelessWidget {
               _RegisterWidget(
                 facebook: () => facebook!(),
                 onPressed: () => onPressed!(),
-                terms: ()=> terms!(),
-                privacy: ()=>privacy!(),
+                terms: () => terms!(),
+                privacy: () => privacy!(),
                 isBusy: isBusy,
                 fname: fname!,
                 lname: lname!,
@@ -147,20 +148,21 @@ class _ForgotPasswordWidget extends StatelessWidget {
     return Column(
       children: [
         NewFormTextField(
-          onFieldSubmitted: (value) {
-            if (value.isNotEmpty) {
-              onPressed();
-            }
-          },
-          controller: email,
-          focus: emailFocus,
-          keyboardType: TextInputType.emailAddress,
-          icon: Icons.email_rounded,
-          text: "Email",
-          formater: FilteringTextInputFormatter.deny(
-            RegExp('[<>]'),
-          ),
-        ),
+            onFieldSubmitted: (value) {
+              if (value.isNotEmpty) {
+                onPressed();
+              }
+            },
+            controller: email,
+            focus: emailFocus,
+            keyboardType: TextInputType.emailAddress,
+            icon: Icons.email_rounded,
+            text: "Email",
+            formater: [
+              FilteringTextInputFormatter.deny(
+                RegExp('[<>]'),
+              ),
+            ]),
         SizedBox(
           height: screenWidthPercentage(context, percentage: 0.1),
         ),
@@ -202,6 +204,12 @@ class _RegisterWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    PhoneInputFormatter.replacePhoneMask(
+        countryCode: "AO", newMask: '+000 000 000 000');
+    PhoneInputFormatter.addAlternativePhoneMasks(
+      countryCode: 'AO',
+      alternativeMasks: ['000 000 000'],
+    );
     return Column(
       children: [
         Container(
@@ -212,31 +220,35 @@ class _RegisterWidget extends StatelessWidget {
               Expanded(
                 flex: 8,
                 child: NewFormTextField(
-                  textInputAction: TextInputAction.next,
-                  controller: fname,
-                  focus: firstFocus,
-                  keyboardType: TextInputType.text,
-                  icon: Icons.account_circle,
-                  text: "Nome",
-                  formater: FilteringTextInputFormatter.deny(
-                    RegExp('[<>]'),
-                  ),
-                ),
+                    textCapitalization: TextCapitalization.words,
+                    textInputAction: TextInputAction.next,
+                    controller: fname,
+                    focus: firstFocus,
+                    keyboardType: TextInputType.text,
+                    icon: Icons.account_circle,
+                    text: "Nome",
+                    formater: [
+                      FilteringTextInputFormatter.deny(
+                        RegExp('[<>]'),
+                      ),
+                    ]),
               ),
               const Spacer(),
               Expanded(
                 flex: 8,
                 child: NewFormTextField(
-                  textInputAction: TextInputAction.next,
-                  controller: lname,
-                  focus: lastFocus,
-                  keyboardType: TextInputType.text,
-                  icon: Icons.account_circle,
-                  text: "Último nome",
-                  formater: FilteringTextInputFormatter.deny(
-                    RegExp('[<>]'),
-                  ),
-                ),
+                    textCapitalization: TextCapitalization.words,
+                    textInputAction: TextInputAction.next,
+                    controller: lname,
+                    focus: lastFocus,
+                    keyboardType: TextInputType.text,
+                    icon: Icons.account_circle,
+                    text: "Último nome",
+                    formater: [
+                      FilteringTextInputFormatter.deny(
+                        RegExp('[<>]'),
+                      ),
+                    ]),
               ),
             ],
           ),
@@ -245,49 +257,53 @@ class _RegisterWidget extends StatelessWidget {
           height: screenWidthPercentage(context, percentage: 0.04),
         ),
         NewFormTextField(
-          textInputAction: TextInputAction.next,
-          controller: email,
-          focus: emailFocus,
-          keyboardType: TextInputType.emailAddress,
-          icon: Icons.email_rounded,
-          text: "Email",
-          formater: FilteringTextInputFormatter.deny(
-            RegExp('[<>]'),
-          ),
-        ),
+            textInputAction: TextInputAction.next,
+            controller: email,
+            focus: emailFocus,
+            keyboardType: TextInputType.emailAddress,
+            icon: Icons.email_rounded,
+            text: "Email",
+            formater: [
+              FilteringTextInputFormatter.deny(
+                RegExp('[<>]'),
+              ),
+            ]),
         SizedBox(
           height: screenWidthPercentage(context, percentage: 0.04),
         ),
         NewFormTextField(
-          textInputAction: TextInputAction.next,
-          focus: phoneFocus,
-          controller: phone,
-          keyboardType: TextInputType.phone,
-          icon: Icons.phone_rounded,
-          text: "Telefone",
-          formater: FilteringTextInputFormatter.deny(
-            RegExp('[<>]'),
-          ),
-        ),
+            textInputAction: TextInputAction.next,
+            focus: phoneFocus,
+            controller: phone,
+            keyboardType: TextInputType.phone,
+            icon: Icons.phone_rounded,
+            text: "Telefone",
+            formater: [
+              FilteringTextInputFormatter.deny(
+                RegExp('[<>]'),
+              ),
+              MaskedInputFormatter("000 000 000"),
+            ]),
         SizedBox(
           height: screenWidthPercentage(context, percentage: 0.04),
         ),
         NewFormTextField(
-          onFieldSubmitted: (value) {
-            if (value.isNotEmpty) {
-              onPressed();
-            }
-          },
-          isPass: true,
-          controller: password,
-          focus: passFocus,
-          keyboardType: TextInputType.text,
-          icon: Icons.lock_rounded,
-          text: "Senha",
-          formater: FilteringTextInputFormatter.deny(
-            RegExp('[<>]'),
-          ),
-        ),
+            onFieldSubmitted: (value) {
+              if (value.isNotEmpty) {
+                onPressed();
+              }
+            },
+            isPass: true,
+            controller: password,
+            focus: passFocus,
+            keyboardType: TextInputType.text,
+            icon: Icons.lock_rounded,
+            text: "Senha",
+            formater: [
+              FilteringTextInputFormatter.deny(
+                RegExp('[<>]'),
+              ),
+            ]),
         SizedBox(
           height: screenWidthPercentage(context, percentage: 0.04),
         ),
@@ -345,35 +361,37 @@ class _LoginWidget extends StatelessWidget {
     return Column(
       children: [
         NewFormTextField(
-          textInputAction: TextInputAction.next,
-          controller: email,
-          focus: emailFocus,
-          keyboardType: TextInputType.emailAddress,
-          icon: Icons.email_rounded,
-          text: "Email",
-          formater: FilteringTextInputFormatter.deny(
-            RegExp('[<>]'),
-          ),
-        ),
+            textInputAction: TextInputAction.next,
+            controller: email,
+            focus: emailFocus,
+            keyboardType: TextInputType.emailAddress,
+            icon: Icons.email_rounded,
+            text: "Email",
+            formater: [
+              FilteringTextInputFormatter.deny(
+                RegExp('[<>]'),
+              ),
+            ]),
         SizedBox(
           height: screenWidthPercentage(context, percentage: 0.04),
         ),
         NewFormTextField(
-          onFieldSubmitted: (value) {
-            if (value.isNotEmpty) {
-              onPressed();
-            }
-          },
-          isPass: true,
-          controller: password,
-          focus: passFocus,
-          keyboardType: TextInputType.text,
-          icon: Icons.lock_rounded,
-          text: "Senha",
-          formater: FilteringTextInputFormatter.deny(
-            RegExp('[<>]'),
-          ),
-        ),
+            onFieldSubmitted: (value) {
+              if (value.isNotEmpty) {
+                onPressed();
+              }
+            },
+            isPass: true,
+            controller: password,
+            focus: passFocus,
+            keyboardType: TextInputType.text,
+            icon: Icons.lock_rounded,
+            text: "Senha",
+            formater: [
+              FilteringTextInputFormatter.deny(
+                RegExp('[<>]'),
+              ),
+            ]),
         SizedBox(
           height: screenWidthPercentage(context, percentage: 0.05),
         ),
