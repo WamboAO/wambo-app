@@ -6,6 +6,7 @@ const Color kcIconDark = Color(0xFF3D3D3D);
 const Color kcWhite = Color(0xFFffffff);
 const Color kcIconLight = Color(0xFFBDBDBD);
 const Color kcIcon = Color(0xFFB9B9B9);
+const Color kcFacebook = Color(0xFF4267B2);
 //textstyle
 const TextStyle ktsMediumBodyText =
     TextStyle(fontSize: kBodyTextSize + 2.0, color: kcIconDark);
