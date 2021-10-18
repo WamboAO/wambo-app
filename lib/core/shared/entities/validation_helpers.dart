@@ -16,8 +16,9 @@ FetchDataFailure? validateEmail(String? value) {
 }
 
 FetchDataFailure? validatePass(String? value) {
+  //TODO: see what is the regExp for this
   // String pattern =
-  //     r"^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$";
+  //     r"^\s*(?:\+?(\d{1,3}))?[-. (]*(\d{3})[-. )]*(\d{3})[-. ]*(\d{3})(?: *x(\d+))?\s*$";
   // RegExp regExp = RegExp(pattern);
   if (value== null || value.isEmpty) {
     return FetchDataFailure("Senha não pode ser vazio");
@@ -25,6 +26,20 @@ FetchDataFailure? validatePass(String? value) {
   if (value.length < 6) {
     return FetchDataFailure(
         'Mínimo de 6 caracteres');
+  }
+  return null;
+}
+
+FetchDataFailure? validatePhone(String? value) {
+  String pattern =
+      r"^\s*(?:\+?(\d{1,3}))?[-. (]*(\d{3})[-. )]*(\d{3})[-. ]*(\d{3})(?: *x(\d+))?\s*$";
+  RegExp regExp = RegExp(pattern);
+  if (value== null || value.isEmpty) {
+    return FetchDataFailure("Telefone não pode ser vazio");
+  }
+  if (!regExp.hasMatch(value)) {
+    return FetchDataFailure(
+        'Digite um número de telefone valido');
   }
   return null;
 }
