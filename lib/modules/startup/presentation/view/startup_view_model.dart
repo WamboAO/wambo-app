@@ -35,7 +35,7 @@ class StartupViewModel extends BaseViewModel {
         phone: "",
         refreshToken: "",
       );
-Future setSnackBar() async {
+void setSnackBar() {
 
     _snackbarService.registerSnackbarConfig(SnackbarConfig(
         snackStyle: SnackStyle.GROUNDED,
