@@ -150,8 +150,8 @@ class _FormInput extends ViewModelWidget<RegisterAuthenticationViewModel> {
         }
         model.loginWithSocial(Social.facebook);
       },
-      terms: ()=> print("terms"),
-      privacy: ()=> print("privacy"),
+      terms: ()=> model.getLink("sms:+244932254152"),
+      privacy: ()=> model.getLink("mailto:rcsousa14@hotmail.com"),
       isBusy: model.isBusy,
       email: email,
       phone: phone,

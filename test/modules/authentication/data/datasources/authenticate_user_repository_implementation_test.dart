@@ -25,16 +25,16 @@ void main() {
 
     test('should call the method with the right key', () async {
       when(() => localStorage.put(key:any(), value:any())).thenAnswer((_) async => true);
-       AuthenticatedUserModel _auth = AuthenticatedUserModel(
-          token: tAuth.token,
-          email: tAuth.email,
-          refreshToken: tAuth.refreshToken,
-          firstName: tAuth.firstName,
-          lastName: tAuth.lastName,
-          phone: tAuth.lastName,
-          avatar: tAuth.avatar,
-          userId: tAuth.userId,
-          );
+      //  AuthenticatedUserModel _auth = AuthenticatedUserModel(
+      //     token: tAuth.token,
+      //     email: tAuth.email,
+      //     refreshToken: tAuth.refreshToken,
+      //     firstName: tAuth.firstName,
+      //     lastName: tAuth.lastName,
+      //     phone: tAuth.lastName,
+      //     avatar: tAuth.avatar,
+      //     userId: tAuth.userId,
+      //     );
 
       await datasource.addAuthenticatedUserLocaly(tAuth);
 

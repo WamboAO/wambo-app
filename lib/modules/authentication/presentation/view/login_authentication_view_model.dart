@@ -3,12 +3,9 @@ import 'package:stacked_services/stacked_services.dart';
 import 'package:wambo/app/imports.dart';
 import 'package:wambo/app/locator.dart';
 import 'package:wambo/app/setup.logger.dart';
-import 'package:wambo/app/setup.router.dart';
 import 'package:wambo/core/mixins/status_checker_mixin.dart';
 import 'package:wambo/core/utils/enums.dart';
-import 'package:wambo/modules/authentication/domain/entities/authentication_user_reponse_entity.dart';
 import 'package:wambo/modules/authentication/domain/entities/user_registration_crendentials_entities.dart';
-import 'package:wambo/modules/startup/domain/entities/authenticated_user_entity.dart';
 
 class LoginAuthenticationViewModel extends BaseViewModel
     with StatusCheckerMixin {
@@ -18,8 +15,8 @@ class LoginAuthenticationViewModel extends BaseViewModel
   final log = getLogger('LoginAuthenticationViewModel');
   final _loginService = locator<LoginAuthenticationService>();
   final _dialogService = locator<DialogService>();
-  final _navigationService = locator<NavigationService>();
-  final _authenticationService = locator<AuthenticationService>();
+  final _socialAuthResponseService =
+      locator<SocialAuthenticaionResponseService>();
   final _startupViewModel = locator<StartupViewModel>();
   final _socialAuthService = locator<SocialAuthenticationService>();
 
@@ -38,37 +35,31 @@ class LoginAuthenticationViewModel extends BaseViewModel
       return setBusy(false);
     }, onComplete: () async {
       log.w(result.data!);
-      await addDataLocaly(result.data!);
+      await _startupViewModel.addDataLocaly(result.data!);
     });
   }
 
-  Future addDataLocaly(AuthenticationUserReponseEntity params) async {
-    AuthenticatedUserEntity userAuth = AuthenticatedUserEntity(
-        token: params.token.token,
-        refreshToken: params.token.refreshToken,
-        userId: params.user.userId,
-        firstName: params.user.firstName,
-        email: params.user.email,
-        lastName: params.user.lastName);
-    final result =
-        await _authenticationService.addAuthenticatedUserLocaly(userAuth);
+  Future loginWithSocial(Social social) async {
+    setBusy(true);
+    final result = await _socialAuthService.loginWithSocial(Social.facebook);
+    statusChecker(result.status,
+        onError: () async {
+          await _dialogService.showDialog(
+              title: "Erro", description: result.message);
+          return setBusy(false);
+        },
+        onComplete: () => socialResponse(result.data!));
+  }
 
+  Future socialResponse(UserRegistrationCredentialsEntity params) async {
+    final result = await _socialAuthResponseService.access(params);
     statusChecker(result.status, onError: () async {
       await _dialogService.showDialog(
           title: "Erro", description: result.message);
       return setBusy(false);
     }, onComplete: () async {
-      await _startupViewModel.getAuthenticatedUserLocaly;
-      setBusy(false);
-      await _navigationService.replaceWith(Routes.mainView);
+      log.w(result.data!);
+      await _startupViewModel.addDataLocaly(result.data!);
     });
-  }
-
-  Future loginWithSocial(Social social) async {
-    final result = await _socialAuthService.loginWithSocial(Social.facebook);
-    statusChecker(result.status,
-        onError: () async => await _dialogService.showDialog(
-            title: "Erro", description: result.message),
-        onComplete: () => log.wtf(result.data));
   }
 }

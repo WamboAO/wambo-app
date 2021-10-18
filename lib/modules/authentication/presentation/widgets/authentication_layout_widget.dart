@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -322,17 +324,26 @@ class _RegisterWidget extends StatelessWidget {
         SizedBox(
           height: screenWidthPercentage(context, percentage: 0.04),
         ),
-        ElevatedButton(
-            style: ElevatedButton.styleFrom(
-                elevation: 5,
-                primary: const Color(0xFF4267B2),
-                fixedSize: Size.fromWidth(screenWidth(context)),
-                padding: const EdgeInsets.all(15)),
-            onPressed: () => facebook(),
-            child: AutoSizeText(
-              "Continua com Facebook",
-              style: ktsLargeBodyText.copyWith(color: Colors.white),
-            )),
+        BusyBtn(
+          busy: isBusy,
+          tap: () => facebook(),
+          txtColor: kcWhite,
+          btnColor: kcFacebook,
+          text: "Continua com Facebook",
+        ),
+        if(Platform.isIOS)...[
+          SizedBox(
+          height: screenWidthPercentage(context, percentage: 0.04),
+        ),
+          BusyBtn(
+          busy: isBusy,
+          tap: () => onPressed(),
+          txtColor: kcWhite,
+          btnColor: Colors.black,
+          text: "Continua com apple",
+        ),
+        ]
+        
       ],
     );
   }
@@ -423,17 +434,25 @@ class _LoginWidget extends StatelessWidget {
         SizedBox(
           height: screenWidthPercentage(context, percentage: 0.04),
         ),
-        ElevatedButton(
-            style: ElevatedButton.styleFrom(
-                elevation: 5,
-                primary: const Color(0xFF4267B2),
-                fixedSize: Size.fromWidth(screenWidth(context)),
-                padding: const EdgeInsets.all(15)),
-            onPressed: () => facebook(),
-            child: AutoSizeText(
-              "Continua com Facebook",
-              style: ktsLargeBodyText.copyWith(color: Colors.white),
-            )),
+         BusyBtn(
+          busy: isBusy,
+          tap: () => facebook(),
+          txtColor: kcWhite,
+          btnColor: kcFacebook,
+          text: "Continua com Facebook",
+        ),
+        if(Platform.isIOS)...[
+          SizedBox(
+          height: screenWidthPercentage(context, percentage: 0.04),
+        ),
+          BusyBtn(
+          busy: isBusy,
+          tap: () => onPressed(),
+          txtColor: kcWhite,
+          btnColor: Colors.black,
+          text: "Continua com apple",
+        ),
+        ],
       ],
     );
   }

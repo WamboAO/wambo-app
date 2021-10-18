@@ -1,9 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
-import 'package:wambo/core/errors/exception.dart';
 import 'package:wambo/core/errors/failures.dart';
-import 'package:wambo/core/mixins/repository_data_mixin.dart';
 import 'package:wambo/modules/startup/data/datasources/authenticated_user_datasource.dart';
 import 'package:wambo/modules/startup/data/models/authenticated_user_model.dart';
 import 'package:wambo/modules/startup/data/repositories/authenticated_user_repository.implementation.dart';

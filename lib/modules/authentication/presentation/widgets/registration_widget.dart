@@ -9,19 +9,22 @@ class Registration extends StatelessWidget {
   const Registration({
     required this.facebook,
     required this.apple,
-    required this.email,
+    this.email,
+    this.btnColor,
+    required this.isBusy,
     Key? key,
   }) : super(key: key);
 
   final Function facebook;
   final Function apple;
-  final Function email;
-  
+  final Function? email;
+  final Color? btnColor;
+  final bool isBusy;
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.symmetric(
+      margin: btnColor != null? null : EdgeInsets.symmetric(
           vertical: screenHeightPercentage(context, percentage: 0.065)),
       child: FittedBox(
         child: Column(
@@ -29,15 +32,27 @@ class Registration extends StatelessWidget {
             ElevatedButton(
                 style: ElevatedButton.styleFrom(
                     elevation: 5,
-                    primary: Colors.white,
+                    primary: btnColor ?? Colors.white,
                     fixedSize: Size.fromWidth(
                         screenWidthPercentage(context, percentage: 0.75)),
                     padding: const EdgeInsets.all(20)),
-                onPressed: () => facebook(),
-                child: AutoSizeText(
-                  "Continua com Facebook",
-                  style: ktsLargeBodyText.copyWith(color: Colors.blue),
-                )),
+                onPressed: isBusy == true ? null : () => facebook(),
+                child: isBusy == true
+                    ? const Center(
+                        child: SizedBox(
+                          height: 21,
+                          width: 21,
+                          child: CircularProgressIndicator(
+                            strokeWidth: 3,
+                            valueColor:
+                                AlwaysStoppedAnimation<Color>(Colors.white),
+                          ),
+                        ),
+                      )
+                    : AutoSizeText(
+                        "Continua com Facebook",
+                        style: ktsLargeBodyText.copyWith(color: btnColor != null? Colors.white : Colors.blue),
+                      )),
             SizedBox(
               height: screenHeightPercentage(context, percentage: 0.02),
             ),
@@ -49,27 +64,41 @@ class Registration extends StatelessWidget {
                       fixedSize: Size.fromWidth(
                           screenWidthPercentage(context, percentage: 0.75)),
                       padding: const EdgeInsets.all(20)),
-                  onPressed: () => apple(),
-                  child: AutoSizeText(
-                    "Continua com Apple",
-                    style: ktsLargeBodyText.copyWith(color: Colors.white),
-                  )),
+                  onPressed: isBusy == true ? null : () => apple(),
+                  child: isBusy == true
+                      ? const Center(
+                          child: SizedBox(
+                            height: 21,
+                            width: 21,
+                            child: CircularProgressIndicator(
+                              strokeWidth: 3,
+                              valueColor:
+                                  AlwaysStoppedAnimation<Color>(Colors.white),
+                            ),
+                          ),
+                        )
+                      : AutoSizeText(
+                          "Continua com Apple",
+                          style: ktsLargeBodyText.copyWith(color: Colors.white),
+                        )),
               SizedBox(
                 height: screenHeightPercentage(context, percentage: 0.02),
               ),
             ],
-            ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                    elevation: 3,
-                    primary: kcPrimary,
-                    fixedSize: Size.fromWidth(
-                        screenWidthPercentage(context, percentage: 0.75)),
-                    padding: const EdgeInsets.all(20)),
-                onPressed: () => email(),
-                child: AutoSizeText(
-                  "Inscreve-se com Email",
-                  style: ktsLargeBodyText.copyWith(color: Colors.white),
-                )),
+            if (email != null) ...[
+              ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                      elevation: 3,
+                      primary: kcPrimary,
+                      fixedSize: Size.fromWidth(
+                          screenWidthPercentage(context, percentage: 0.75)),
+                      padding: const EdgeInsets.all(20)),
+                  onPressed: () => email!(),
+                  child: AutoSizeText(
+                    "Inscreve-se com Email",
+                    style: ktsLargeBodyText.copyWith(color: Colors.white),
+                  ))
+            ],
           ],
         ),
       ),

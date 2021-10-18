@@ -42,23 +42,35 @@ class AuthenticationView extends StatelessWidget {
                           context,
                           percentage: 0.4,
                         )),
-                    Registration(
-                      apple: () => model.loginWithSocial(Social.apple),
-                      facebook: () => model.loginWithSocial(Social.facebook),
-                      email: () => pageController.jumpToPage(2),
-                    )
+                        _Register(pageController: pageController)
                   ],
                 ),
               ),
             ),
           ),
           bottomNavigationBar: Contracts(
-            terms: () => print("terms"),
-            privacy: () => print("privacy"),
+            terms: () => model.getLink("tel:+244932254152"),
+            privacy: () =>
+                model.getLink("https://pub.dev/packages/url_launcher/example"),
           ),
         );
       },
       viewModelBuilder: () => AuthenticationViewModel(),
+    );
+  }
+}
+
+class _Register extends ViewModelWidget<AuthenticationViewModel> {
+  const _Register({Key? key, required this.pageController}) : super(key: key, reactive: true);
+  final PageController pageController;
+
+  @override
+  Widget build(BuildContext context, AuthenticationViewModel model) {
+    return Registration(
+      apple: () => model.loginWithSocial(Social.apple),
+      facebook: () => model.loginWithSocial(Social.facebook),
+      email: () => pageController.jumpToPage(2),
+      isBusy: model.isBusy,
     );
   }
 }

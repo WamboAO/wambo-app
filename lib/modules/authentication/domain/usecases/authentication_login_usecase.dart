@@ -5,7 +5,6 @@ import 'package:wambo/core/shared/entities/validation_helpers.dart';
 import 'package:wambo/modules/authentication/domain/entities/authentication_user_reponse_entity.dart';
 import 'package:wambo/modules/authentication/domain/entities/user_registration_crendentials_entities.dart';
 import 'package:wambo/modules/authentication/domain/repositories/authentication_login_repository.dart';
-import 'package:wambo/modules/startup/domain/entities/authenticated_user_entity.dart';
 
 class AuthenticationLoginUsecase
     implements
