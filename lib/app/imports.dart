@@ -51,3 +51,14 @@ export 'package:wambo/modules/authentication/domain/usecases/authentication_regi
 export 'package:wambo/modules/authentication/presentation/services/login_authentication_service.dart';
 export 'package:wambo/modules/authentication/presentation/services/register_authentication_service.dart';
 export 'package:wambo/modules/authentication/presentation/services/reset_password_authentication_service.dart';
+export 'package:wambo/modules/authentication/data/datasources/authentication_social_response_datasource.dart';
+export 'package:wambo/modules/authentication/data/datasources/authentication_social_response_datasource_implementation.dart';
+export 'package:wambo/modules/authentication/data/repositories/authentication_social_response_repository_implementation.dart';
+export 'package:wambo/modules/authentication/domain/repositories/authentication_social_response_repository.dart';
+export 'package:wambo/modules/authentication/domain/usecases/authentication_social_response_usecase.dart';
+export 'package:wambo/modules/authentication/data/datasources/url_launcher_datasource.dart';
+export 'package:wambo/modules/authentication/data/datasources/url_launcher_datasource_implementation.dart';
+export 'package:wambo/modules/authentication/data/repositories/url_launcher_repository_implementation.dart';
+export 'package:wambo/modules/authentication/domain/repositories/url_launcher_repositorties.dart';
+export 'package:wambo/modules/authentication/domain/usecases/url_launcher_usecase.dart';
+export 'package:wambo/modules/authentication/presentation/services/url_launcher_service.dart';

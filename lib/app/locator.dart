@@ -1,5 +1,4 @@
 
-
 import 'imports.dart';
 
 final GetIt locator = GetIt.I;
@@ -14,6 +13,7 @@ void setupLocator({String? enviroment}) {
   //DDD
   startup();
   authentication();
+
   //CORE
   if (enviroment == 'debug') {
     locator
@@ -55,12 +55,19 @@ void startup() {
 void authentication() {
   //social login
   locator.registerFactory(() => SocialAuthenticationService(locator()));
+  locator.registerFactory(() => SocialAuthenticaionResponseService(locator()));
   locator
       .registerLazySingleton(() => AuthenticationWithSocialUsecase(locator()));
+  locator.registerLazySingleton(
+      () => AuthenticationSocialResponseUsecase(locator()));
   locator.registerLazySingleton<IAuthenticationWithSocialRepository>(
       () => AuthenticationWithSocialRepositoryImplementation(locator()));
+  locator.registerLazySingleton<IAuthenticationSocialResponseRepository>(
+      () => AuthenticationSocialResponseRepositoryImplementation(locator()));
   locator.registerLazySingleton<IAuthenticationWithSocialDatasource>(
       () => AuthenticationWithSocialDatasourceImplementation(locator()));
+  locator.registerLazySingleton<IAuthenticationSocialResponseDatasource>(
+      () => AuthenticationSocialResponseDatasourceImplementation(locator()));
   locator.registerLazySingleton<ISocialLogin>(
       () => SocialInterfaceImplementation());
   //register
@@ -80,9 +87,17 @@ void authentication() {
       () => AuthenticationLoginDatasourceImplementation(locator()));
   //forgot
   locator.registerFactory(() => ResetPasswordAuthenticationService(locator()));
-  locator.registerLazySingleton(() => AuthenticationForgotPasswordUsecase(locator()));
+  locator.registerLazySingleton(
+      () => AuthenticationForgotPasswordUsecase(locator()));
   locator.registerLazySingleton<IAuthenticationForgotPasswordRepository>(
       () => AuthenticationForgotPasswordRepositoryImplementation(locator()));
   locator.registerLazySingleton<IAuthenticationForgotPasswordDatasource>(
       () => AuthenticationForgotPasswordDatasourceImplementation(locator()));
+  //urLauncher
+  locator.registerFactory(() => UrlLauncherService(locator()));
+  locator.registerLazySingleton(() => UrlLauncherUsecase(locator()));
+  locator.registerLazySingleton<IUrlLauncherRepository>(
+      () => UrlLauncherRepositoryImplementation(locator()));
+  locator.registerLazySingleton<IUrlLauncherDatasource>(
+      () => UrlLauncherDatasourceImplementation());
 }
