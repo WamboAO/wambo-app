@@ -5,7 +5,7 @@ import 'package:wambo/modules/startup/domain/entities/authenticated_user_entity.
 void main() {
   group('AuthenticatedUserModelTest -', () {
     final tAuthUser = AuthenticatedUserModel(
-        token: "", userId: 1, refreshToken: "", avatar: '', firstName: '', lastName: '', phone: '', email: '');
+        token: "", userId: 1, refreshToken: "", avatar: '', firstName: '', lastName: '', phone: '', email: '', appToken: '');
     setUp(() {});
 
     test('should be a subclass of Authencticated User entity', () {

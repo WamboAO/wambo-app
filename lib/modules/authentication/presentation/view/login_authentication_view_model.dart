@@ -27,7 +27,7 @@ class LoginAuthenticationViewModel extends BaseViewModel
         UserRegistrationCredentialsEntity(
             email: email,
             password: password,
-            registrationType: "email/password");
+            registrationType: "email/password", appToken: _startupViewModel.appConfig!.appToken);
     final result = await _loginService.login(params);
     statusChecker(result.status, onError: () async {
       await _dialogService.showDialog(

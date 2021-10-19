@@ -9,51 +9,58 @@ import 'package:wambo/core/utils/data_state_response.dart';
 import 'package:wambo/modules/authentication/domain/entities/authentication_user_reponse_entity.dart';
 import 'package:wambo/modules/startup/domain/entities/app_configuration_entity.dart';
 import 'package:wambo/modules/startup/domain/entities/authenticated_user_entity.dart';
+import 'package:wambo/modules/startup/presentation/services/refresh_token_service.dart';
 import 'package:wambo/modules/startup/presentation/services/startup_service.dart';
 import 'package:wambo/app/locator.dart';
 import 'package:wambo/app/setup.router.dart';
 
-
-class StartupViewModel extends BaseViewModel with StatusCheckerMixin{
+class StartupViewModel extends FutureViewModel with StatusCheckerMixin {
   //LOCATOR
   final _startupService = locator<StartupService>();
   final _appConfigService = locator<AppConfigService>();
   final _snackbarService = locator<SnackbarService>();
   final _dialogService = locator<DialogService>();
   final _navigationService = locator<NavigationService>();
-   final _authenticationService = locator<AuthenticationService>();
+  final _authenticationService = locator<AuthenticationService>();
+  final _refreshTokenService = locator<RefreshTokenService>();
+
   //ENV VARIABLE SETUP
   get env => dotenv.env['ENVIROMENT'];
   //GLOBAL KEY FOR SERVICERS
   GlobalKey<NavigatorState>? get globalKey => StackedService.navigatorKey;
   Locale get aoLocale => const Locale('pt', 'pt_AO');
-  
+
   //CURRENT USER INFO
   bool get isLoggedIn => _startupService.isLoggedIn;
   AppConfigurationEntity? get appConfig => _appConfigService.appConfiguration;
-  Stream<ApiResponse<AuthenticatedUserEntity>> get currentUser => _startupService.currentUser;
+  Stream<ApiResponse<AuthenticatedUserEntity>> get currentUser =>
+      _startupService.currentUser;
+  AuthenticatedUserEntity get user => _startupService.user;
   AuthenticatedUserEntity get noAuthUser => AuthenticatedUserEntity(
         token: "NO TOKEN",
         email: "",
         userId: 0,
         avatar: "",
         firstName: "",
+        appToken: appConfig!.appToken,
         lastName: "",
         phone: "",
         refreshToken: "",
       );
-void setSnackBar() {
-
+  Future<void> setSnackBar() async {
     _snackbarService.registerSnackbarConfig(SnackbarConfig(
         snackStyle: SnackStyle.GROUNDED,
         animationDuration: const Duration(milliseconds: 300),
         messageColor: Colors.white,
         messageTextAlign: TextAlign.center));
   }
-  Future get getAuthenticatedUserLocaly => _startupService.getAuthenticatedUserLocaly();
+
+  Future get getAuthenticatedUserLocaly =>
+      _startupService.getAuthenticatedUserLocaly();
 
   Future addDataLocaly(AuthenticationUserReponseEntity params) async {
     AuthenticatedUserEntity userAuth = AuthenticatedUserEntity(
+        appToken: appConfig!.appToken,
         token: params.token.token,
         refreshToken: params.token.refreshToken,
         userId: params.user.userId,
@@ -73,4 +80,7 @@ void setSnackBar() {
       await _navigationService.replaceWith(Routes.mainView);
     });
   }
+
+  @override
+  Future futureToRun() => _refreshTokenService.init();
 }

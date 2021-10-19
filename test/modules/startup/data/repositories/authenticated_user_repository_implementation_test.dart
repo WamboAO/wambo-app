@@ -31,7 +31,7 @@ void main() {
         
         firstName: '',
         lastName: '',
-        phone: '');
+        phone: '', appToken: '');
     test('should return Authenticated User model when it calls the datasource',
         () async {
       when(() => datasource.getAuthenticatedUserLocaly())

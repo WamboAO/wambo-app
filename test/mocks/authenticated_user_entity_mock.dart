@@ -10,6 +10,7 @@ final tAuth = AuthenticatedUserEntity(
     refreshToken: "sdfsdfasdf",
     avatar: '',
     firstName: '',
+    appToken: "",
     lastName: '',
     phone: '',
     email: '');
@@ -21,6 +22,7 @@ final tAuthenticatedUserModel = AuthenticatedUserModel(
     avatar: "",
     userId: 1,
     firstName: '',
+    appToken: "",
     lastName: '',
     phone: '',
     email: '');

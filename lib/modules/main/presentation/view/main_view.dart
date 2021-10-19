@@ -8,6 +8,9 @@ class MainView extends StatelessWidget {
  @override
  Widget build(BuildContext context) {
    return ViewModelBuilder<MainViewModel>.reactive(
+  
+     
+     disposeViewModel: false,
      builder: (context, model, child) {
         return WillPopScope(
           onWillPop:  () async => false,

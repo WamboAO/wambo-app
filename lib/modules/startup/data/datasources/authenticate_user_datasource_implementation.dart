@@ -28,6 +28,7 @@ class AuthenticateUserDatasourceImplementation
       email: userAuth.email,
         token: userAuth.token,
         refreshToken: userAuth.refreshToken,
+        appToken: userAuth.appToken,
         firstName: userAuth.firstName,
         lastName: userAuth.lastName,
         phone: userAuth.phone,

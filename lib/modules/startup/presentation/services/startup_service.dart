@@ -8,8 +8,6 @@ class StartupService {
   StartupService(this.usecase);
 
   final GetAuthenticatedUserLocaly usecase;
-  ApiResponse<AuthenticatedUserEntity> response =
-      ApiResponse.loading("loading...");
 
   bool _isLoggedIn = false;
   bool get isLoggedIn => _isLoggedIn;
@@ -19,11 +17,13 @@ class StartupService {
 
   Stream<ApiResponse<AuthenticatedUserEntity>> get currentUser =>
       _response.stream;
+  AuthenticatedUserEntity get user => _response.value.data!;
 
   Future getAuthenticatedUserLocaly() async {
     final result = await usecase(NoParams());
 
-    response = result.fold((l) => ApiResponse.error('$l'), (r) {
+    ApiResponse<AuthenticatedUserEntity> response =
+        result.fold((l) => ApiResponse.error('$l'), (r) {
       _isLoggedIn = r.token.isNotEmpty;
 
       return ApiResponse.completed(r);

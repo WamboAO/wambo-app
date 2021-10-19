@@ -22,7 +22,7 @@ class AuthenticationSocialResponseDatasourceImplementation
           registrationType: params.registrationType);
       final response = await client.post(
           query: "",
-          header: _header.setHeaders(),
+          header: _header.setAuthHeaders(params.appToken!),
           body: body,
           debugType: "authentication_register");
       return AuthenticationUserResponseModel.fromJson(response);

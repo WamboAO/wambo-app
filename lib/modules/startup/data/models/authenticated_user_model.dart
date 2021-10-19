@@ -9,10 +9,12 @@ class AuthenticatedUserModel extends AuthenticatedUserEntity {
        String? phone,
       required String email,
        String? avatar,
+       required String appToken,
       int userId = 0,
       })
       : super(
            email: email,
+           appToken: appToken,
             token: token,
             refreshToken: refreshToken,
             userId: userId,
@@ -26,6 +28,7 @@ class AuthenticatedUserModel extends AuthenticatedUserEntity {
       AuthenticatedUserModel(
           token: json['token'],
           email: json['email'],
+          appToken: json['app_token'],
           refreshToken: json['refresh_token'],
           userId: json['user_id'],
           firstName: json['first_name'],
@@ -37,6 +40,7 @@ class AuthenticatedUserModel extends AuthenticatedUserEntity {
   Map<String, dynamic> toJson() => {
         'token': token,
         'email': email,
+        'app_token': appToken,
         'refresh_token': refreshToken,
         'user_id': userId,
         'first_name': firstName,

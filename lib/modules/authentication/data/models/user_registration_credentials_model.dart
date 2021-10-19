@@ -9,6 +9,7 @@ class UserRegistrationCredentialsModel
        String? lastName,
        String? password,
       String? avatar,
+       String? appToken,
       required String registrationType})
       : super(
             email: email,
@@ -17,6 +18,7 @@ class UserRegistrationCredentialsModel
             firstName: firstName,
             lastName: lastName,
             avatar: avatar,
+            appToken: appToken,
             registrationType: registrationType);
 
   factory UserRegistrationCredentialsModel.fromJson(

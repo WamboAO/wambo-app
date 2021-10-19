@@ -6,8 +6,11 @@ Map<String, Object> get fakeAuthValues => {
       "token": _faker.jwt.expired(),
       "refresh_token": _faker.guid.guid(),
       "user_id": 1,
-      "username": _faker.internet.userName(),
+      "first_name": _faker.person.firstName(),
+      "last_name": _faker.person.lastName(),
+      "email": _faker.internet.freeEmail(),
+      "phone": _faker.phoneNumber.us(),
       "avatar": _faker.image.image(),
-      "is_first_time": true
+      'app_token': _faker.jwt.expired(),
     };
 }

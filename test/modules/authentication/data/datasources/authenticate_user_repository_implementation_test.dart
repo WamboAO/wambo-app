@@ -46,6 +46,7 @@ void main() {
        AuthenticatedUserModel _auth = AuthenticatedUserModel(
           token: tAuth.token,
            email: tAuth.email,
+           appToken: tAuth.appToken,
           refreshToken: tAuth.refreshToken,
           firstName: tAuth.firstName,
           lastName: tAuth.lastName,
@@ -64,6 +65,7 @@ void main() {
     AuthenticatedUserModel _auth = AuthenticatedUserModel(
           token: tAuth.token,
            email: tAuth.email,
+           appToken: tAuth.appToken,
           refreshToken: tAuth.refreshToken,
           firstName: tAuth.firstName,
           lastName: tAuth.lastName,

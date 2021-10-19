@@ -38,7 +38,8 @@ class RegisterAuthenticationViewModel extends BaseViewModel
             lastName: lname,
             phone: phone,
             password: password,
-            registrationType: "email/password");
+            registrationType: "email/password",
+            appToken: _startupViewModel.appConfig!.appToken);
     final result = await _registerAuthService.signup(params);
     statusChecker(result.status, onError: () async {
       await _dialogService.showDialog(

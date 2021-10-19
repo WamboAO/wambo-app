@@ -17,9 +17,10 @@ class AuthenticationLoginDatasourceImplementation implements IAuthenticationLogi
       UserRegistrationCredentialsModel body = UserRegistrationCredentialsModel(
         email: params.email!.trim(),
         password: params.password!.trim(),
-        registrationType: params.registrationType
+        registrationType: params.registrationType,
+        
         );
-      final response = await client.post(query: "", header: _header.setHeaders(), body: body, debugType: "authentication_login");
+      final response = await client.post(query: "", header: _header.setAuthHeaders(params.appToken!), body: body, debugType: "authentication_login");
       return AuthenticationUserResponseModel.fromJson(response);
     } catch (e) {
       rethrow;

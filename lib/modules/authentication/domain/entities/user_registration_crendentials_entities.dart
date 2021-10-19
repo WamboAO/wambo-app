@@ -8,6 +8,7 @@ class UserRegistrationCredentialsEntity extends Equatable {
       this.lastName,
       this.password,
       this.avatar,
+      this.appToken,
       required this.registrationType});
   final String? email;
   final String? phone;
@@ -15,9 +16,10 @@ class UserRegistrationCredentialsEntity extends Equatable {
   final String? lastName;
   final String? password;
   final String? avatar;
+  final String? appToken;
   final String registrationType;
 
   @override
   List<Object?> get props =>
-      [email, phone, firstName, lastName, password, avatar, registrationType];
+      [email, phone, firstName, lastName, password, avatar, registrationType, appToken];
 }

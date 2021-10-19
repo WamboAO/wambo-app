@@ -19,7 +19,7 @@ class AuthenticationForgotPasswordDatasourceImplementation
           email: params.email!.trim(), registrationType: params.registrationType);
       final response = await client.post(
           query: "",
-          header: _header.setHeaders(),
+          header: _header.setAuthHeaders(params.appToken!),
           body: body,
           debugType: "authentication_forgot_password");
       return GenericModel.fromJson(response);
