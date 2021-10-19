@@ -23,6 +23,9 @@ class RemoteTestImplementation extends IRemote {
     if (debugType == 'get_app_config') {
       value = _fake.fakeAppConfigValues;
     }
+    if (debugType == 'refresh_token') {
+      value = _fake.fakeAuthUserResponseValues;
+    }
     return value;
   }
 
