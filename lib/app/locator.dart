@@ -1,4 +1,5 @@
 
+
 import 'imports.dart';
 
 final GetIt locator = GetIt.I;
@@ -28,6 +29,7 @@ void setupLocator({String? enviroment}) {
 }
 
 void startup() {
+  //startup
   locator.registerLazySingleton(() => StartupService(locator()));
   locator.registerLazySingleton(() => GetAuthenticatedUserLocaly(locator()));
   locator.registerLazySingleton<IAuthenticatedUserRepository>(
@@ -35,7 +37,7 @@ void startup() {
   locator.registerLazySingleton<IAuthenticatedUserDatasource>(
       () => AuthenticatedUserDatasourceImplementation(locator()));
 
-//
+//authentication
   locator.registerFactory(() => AuthenticationService(locator()));
   locator.registerLazySingleton(() => AddAuthenticatedUserLocaly(locator()));
   locator.registerLazySingleton<IAuthenticateUserRepository>(
@@ -43,13 +45,20 @@ void startup() {
   locator.registerLazySingleton<IAuthenticateUserDatasource>(
       () => AuthenticateUserDatasourceImplementation(locator()));
 
-//
+//app config
   locator.registerLazySingleton(() => AppConfigService(locator()));
   locator.registerLazySingleton(() => AppConfigurationSetupUsecase(locator()));
   locator.registerLazySingleton<IAppConfigurationSetupRepository>(
       () => AppConfigurationSetupRepositoryImplementation(locator()));
   locator.registerLazySingleton<IAppConfigurationDatasource>(
       () => AppConfigurationDatasourceImplementation(locator()));
+//refresh token
+  locator.registerFactory(() => RefreshTokenService(locator()));
+  locator.registerLazySingleton(() => GetRefreshTokenUsecase(locator()));
+  locator.registerLazySingleton<IGetRefreshTokenRepository>(
+      () => GetRefreshTokenRepositoryImplementation(locator()));
+  locator.registerLazySingleton<IGetRefreshTokenDatasource>(
+      () => GetRefreshTokenDatasourceImplementation(locator()));
 }
 
 void authentication() {
