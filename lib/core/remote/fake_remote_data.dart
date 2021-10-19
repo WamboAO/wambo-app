@@ -5,7 +5,7 @@ class FakeRemoteData {
   Map<String, Object?> get fakeAppConfigValues => {
         'app_id': _faker.guid.guid(),
         'app_token': _faker.jwt.expired(),
-        'show_logo': true
+      
       };
 
   Map<String, Object?> get fakeAuthUserResponseValues => {
