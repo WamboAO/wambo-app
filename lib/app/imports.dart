@@ -68,3 +68,9 @@ export 'package:wambo/modules/startup/data/repositories/get_refresh_token_reposi
 export 'package:wambo/modules/startup/domain/repositories/get_refresh_token_repository.dart';
 export 'package:wambo/modules/startup/domain/usecases/get_refresh_token_usecase.dart';
 export 'package:wambo/modules/startup/presentation/services/refresh_token_service.dart';
+export 'package:wambo/modules/startup/data/datasources/authentication_logout_datasource.dart';
+export 'package:wambo/modules/startup/data/datasources/authentication_logout_datasource_implementation.dart';
+export 'package:wambo/modules/startup/data/repositories/authentication_logout_repository_implementation.dart';
+export 'package:wambo/modules/startup/domain/repositories/authentication_logout_repository.dart';
+export 'package:wambo/modules/startup/domain/usecases/authentication_logout_usecase.dart';
+export 'package:wambo/modules/startup/presentation/services/logout_service.dart';

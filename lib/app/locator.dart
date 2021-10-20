@@ -1,4 +1,9 @@
-
+import 'package:wambo/modules/startup/data/datasources/authenticacted_user_delete_datasource_implementation.dart';
+import 'package:wambo/modules/startup/data/datasources/authenticated_user_delete_datasource.dart';
+import 'package:wambo/modules/startup/data/repositories/authenticated_user_delete_repository_implementation.dart';
+import 'package:wambo/modules/startup/domain/repositories/authenticated_user_delete_repository.dart';
+import 'package:wambo/modules/startup/domain/usecases/authenticated_user_delete_usecase.dart';
+import 'package:wambo/modules/startup/presentation/services/delete_auth_service.dart';
 
 import 'imports.dart';
 
@@ -59,6 +64,23 @@ void startup() {
       () => GetRefreshTokenRepositoryImplementation(locator()));
   locator.registerLazySingleton<IGetRefreshTokenDatasource>(
       () => GetRefreshTokenDatasourceImplementation(locator()));
+
+  //Logout
+  locator.registerFactory(() => LogoutService(locator()));
+  locator.registerLazySingleton(() => AuthenticationLogoutUsecase(locator()));
+  locator.registerLazySingleton<IAuthenticationLogoutRepository>(
+      () => AuthenticationLogoutRepositoryImplementation(locator()));
+  locator.registerLazySingleton<IAuthenticationLogoutDatasource>(
+      () => AuthenticationLogoutDatasourceImplementation(locator()));
+  //delete auth
+  locator.registerFactory(() => DeleteAuthService(locator()));
+  locator
+      .registerLazySingleton(() => AuthenticatedUserDeleteUsecase(locator()));
+  locator.registerLazySingleton<IAuthenticatedUserDeleteRepository>(
+      () => AuthenticatedUserDeleteRepositoryImplementation(locator()));
+  locator.registerLazySingleton<IAuthenticatedUserDeleteDatasource>(
+      () => AuthenticatedUserDeleteDatasourceImplementation(locator()));
+  
 }
 
 void authentication() {
