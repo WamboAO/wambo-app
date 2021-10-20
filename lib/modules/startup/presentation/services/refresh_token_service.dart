@@ -1,3 +1,4 @@
+import 'package:stacked_services/stacked_services.dart';
 import 'package:wambo/app/locator.dart';
 import 'package:wambo/core/interfaces/stoppable_interface.dart';
 import 'package:wambo/core/mixins/status_checker_mixin.dart';
@@ -9,6 +10,7 @@ import 'package:wambo/modules/startup/presentation/services/app_config_service.d
 import 'package:wambo/modules/startup/presentation/services/authentication_service.dart';
 import 'package:wambo/modules/startup/presentation/services/startup_service.dart';
 import 'package:wambo/app/setup.logger.dart';
+import 'package:wambo/app/setup.router.dart';
 
 class RefreshTokenService extends IstoppableService with StatusCheckerMixin {
   RefreshTokenService(this.usecase);
@@ -17,6 +19,8 @@ class RefreshTokenService extends IstoppableService with StatusCheckerMixin {
   final _startupService = locator<StartupService>();
   final _appConfigService = locator<AppConfigService>();
   final _authenticationService = locator<AuthenticationService>();
+  final _navigationService = locator<NavigationService>();
+  final _dialogService = locator<DialogService>();
 
   ApiResponse<AuthenticationUserReponseEntity> response =
       ApiResponse.loading("loading");
@@ -36,7 +40,11 @@ class RefreshTokenService extends IstoppableService with StatusCheckerMixin {
       var result = await refreshToken(_startupService.user);
       log.w("token refreshing :: $result");
       statusChecker(result.status,
-          onError: () => print(result.message), //TODO: LOGOUT
+          onError: ()  async {
+            await _navigationService.replaceWith(Routes.mainAuthenticationView);
+            return _dialogService.showDialog(
+                title: "Erro", description: result.message);
+          }, 
           onComplete: () async => await addDataLocaly(result.data!));
     }
   }
@@ -54,7 +62,11 @@ class RefreshTokenService extends IstoppableService with StatusCheckerMixin {
         await _authenticationService.addAuthenticatedUserLocaly(userAuth);
 
     statusChecker(result.status,
-        onError: () => print("object"),
+        onError: () async {
+            await _navigationService.replaceWith(Routes.mainAuthenticationView);
+            return _dialogService.showDialog(
+                title: "Erro", description: result.message);
+          }, 
         onComplete: () async =>
             await _startupService.getAuthenticatedUserLocaly());
   }
@@ -67,7 +79,11 @@ class RefreshTokenService extends IstoppableService with StatusCheckerMixin {
       var result = await refreshToken(_startupService.user);
       log.w("token refreshing :: $result");
       statusChecker(result.status,
-          onError: () => print(result.message), //TODO: LOGOUT
+          onError: () async {
+            await _navigationService.replaceWith(Routes.mainAuthenticationView);
+            return _dialogService.showDialog(
+                title: "Erro", description: result.message);
+          }, 
           onComplete: () async => await addDataLocaly(result.data!));
     }
   }
