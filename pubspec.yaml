@@ -27,6 +27,7 @@ dependencies:
   dartz: ^0.10.0
   equatable: ^2.0.3
   faker: ^2.0.0
+  firebase_core: ^1.7.0
   flutter:
     sdk: flutter
   flutter_hooks: ^0.17.0
