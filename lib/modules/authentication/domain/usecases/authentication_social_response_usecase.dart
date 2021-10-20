@@ -15,9 +15,14 @@ class AuthenticationSocialResponseUsecase
   @override
   Future<Either<Failure, AuthenticationUserReponseEntity>> call(
       UserRegistrationCredentialsEntity params) async {
-      final emailValidation = validateEmail(params.email);
-      if (emailValidation != null) {
+    final emailValidation = validateEmail(params.email);
+    final appTokenValidation = validateValue(params.appToken, "Token");
+
+    if (emailValidation != null) {
       return Left(emailValidation);
+    }
+    if (appTokenValidation != null) {
+      return Left(appTokenValidation);
     }
 
     return await repository.access(params);

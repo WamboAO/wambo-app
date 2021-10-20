@@ -26,6 +26,9 @@ class RemoteTestImplementation extends IRemote {
     if (debugType == 'refresh_token') {
       value = _fake.fakeAuthUserResponseValues;
     }
+    if (debugType == "authentication_logout" ) {
+      value = _fake.fakeGenericValues;
+    }
     return value;
   }
 

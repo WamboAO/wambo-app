@@ -206,12 +206,7 @@ class _RegisterWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    PhoneInputFormatter.replacePhoneMask(
-        countryCode: "AO", newMask: '+000 000 000 000');
-    PhoneInputFormatter.addAlternativePhoneMasks(
-      countryCode: 'AO',
-      alternativeMasks: ['000 000 000'],
-    );
+    
     return Column(
       children: [
         Container(

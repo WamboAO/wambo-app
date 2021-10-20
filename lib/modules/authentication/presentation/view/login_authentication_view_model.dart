@@ -52,7 +52,16 @@ class LoginAuthenticationViewModel extends BaseViewModel
   }
 
   Future socialResponse(UserRegistrationCredentialsEntity params) async {
-    final result = await _socialAuthResponseService.access(params);
+     UserRegistrationCredentialsEntity _params =
+        UserRegistrationCredentialsEntity(
+            email: params.email,
+            firstName: params.firstName,
+            lastName: params.lastName,
+            avatar: params.avatar,
+            registrationType: params.registrationType,
+            appToken: _startupViewModel.appConfig!.appToken
+            );
+    final result = await _socialAuthResponseService.access(_params);
     statusChecker(result.status, onError: () async {
       await _dialogService.showDialog(
           title: "Erro", description: result.message);

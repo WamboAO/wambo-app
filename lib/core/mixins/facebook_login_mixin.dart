@@ -11,7 +11,6 @@ mixin FacebookLoginMixin {
 
     switch (res.status) {
       case FacebookLoginStatus.success:
-        final FacebookAccessToken? accessToken = res.accessToken;
         final profile = await _getProfileInfo(facebook);
         final profileImage = await facebook.getProfileImageUrl(width: 200);
         final email = await _checkFacebookInfo(facebook.getUserEmail(),
@@ -19,8 +18,7 @@ mixin FacebookLoginMixin {
 
         Map<String, Object?> result = {
           "email": email,
-          "password": accessToken!.token,
-          "first_name": profile.firstName,
+          "first_name": profile.firstName ?? profile.name,
           "last_name": profile.lastName,
           "avatar": profileImage,
           "registration_type": "facebook"
@@ -33,6 +31,10 @@ mixin FacebookLoginMixin {
       case FacebookLoginStatus.error:
         throw FetchDataException('Erro: ${res.error}');
     }
+  }
+
+  Future<void> facebookLogout() async {
+   return await facebook.logOut();
   }
 
   Future<FacebookUserProfile> _getProfileInfo(FacebookLogin facebook) async {
