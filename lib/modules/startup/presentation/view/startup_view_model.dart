@@ -87,8 +87,20 @@ class StartupViewModel extends FutureViewModel with StatusCheckerMixin {
   Future logout() async {
     var result = await _logoutService.logout(user);
     statusChecker(result.status, onError: () async {
-      //TODO social logout here
-     return await _deleteAuthService.deleteAuth(NoParams());
+      return await _dialogService.showDialog(
+          title: "Erro", description: result.message);
+    }, onComplete: () async {
+      await _deleteAuth();
+      return await _navigationService
+          .replaceWith(Routes.mainAuthenticationView);
+    });
+  }
+
+  Future _deleteAuth() async {
+    var result = await _deleteAuthService.deleteAuth(NoParams());
+    statusChecker(result.status, onError: () async {
+      return await _dialogService.showDialog(
+          title: "Erro", description: result.message);
     }, onComplete: () async {
       return await _navigationService
           .replaceWith(Routes.mainAuthenticationView);
