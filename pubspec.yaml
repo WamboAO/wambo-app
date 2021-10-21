@@ -22,12 +22,14 @@ environment:
 
 dependencies:
   auto_size_text: ^3.0.0-nullsafety.0
+  catcher: ^0.6.8
   connectivity_plus: ^1.1.0
   cupertino_icons: ^1.0.2
   dartz: ^0.10.0
   equatable: ^2.0.3
   faker: ^2.0.0
   firebase_core: ^1.7.0
+  firebase_crashlytics: ^2.2.3
   flutter:
     sdk: flutter
   flutter_hooks: ^0.17.0

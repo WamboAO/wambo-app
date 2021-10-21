@@ -31,7 +31,7 @@ once you changed package version run:
 
 #### Firebase Tools
 * [ ] Implementation of google analytics 
-* [ ] Implementation of crash analytics
+* [X] ~~Implementation of crash analytics~~ Imeplementation of Catcher with crashlitics and discord webhook
 * [ ] Implementation of dynamic links
-* [ ] Implmentation of firebase core
+* [X] Implmentation of firebase core
 * [ ] Implementation of notifications
