@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:stacked/stacked.dart';
 import 'package:wambo/app/lifecycle_manager.dart';
 import 'package:wambo/app/setup.router.dart';
@@ -17,11 +18,11 @@ class StartupView extends StatelessWidget {
           child: MaterialApp(
             title: 'Wambo',
             locale: model.aoLocale,
-            // theme: ThemeData(
-            //   textTheme: GoogleFonts.oswaldTextTheme(
-            //     Theme.of(context).textTheme,
-            //   ),
-            // ),
+            theme: ThemeData(
+              textTheme: GoogleFonts.rubikTextTheme(
+                Theme.of(context).textTheme,
+              ),
+            ),
             navigatorKey: model.globalKey,
             onGenerateRoute: StackedRouter().onGenerateRoute,
             initialRoute:
