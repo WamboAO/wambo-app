@@ -1,32 +1,31 @@
-import 'package:firebase_core/firebase_core.dart';
-import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
-import 'package:wambo/app/locator.dart';
 import 'package:wambo/app/setup.logger.dart';
-import 'package:wambo/app/setup.router.dart';
-import 'package:wambo/core/mixins/facebook_login_mixin.dart';
-import 'package:wambo/modules/startup/presentation/view/startup_view_model.dart';
+import 'package:wambo/core/shared/widgets/bottom_navigation_widget.dart';
+import 'package:wambo/core/shared/widgets/new_bottom_app_bar_widget.dart';
 
-class MainViewModel extends BaseViewModel with FacebookLoginMixin {
+class MainViewModel extends IndexTrackingViewModel  {
   MainViewModel() {
     log.d('created');
   }
   final log = getLogger('MainViewModel');
-  final _startupViewModel = locator<StartupViewModel>();
-  final _navigationService = locator<NavigationService>();
+  
 
-  Future logout() async {
-   await Firebase.initializeApp();
-    FirebaseCrashlytics.instance.crash();
-    // if (_startupViewModel.isLoggedIn == true) {
-    //   setBusy(true);
-    //   await facebookLogout();
-    //   await _startupViewModel.logout().then((value) => setBusy(false));
-    // } else {
-    //   return await _navigationService
-    //       .replaceWith(Routes.mainAuthenticationView);
-    // }
-  }
+ List<FABBottomAppBarItem> get availableItems =>
+      availableChoices.map((elem) => elem.navChoiceItem()).toList();
+
+  List<NavChoice> get availableChoices => [
+        NavChoice.home,
+        NavChoice.cart,
+        NavChoice.notify,
+        NavChoice.account,
+      ];
+
+  GlobalKey<NavigatorState>? get currentNestedKey =>
+      StackedService.nestedNavigationKey(
+          availableChoices[currentIndex].nestedKeyValue());
+
+  NavChoice get currentChoice => availableChoices[currentIndex];
+
 }

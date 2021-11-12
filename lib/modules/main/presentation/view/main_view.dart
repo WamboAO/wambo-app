@@ -4,6 +4,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 import 'package:wambo/core/shared/ui/sizing.dart';
+import 'package:wambo/core/shared/ui/styles.dart';
+import 'package:wambo/core/shared/widgets/new_bottom_app_bar_widget.dart';
 import 'package:wambo/modules/main/presentation/view/main_view_model.dart';
 
 class MainView extends StatelessWidget {
@@ -36,21 +38,30 @@ class MainView extends StatelessWidget {
           child: Scaffold(
             body: Stack(
               children: [
-                Center(
-                  child: Column(
-                    children: [
-                      const Text("mainview"),
-                      TextButton(
-                          onPressed: () => model.logout(),
-                          child: const Text("Logout"))
-                    ],
-                  ),
+                IndexedStack(
+                  index: model.currentIndex,
+                  children: [
+                    //TODO: change it here
+                    Container(color: Colors.blue,),
+                    Container(color: Colors.red,),
+                    Container(color: Colors.yellow,),
+                    Container(color: Colors.green,)
+                  ],
                 ),
                 Align(
                   child: loadingIndicator,
                   alignment: FractionalOffset.center,
                 ),
               ],
+            ),
+            bottomNavigationBar: FABBottomAppBar(
+              currentIndex: model.currentIndex,
+              items: model.availableItems,
+              onTabSelected: model.setIndex,
+              selectedColor: kcPrimary,
+              iconSize: 28,
+              height: screenHeightPercentage(context, percentage: 0.1),
+              color: kcIconLight,
             ),
           ),
         );
