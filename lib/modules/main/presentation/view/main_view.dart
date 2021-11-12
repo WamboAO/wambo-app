@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
+import 'package:wambo/app/locator.dart';
 import 'package:wambo/core/shared/ui/sizing.dart';
 import 'package:wambo/core/shared/ui/styles.dart';
 import 'package:wambo/core/shared/widgets/new_bottom_app_bar_widget.dart';
@@ -66,7 +67,7 @@ class MainView extends StatelessWidget {
           ),
         );
       },
-      viewModelBuilder: () => MainViewModel(),
+      viewModelBuilder: () => locator<MainViewModel>(),
     );
   }
 }
