@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:wambo/app/imports.dart';
+import 'package:wambo/app/locator.dart';
 import 'package:wambo/core/interfaces/stoppable_interface.dart';
 
 
@@ -14,7 +16,7 @@ class LifeCycleManager extends StatefulWidget {
 class _LifeCycleManagerState extends State<LifeCycleManager>
     with WidgetsBindingObserver {
   final List<Istoppable> services = [
-
+    locator<GetAuthenticatedUserService>(),
   ];
 
   @override
