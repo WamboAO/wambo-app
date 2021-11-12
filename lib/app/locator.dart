@@ -1,5 +1,4 @@
 
-
 import 'imports.dart';
 
 final GetIt locator = GetIt.I;
@@ -12,7 +11,7 @@ void setupLocator({String? enviroment}) {
   locator.registerLazySingleton(() => StartupViewModel());
   locator.registerLazySingleton(() => PermissionHandler());
   locator.registerLazySingleton(() => AnalyticsHandler());
-
+  locator.registerLazySingleton(() => MainViewModel());
   //DDD
   startup();
   authentication();
@@ -51,9 +50,8 @@ void authentication() {
   //acess login
   locator.registerFactory(() => AuthenticationService(locator()));
   locator.registerLazySingleton(() => AuthenticationUsecase(locator()));
-  locator.registerLazySingleton<IAuthenticationRepository>(() =>
-      AuthenticationRepositoryImplementation(
-          locator(), locator()));
+  locator.registerLazySingleton<IAuthenticationRepository>(
+      () => AuthenticationRepositoryImplementation(locator(), locator()));
   locator.registerLazySingleton<IAuthenticationDatasource>(() => locator());
   locator.registerLazySingleton<IAuthenticationWithSocialDatasource>(
       () => locator());

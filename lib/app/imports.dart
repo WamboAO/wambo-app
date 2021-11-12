@@ -40,3 +40,4 @@ export 'package:wambo/core/shared/hooks/analytics_handler.dart';
 export 'package:wambo/core/shared/hooks/permission_handler.dart';
 export 'package:wambo/modules/authentication/data/repositories/authentication_repository_implementation.dart';
 export 'package:wambo/modules/authentication/domain/usecases/authentication_usecase.dart';
+export 'package:wambo/modules/main/presentation/view/main_view_model.dart';
