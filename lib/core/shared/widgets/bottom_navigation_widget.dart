@@ -1,118 +1,119 @@
-// import 'package:flutter/material.dart';
-// import 'package:flutter/widgets.dart';
-// import 'package:gira_mais/core/shared/ui/gira_icons_icons.dart';
-// import 'package:gira_mais/core/shared/widgets/page_navigation_widget.dart';
-// enum NavChoice { schedule, map, routes, config }
+import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
+import 'package:wambo/core/shared/widgets/new_bottom_app_bar_widget.dart';
+import 'package:wambo/core/utils/routes.dart';
 
-// extension NavChoiceExtension on NavChoice {
-//   BottomNavigationBarItem navChoiceItem() {
-//     BottomNavigationBarItem item;
+enum NavChoice { home, notify, cart, account }
 
-//     switch (this) {
-//       case NavChoice.schedule:
-//         item = BottomNavigationBarItem(
-//           icon: const Icon(GiraIcons.notebook),
-//           label: "",
-//           tooltip: navTitle(),
-//         );
-//         break;
-//       case NavChoice.map:
-//         item = BottomNavigationBarItem(
-//           icon: const Icon(GiraIcons.mapMarked),
-//           label: "",
-//           tooltip: navTitle(),
-//         );
+extension NavChoiceExtension on NavChoice {
+  FABBottomAppBarItem navChoiceItem() {
+    FABBottomAppBarItem item;
 
-//         break;
-//       case NavChoice.routes:
-//         item = BottomNavigationBarItem(
-//           icon: const Icon(GiraIcons.busStation),
-//           label: "",
-//           tooltip: navTitle(),
-//         );
-//         break;
-//       case NavChoice.config:
-//         item = BottomNavigationBarItem(
-//           icon: const Icon(GiraIcons.settings),
-//           label: "",
-//           tooltip: navTitle(),
-//         );
-//         break;
-//     }
-//     return item;
-//   }
+    switch (this) {
+      case NavChoice.home:
+        item = FABBottomAppBarItem(
+          icon: Icons.home_rounded,
+          label: "",
+          tooltip: Tooltip(message: navTitle()),
+        );
+        break;
+      case NavChoice.cart:
+        item = FABBottomAppBarItem(
+          icon: Icons.shopping_bag_rounded,
+          label: "",
+          tooltip: Tooltip(message: navTitle()),
+        );
 
-//   String navTitle() {
-//     String selectedText;
+        break;
+      case NavChoice.notify:
+        item = FABBottomAppBarItem(
+          icon: Icons.notifications_rounded,
+          label: "",
+          tooltip: Tooltip(message: navTitle()),
+        );
+        break;
+      case NavChoice.account:
+        item = FABBottomAppBarItem(
+          icon: Icons.person_rounded,
+          label: "",
+          tooltip: Tooltip(message: navTitle()),
+        );
+        break;
+    }
+    return item;
+  }
 
-//     switch (this) {
-//       case NavChoice.schedule:
-//         selectedText = 'schedule';
-//         break;
-//       case NavChoice.map:
-//         selectedText = 'map';
-//         break;
-//       case NavChoice.routes:
-//         selectedText = 'routes';
-//         break;
-//       case NavChoice.config:
-//         selectedText = 'config';
-//         break;
-//     }
+  String navTitle() {
+    String selectedText;
 
-//     return selectedText;
-//   }
+    switch (this) {
+      case NavChoice.home:
+        selectedText = 'home';
+        break;
+      case NavChoice.cart:
+        selectedText = 'cart';
+        break;
+      case NavChoice.notify:
+        selectedText = 'notify';
+        break;
+      case NavChoice.account:
+        selectedText = 'account';
+        break;
+    }
 
-//   String initialPageRoute() {
-//     String selectedText;
+    return selectedText;
+  }
 
-//     switch (this) {
-//       case NavChoice.schedule:
-//         selectedText = scheduleRoute;
-//         break;
-//       case NavChoice.map:
-//         selectedText = mapRoute;
-//         break;
-//       case NavChoice.routes:
-//         selectedText = routesRoute;
-//         break;
-//       case NavChoice.config:
-//         selectedText = configRoute;
-//         break;
-//     }
+  String initialPageRoute() {
+    String selectedText;
 
-//     return selectedText;
-//   }
+    switch (this) {
+      case NavChoice.home:
+        selectedText = homeRoute;
+        break;
+      case NavChoice.cart:
+        selectedText = cartRoute;
+        break;
+      case NavChoice.notify:
+        selectedText = notifyRoute;
+        break;
+      case NavChoice.account:
+        selectedText = accountRoute;
+        break;
+    }
 
-//   int nestedKeyValue() {
-//     int value;
+    return selectedText;
+  }
 
-//     switch (this) {
-//       case NavChoice.schedule:
-//         value = 0;
-//         break;
-//       case NavChoice.map:
-//         value = 1;
-//         break;
-//       case NavChoice.routes:
-//         value = 2;
-//         break;
-//       case NavChoice.config:
-//         value = 3;
-//         break;
-//     }
+  int nestedKeyValue() {
+    int value;
 
-//     return value;
-//   }
+    switch (this) {
+      case NavChoice.home:
+        value = 0;
+        break;
+      case NavChoice.cart:
+        value = 1;
+        break;
+      case NavChoice.notify:
+        value = 2;
+        break;
+      case NavChoice.account:
+        value = 3;
+        break;
+    }
 
-//   PageStorageKey? pageStorageKey() {
-//     return _pageStorageKeys[this];
-//   }
+    return value;
+  }
 
-//   static final Map<NavChoice, PageStorageKey> _pageStorageKeys = {
-//     NavChoice.schedule: PageStorageKey(NavChoice.schedule.navTitle()),
-//     NavChoice.map: PageStorageKey(NavChoice.map.navTitle()),
-//     NavChoice.routes: PageStorageKey(NavChoice.routes.navTitle()),
-//     NavChoice.config: PageStorageKey(NavChoice.config.navTitle()),
-//   };
-// }
+  PageStorageKey? pageStorageKey() {
+    return _pageStorageKeys[this];
+  }
+
+  static final Map<NavChoice, PageStorageKey> _pageStorageKeys = {
+    NavChoice.home: PageStorageKey(NavChoice.home.navTitle()),
+    NavChoice.cart: PageStorageKey(NavChoice.cart.navTitle()),
+    NavChoice.notify: PageStorageKey(NavChoice.notify.navTitle()),
+    NavChoice.account: PageStorageKey(NavChoice.account.navTitle()),
+  };
+}
