@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-abstract class IstoppableService {
+abstract class Istoppable {
   bool _serviceStopped = false; 
   bool get serviceStopped => _serviceStopped; 
 

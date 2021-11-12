@@ -12,6 +12,8 @@ class UrlLauncherDatasourceImplementation implements IUrlLauncherDatasource {
           forceSafariVC: false,
           forceWebView: false
         );
+      } else {
+        throw FetchDataException("A operação falhou. Tente novamente!");
       }
     } catch (e) {
       throw FetchDataException("A operação falhou. Tente novamente!");

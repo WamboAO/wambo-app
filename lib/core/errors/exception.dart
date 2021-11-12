@@ -41,3 +41,9 @@ class NotFoundException extends ExceptionHelper {
   @override
   List<Object?> get props => [];
 }
+
+class CachedException extends ExceptionHelper {
+  CachedException([String? message]) : super(message);
+  @override
+  List<Object?> get props => [];
+}

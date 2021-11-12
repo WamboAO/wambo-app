@@ -10,6 +10,7 @@ class ApiResponse<T> extends Equatable {
   final Status status;
   T? data;
   String? message;
+  
  
 
   @override

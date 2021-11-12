@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:stacked/stacked.dart';
-import 'package:wambo/app/lifecycle_manager.dart';
+import 'package:wambo/app/lifecycle.dart';
+import 'package:wambo/app/locator.dart';
 import 'package:wambo/app/setup.router.dart';
 import 'startup_view_model.dart';
 
@@ -11,9 +12,8 @@ class StartupView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ViewModelBuilder<StartupViewModel>.nonReactive(
-      onModelReady: (model)=> model.setSnackBar(),
+     onModelReady: (model)=> model.setSnackBar(),
       builder: (context, model, child) {
-        
         return LifeCycleManager(
           child: MaterialApp(
             title: 'Wambo',
@@ -24,14 +24,16 @@ class StartupView extends StatelessWidget {
               ),
             ),
             navigatorKey: model.globalKey,
+            navigatorObservers: [
+              model.analyticsObs
+            ],
             onGenerateRoute: StackedRouter().onGenerateRoute,
-            initialRoute:
-                model.isLoggedIn == true ? Routes.mainView : Routes.mainAuthenticationView,
+            initialRoute: Routes.mainView,
             debugShowCheckedModeBanner: model.env == "debug" ? true : false,
           ),
         );
       },
-      viewModelBuilder: () => StartupViewModel(),
+      viewModelBuilder: () => locator<StartupViewModel>(),
     );
   }
 }

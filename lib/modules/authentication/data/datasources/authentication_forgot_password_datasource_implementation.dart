@@ -16,10 +16,10 @@ class AuthenticationForgotPasswordDatasourceImplementation
       UserRegistrationCredentialsEntity params) async {
     try {
       UserRegistrationCredentialsModel body = UserRegistrationCredentialsModel(
-          email: params.email!.trim(), registrationType: params.registrationType);
+          email: params.email, registrationType: params.registrationType, appId: params.appId, appToken: params.appToken, type: params.type);
       final response = await client.post(
           query: "",
-          header: _header.setAuthHeaders(params.appToken!),
+          header: _header.setAuthHeaders(params.appToken),
           body: body,
           debugType: "authentication_forgot_password");
       return GenericModel.fromJson(response);
