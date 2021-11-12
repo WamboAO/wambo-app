@@ -14,26 +14,26 @@ class ForgotPasswordAuthenticationViewModel extends BaseViewModel
   }
 
   final log = getLogger('ForgotPasswordAuthenticationViewModel');
-  final _resetPasswordService = locator<ResetPasswordAuthenticationService>();
-  final _dialogService = locator<DialogService>();
-  final _snackbarService = locator<SnackbarService>();
-  final _startupViewModel = locator<StartupViewModel>();
+  // final _resetPasswordService = locator<ResetPasswordAuthenticationService>();
+  // final _dialogService = locator<DialogService>();
+  // final _snackbarService = locator<SnackbarService>();
+  // final _startupViewModel = locator<StartupViewModel>();
 
-  Future resetPassword({required String email}) async {
-    setBusy(true);
-    log.i("{email:$email}");
-    UserRegistrationCredentialsEntity params =
-        UserRegistrationCredentialsEntity(
-            email: email, registrationType: "email/password", appToken: _startupViewModel.appConfig!.appToken);
-    final result = await _resetPasswordService.reset(params);
-    statusChecker(result.status, onError: () async {
-      await _dialogService.showDialog(
-          title: "Erro", description: result.message);
-      return setBusy(false);
-    }, onComplete: () async {
-      log.w(result.data!);
-      setBusy(false);
-      _snackbarService.showSnackbar(message: result.data!.message);
-    });
-  }
+  // Future resetPassword({required String email}) async {
+  //   setBusy(true);
+  //   log.i("{email:$email}");
+  //   UserRegistrationCredentialsEntity params =
+  //       UserRegistrationCredentialsEntity(
+  //           email: email, registrationType: "email/password", appToken: _startupViewModel.appConfig!.appToken);
+  //   final result = await _resetPasswordService.reset(params);
+  //   statusChecker(result.status, onError: () async {
+  //     await _dialogService.showDialog(
+  //         title: "Erro", description: result.message);
+  //     return setBusy(false);
+  //   }, onComplete: () async {
+  //     log.w(result.data!);
+  //     setBusy(false);
+  //     _snackbarService.showSnackbar(message: result.data!.message);
+  //   });
+  // }
 }

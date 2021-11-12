@@ -74,11 +74,11 @@ class _FormInput
         if (emailFocus.hasFocus) {
           emailFocus.unfocus();
         }
-        model
-            .resetPassword(
-              email: email.text,
-            )
-            .then((value) => pageController.jumpTo(0));
+        // model
+        //     .resetPassword(
+        //       email: email.text,
+        //     )
+         //   .then((value) => pageController.jumpTo(0));
       },
       isBusy: model.isBusy,
       email: email,

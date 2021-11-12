@@ -82,12 +82,12 @@ class _FormInput extends ViewModelWidget<LoginAuthenticationViewModel> {
           passFocus.unfocus();
           emailFocus.unfocus();
         }
-        model.login(
-          email: email.text,
-          password: password.text,
-        );
+        // model.login(
+        //   email: email.text,
+        //   password: password.text,
+        // );
       },
-      facebook: () => model.loginWithSocial(Social.facebook),
+    //  facebook: () => model.loginWithSocial(Social.facebook),
       isBusy: model.isBusy,
       email: email,
       password: password,

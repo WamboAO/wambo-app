@@ -13,62 +13,62 @@ class LoginAuthenticationViewModel extends BaseViewModel
     log.d('created');
   }
   final log = getLogger('LoginAuthenticationViewModel');
-  final _loginService = locator<LoginAuthenticationService>();
-  final _dialogService = locator<DialogService>();
-  final _socialAuthResponseService =
-      locator<SocialAuthenticaionResponseService>();
-  final _startupViewModel = locator<StartupViewModel>();
-  final _socialAuthService = locator<SocialAuthenticationService>();
+  // final _loginService = locator<LoginAuthenticationService>();
+  // final _dialogService = locator<DialogService>();
+  // final _socialAuthResponseService =
+  //     locator<SocialAuthenticaionResponseService>();
+  // final _startupViewModel = locator<StartupViewModel>();
+  // final _socialAuthService = locator<SocialAuthenticationService>();
 
-  Future login({required String email, required String password}) async {
-    setBusy(true);
-    log.i("{email:$email password:$password}");
-    UserRegistrationCredentialsEntity params =
-        UserRegistrationCredentialsEntity(
-            email: email,
-            password: password,
-            registrationType: "email/password", appToken: _startupViewModel.appConfig!.appToken);
-    final result = await _loginService.login(params);
-    statusChecker(result.status, onError: () async {
-      await _dialogService.showDialog(
-          title: "Erro", description: result.message);
-      return setBusy(false);
-    }, onComplete: () async {
-      log.w(result.data!);
-      await _startupViewModel.addDataLocaly(result.data!);
-    });
-  }
+  // Future login({required String email, required String password}) async {
+  //   setBusy(true);
+  //   log.i("{email:$email password:$password}");
+  //   UserRegistrationCredentialsEntity params =
+  //       UserRegistrationCredentialsEntity(
+  //           email: email,
+  //           password: password,
+  //           registrationType: "email/password", appToken: _startupViewModel.appConfig!.appToken);
+  //   final result = await _loginService.login(params);
+  //   statusChecker(result.status, onError: () async {
+  //     await _dialogService.showDialog(
+  //         title: "Erro", description: result.message);
+  //     return setBusy(false);
+  //   }, onComplete: () async {
+  //     log.w(result.data!);
+  //     await _startupViewModel.addDataLocaly(result.data!);
+  //   });
+  // }
 
-  Future loginWithSocial(Social social) async {
-    setBusy(true);
-    final result = await _socialAuthService.loginWithSocial(Social.facebook);
-    statusChecker(result.status,
-        onError: () async {
-          await _dialogService.showDialog(
-              title: "Erro", description: result.message);
-          return setBusy(false);
-        },
-        onComplete: () => socialResponse(result.data!));
-  }
+  // Future loginWithSocial(Social social) async {
+  //   setBusy(true);
+  //   final result = await _socialAuthService.loginWithSocial(Social.facebook);
+  //   statusChecker(result.status,
+  //       onError: () async {
+  //         await _dialogService.showDialog(
+  //             title: "Erro", description: result.message);
+  //         return setBusy(false);
+  //       },
+  //       onComplete: () => socialResponse(result.data!));
+  // }
 
-  Future socialResponse(UserRegistrationCredentialsEntity params) async {
-     UserRegistrationCredentialsEntity _params =
-        UserRegistrationCredentialsEntity(
-            email: params.email,
-            firstName: params.firstName,
-            lastName: params.lastName,
-            avatar: params.avatar,
-            registrationType: params.registrationType,
-            appToken: _startupViewModel.appConfig!.appToken
-            );
-    final result = await _socialAuthResponseService.access(_params);
-    statusChecker(result.status, onError: () async {
-      await _dialogService.showDialog(
-          title: "Erro", description: result.message);
-      return setBusy(false);
-    }, onComplete: () async {
-      log.w(result.data!);
-      await _startupViewModel.addDataLocaly(result.data!);
-    });
-  }
+  // Future socialResponse(UserRegistrationCredentialsEntity params) async {
+  //    UserRegistrationCredentialsEntity _params =
+  //       UserRegistrationCredentialsEntity(
+  //           email: params.email,
+  //           firstName: params.firstName,
+  //           lastName: params.lastName,
+  //           avatar: params.avatar,
+  //           registrationType: params.registrationType,
+  //           appToken: _startupViewModel.appConfig!.appToken
+  //           );
+  //   final result = await _socialAuthResponseService.access(_params);
+  //   statusChecker(result.status, onError: () async {
+  //     await _dialogService.showDialog(
+  //         title: "Erro", description: result.message);
+  //     return setBusy(false);
+  //   }, onComplete: () async {
+  //     log.w(result.data!);
+  //     await _startupViewModel.addDataLocaly(result.data!);
+  //   });
+  // }
 }

@@ -17,42 +17,42 @@ class AuthenticationView extends StatelessWidget {
   Widget build(BuildContext context) {
     return ViewModelBuilder<AuthenticationViewModel>.nonReactive(
       builder: (context, model, child) {
-        return Scaffold(
-          body: Container(
-            width: screenWidth(context),
-            decoration: const BoxDecoration(
-                gradient: LinearGradient(
-              begin: Alignment.topCenter,
-              end: Alignment.bottomCenter,
-              colors: [kcPrimary, kcSecondary],
-            )),
-            child: SafeArea(
-              child: Padding(
-                padding: const EdgeInsets.all(15.0),
-                child: Column(
-                  children: [
-                    TopHeaderLogin(
-                      cancel: () => model.cancelAuthentication(),
-                      login: () => pageController.animateToPage(1,
-                          duration: const Duration(milliseconds: 250),
-                          curve: Curves.easeOut),
-                    ),
-                    SvgPicture.asset("assets/images/wambo-login.svg",
-                        width: screenWidthPercentage(
-                          context,
-                          percentage: 0.4,
-                        )),
-                        _Register(pageController: pageController)
-                  ],
-                ),
-              ),
-            ),
-          ),
-          bottomNavigationBar: Contracts(
-            terms: () => model.getLink("tel:+244932254152"),
-            privacy: () =>
-                model.getLink("https://pub.dev/packages/url_launcher/example"),
-          ),
+        return const Scaffold(
+          // body: Container(
+          //   width: screenWidth(context),
+          //   decoration: const BoxDecoration(
+          //       gradient: LinearGradient(
+          //     begin: Alignment.topCenter,
+          //     end: Alignment.bottomCenter,
+          //     colors: [kcPrimary, kcSecondary],
+          //   )),
+          //   child: SafeArea(
+          //     child: Padding(
+          //       padding: const EdgeInsets.all(15.0),
+          //       child: Column(
+          //         children: [
+          //           TopHeaderLogin(
+          //             cancel: () => model.cancelAuthentication(),
+          //             login: () => pageController.animateToPage(1,
+          //                 duration: const Duration(milliseconds: 250),
+          //                 curve: Curves.easeOut),
+          //           ),
+          //           SvgPicture.asset("assets/images/wambo-login.svg",
+          //               width: screenWidthPercentage(
+          //                 context,
+          //                 percentage: 0.4,
+          //               )),
+          //               _Register(pageController: pageController)
+          //         ],
+          //       ),
+          //     ),
+          //   ),
+          // ),
+          // bottomNavigationBar: Contracts(
+          //   terms: () => model.getLink("tel:+244932254152"),
+          //   privacy: () =>
+          //       model.getLink("https://pub.dev/packages/url_launcher/example"),
+          // ),
         );
       },
       viewModelBuilder: () => AuthenticationViewModel(),
@@ -60,17 +60,4 @@ class AuthenticationView extends StatelessWidget {
   }
 }
 
-class _Register extends ViewModelWidget<AuthenticationViewModel> {
-  const _Register({Key? key, required this.pageController}) : super(key: key, reactive: true);
-  final PageController pageController;
 
-  @override
-  Widget build(BuildContext context, AuthenticationViewModel model) {
-    return Registration(
-      apple: () => model.loginWithSocial(Social.apple),
-      facebook: () => model.loginWithSocial(Social.facebook),
-      email: () => pageController.jumpToPage(2),
-      isBusy: model.isBusy,
-    );
-  }
-}

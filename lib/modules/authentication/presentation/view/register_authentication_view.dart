@@ -127,12 +127,12 @@ class _FormInput extends ViewModelWidget<RegisterAuthenticationViewModel> {
           lastFocus.unfocus();
           phoneFocus.unfocus();
         }
-        model.register(
-            email: email.text,
-            fname: fname.text,
-            lname: lname.text,
-            password: password.text,
-            phone: phone.text);
+        // model.register(
+        //     email: email.text,
+        //     fname: fname.text,
+        //     lname: lname.text,
+        //     password: password.text,
+        //     phone: phone.text);
       },
       facebook: () {
         if (passFocus.hasFocus ||
@@ -148,10 +148,10 @@ class _FormInput extends ViewModelWidget<RegisterAuthenticationViewModel> {
           lastFocus.unfocus();
           phoneFocus.unfocus();
         }
-        model.loginWithSocial(Social.facebook);
+       // model.loginWithSocial(Social.facebook);
       },
-      terms: ()=> model.getLink("sms:+244932254152"),
-      privacy: ()=> model.getLink("mailto:rcsousa14@hotmail.com"),
+      //terms: ()=> model.getLink("sms:+244932254152"),
+     // privacy: ()=> model.getLink("mailto:rcsousa14@hotmail.com"),
       isBusy: model.isBusy,
       email: email,
       phone: phone,

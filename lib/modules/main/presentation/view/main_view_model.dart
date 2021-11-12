@@ -1,3 +1,6 @@
+import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_crashlytics/firebase_crashlytics.dart';
+import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 import 'package:wambo/app/locator.dart';
@@ -15,13 +18,15 @@ class MainViewModel extends BaseViewModel with FacebookLoginMixin {
   final _navigationService = locator<NavigationService>();
 
   Future logout() async {
-    if (_startupViewModel.isLoggedIn == true) {
-      setBusy(true);
-      await facebookLogout();
-      await _startupViewModel.logout().then((value) => setBusy(false));
-    } else {
-      return await _navigationService
-          .replaceWith(Routes.mainAuthenticationView);
-    }
+   await Firebase.initializeApp();
+    FirebaseCrashlytics.instance.crash();
+    // if (_startupViewModel.isLoggedIn == true) {
+    //   setBusy(true);
+    //   await facebookLogout();
+    //   await _startupViewModel.logout().then((value) => setBusy(false));
+    // } else {
+    //   return await _navigationService
+    //       .replaceWith(Routes.mainAuthenticationView);
+    // }
   }
 }
