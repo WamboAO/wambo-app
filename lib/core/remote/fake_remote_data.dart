@@ -23,10 +23,49 @@ class FakeRemoteData {
       };
 
   Map<String, Object?> get fakeappConfig => {
+        "message": "sucess",
+        "data": {
+          "app_id": _faker.guid.guid(),
+          "app_token": _faker.jwt.expired()
+        }
+      };
+  Map<String, Object?> get fakeStoreInfo => {
     "message": "sucess",
-    "data": {
-      "app_id": _faker.guid.guid(),
-      "app_token": _faker.jwt.expired()
-    }
+        "data": {
+          "promo":[
+            {
+              "id": 1,
+              "image": _faker.image.image(),
+              "tag": _faker.lorem.word()
+            },
+            {
+              "id": 2,
+              "image": _faker.image.image(),
+              "tag": _faker.lorem.word()
+            },
+            {
+              "id": 3,
+              "image": _faker.image.image(),
+              "tag": _faker.lorem.word()
+            },
+          ],
+          "tags": [
+            {
+              "id": 1,
+              "title": _faker.lorem.words(3),
+              "description": _faker.lorem.words(4)
+            },
+             {
+              "id": 2,
+              "title": _faker.lorem.words(3),
+              "description": _faker.lorem.words(4)
+            },
+             {
+              "id": 3,
+              "title": _faker.lorem.words(3),
+              "description": _faker.lorem.words(4)
+            },
+          ]
+        }
   };
 }

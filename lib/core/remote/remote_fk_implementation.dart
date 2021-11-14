@@ -29,6 +29,9 @@ class RemoteFkImplementation implements IRemote {
     if (debugType == "get_app_config") {
       value = _fake.fakeappConfig;
     }
+    if (debugType == "get_store_info") {
+      value = _fake.fakeStoreInfo;
+    }
     return value;
   }
 
