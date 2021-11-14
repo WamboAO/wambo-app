@@ -8,10 +8,12 @@ import 'package:wambo/core/utils/data_state_response.dart';
 import 'package:wambo/modules/startup/presentation/services/get_authenticated_user_service.dart';
 import 'package:wambo/modules/store/domain/entities/store_info_entity.dart';
 import 'package:wambo/modules/store/domain/usecases/get_store_info_usecase.dart';
+import 'package:wambo/app/setup.logger.dart';
 
 class GetStoreInfoService extends Istoppable {
   GetStoreInfoService(this.usecase);
   final _getAuthenticatedUserService = locator<GetAuthenticatedUserService>();
+  final log = getLogger('GetStoreInfoService');
   final GetStoreInfoUsecase usecase;
 
   final BehaviorSubject<ApiResponse<StoreInfoEntity>> _response =
@@ -23,6 +25,7 @@ class GetStoreInfoService extends Istoppable {
   Sink<ApiResponse<StoreInfoEntity>> get dataSink => _response.sink;
 
   Future getStoreInfo() async {
+    log.i(_response.value);
     final result = await usecase(PageConfigEntity(
         perPage: 0,
         page: 0,
@@ -33,12 +36,21 @@ class GetStoreInfoService extends Istoppable {
         result.fold((l) => ApiResponse.error('$l'), (r) {
       return ApiResponse.completed(r);
     });
-
+    
     dataSink.add(response);
+    log.wtf(_response.value);
   }
 
   @override
   void start() {
-    getStoreInfo();
+    if(_getAuthenticatedUserService.currentUser != null){
+      getStoreInfo();
+    }
+    
+  }
+
+  @override
+  void stop() {
+    dataSink.add(ApiResponse.loading("loading..."));
   }
 }
