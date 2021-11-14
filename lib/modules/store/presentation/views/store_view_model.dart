@@ -20,5 +20,7 @@ class StoreViewModel extends StreamViewModel<ApiResponse<StoreInfoEntity>> {
 
   Stream<ApiResponse<StoreInfoEntity>> get stream => _getStoreInfoService.dataStream;
 
+  onClear() {}
+
 }
 
