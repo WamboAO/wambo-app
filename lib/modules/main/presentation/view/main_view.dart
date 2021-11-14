@@ -8,6 +8,8 @@ import 'package:wambo/core/shared/ui/sizing.dart';
 import 'package:wambo/core/shared/ui/styles.dart';
 import 'package:wambo/core/shared/widgets/new_bottom_app_bar_widget.dart';
 import 'package:wambo/modules/main/presentation/view/main_view_model.dart';
+import 'package:wambo/modules/main/presentation/widgets/navigator.dart';
+import 'package:wambo/modules/store/presentation/views/store_view.dart';
 
 class MainView extends StatelessWidget {
   const MainView({Key? key}) : super(key: key);
@@ -16,6 +18,7 @@ class MainView extends StatelessWidget {
   Widget build(BuildContext context) {
     return ViewModelBuilder<MainViewModel>.reactive(
       disposeViewModel: false,
+      onModelReady: (model) => model.init(),
       builder: (context, model, child) {
         Widget loadingIndicator = model.isBusy
             ? Container(
@@ -42,11 +45,10 @@ class MainView extends StatelessWidget {
                 IndexedStack(
                   index: model.currentIndex,
                   children: [
-                    //TODO: change it here
-                    Container(color: Colors.blue,),
-                    Container(color: Colors.red,),
-                    Container(color: Colors.yellow,),
-                    Container(color: Colors.green,)
+                    StoreNavigator(choice: model.availableChoices[0],),
+                    CartNavigator(choice: model.availableChoices[1],),
+                    NotifyNavigator(choice: model.availableChoices[2],),
+                    AccountNavigator(choice: model.availableChoices[3],)
                   ],
                 ),
                 Align(
