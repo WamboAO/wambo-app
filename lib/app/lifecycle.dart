@@ -17,6 +17,7 @@ class _LifeCycleManagerState extends State<LifeCycleManager>
     with WidgetsBindingObserver {
   final List<Istoppable> services = [
     locator<GetAuthenticatedUserService>(),
+    locator<GetStoreInfoService>(),
   ];
 
   @override
