@@ -52,19 +52,19 @@ class FakeRemoteData {
           "tags": [
             {
               "id": 1,
-              "title": _faker.lorem.words(3),
-              "description": _faker.lorem.words(4)
+              "title": _faker.lorem.word(),
+              "description": "${_faker.lorem.word()} ${_faker.lorem.word()}"
             },
              {
               "id": 2,
-              "title": _faker.lorem.words(3),
-              "description": _faker.lorem.words(4)
+              "title": _faker.lorem.word(),
+              "description": "${_faker.lorem.word()} ${_faker.lorem.word()}"
             },
              {
               "id": 3,
-              "title": _faker.lorem.words(3),
-              "description": _faker.lorem.words(4)
-            },
+              "title": _faker.lorem.word(),
+              "description": "${_faker.lorem.word()} ${_faker.lorem.word()}"
+            }
           ]
         }
   };
