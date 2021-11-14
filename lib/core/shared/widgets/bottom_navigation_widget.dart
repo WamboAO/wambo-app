@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:wambo/core/shared/widgets/new_bottom_app_bar_widget.dart';
-import 'package:wambo/core/utils/routes.dart';
-
+import 'package:wambo/app/setup.router.dart';
 enum NavChoice { home, notify, cart, account }
 
 extension NavChoiceExtension on NavChoice {
@@ -69,16 +68,16 @@ extension NavChoiceExtension on NavChoice {
 
     switch (this) {
       case NavChoice.home:
-        selectedText = homeRoute;
+        selectedText = MainViewRoutes.storeNavigator;
         break;
       case NavChoice.cart:
-        selectedText = cartRoute;
+        selectedText = MainViewRoutes.cartNavigator;
         break;
       case NavChoice.notify:
-        selectedText = notifyRoute;
+        selectedText = MainViewRoutes.notifyNavigator;
         break;
       case NavChoice.account:
-        selectedText = accountRoute;
+        selectedText = MainViewRoutes.accountNavigator;
         break;
     }
 
