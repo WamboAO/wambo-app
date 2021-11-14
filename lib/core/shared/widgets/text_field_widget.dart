@@ -107,3 +107,63 @@ class _NewFormTextFieldState extends State<NewFormTextField> {
     );
   }
 }
+
+class SearchTextField extends StatelessWidget {
+  const SearchTextField(
+      {Key? key,
+      required this.hintText,
+      required this.focus,
+      this.onSubmit,
+      this.onChanged,
+      required this.controller,
+      required this.onClear})
+      : super(key: key);
+  final Function(String)? onSubmit;
+  final Function(String)? onChanged;
+  final String hintText;
+  final FocusNode focus;
+  final Function onClear;
+  final TextEditingController controller;
+  
+
+  @override
+  Widget build(BuildContext context) {
+   
+    return TextField(
+      keyboardType: TextInputType.text,
+      onSubmitted: (text) => onSubmit!(text),
+      onChanged: (text) => onChanged!(text),
+      controller: controller,
+      autofocus: false,
+      focusNode: focus,
+      style: ktsMediumBodyText.copyWith(color: Colors.grey.shade800),
+      decoration: InputDecoration(
+        contentPadding: const EdgeInsets.symmetric(vertical: 8),
+        filled: true,
+        fillColor: Colors.grey.shade100,
+        enabledBorder:  OutlineInputBorder(
+          borderSide: BorderSide(color: Colors.grey.shade200),
+          borderRadius: const BorderRadius.all(Radius.circular(30.0)),
+        ),
+        focusedBorder:  OutlineInputBorder(
+          borderSide: BorderSide(color: Colors.grey.shade200),
+          borderRadius: const BorderRadius.all(Radius.circular(30.0)),
+        ),
+        prefixIcon: const Icon(
+          Icons.search,
+          size: 25,
+          color: kcPrimary,
+        ),
+        suffixIcon: controller.text.isEmpty
+            ? null
+            : GestureDetector(
+                onTap: () => onClear(),
+                child: const Icon(Icons.cancel, size: 19, color: Colors.black),
+              ),
+        hintText: hintText,
+        hintStyle: ktsMediumBodyText.copyWith(color: Colors.grey)
+        ,
+      ),
+    );
+  }
+}
