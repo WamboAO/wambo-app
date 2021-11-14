@@ -23,7 +23,7 @@ class GetAuthenticatedUserService extends Istoppable {
       _response.stream;
 
   Sink<ApiResponse<AuthenticatedUserEntity>> get dataSink => _response.sink;
-  AuthenticatedUserEntity? get currentUser => _response.hasValue? _response.value.data: null;
+  AuthenticatedUserEntity? get currentUser => _response.hasValue && _response.value.data !=null? _response.value.data: null;
   Future getUser() async {
     final result = await usecase(dotenv.env['APPID']!);
 
