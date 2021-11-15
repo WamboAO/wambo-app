@@ -30,7 +30,7 @@ once you changed package version run:
 * [x] If user is not login and minized the app, It should capture his authentication response and show the appropriate screen.
 
 #### Firebase Tools
-* [ ] Implementation of google analytics 
+* [X] Implementation of google analytics 
 * [X] ~~Implementation of crash analytics~~ Imeplementation of Catcher with crashlitics and discord webhook
 * [ ] Implementation of dynamic links
 * [X] Implmentation of firebase core
