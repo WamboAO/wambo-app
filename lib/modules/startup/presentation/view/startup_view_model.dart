@@ -26,9 +26,7 @@ class StartupViewModel extends FutureViewModel<void> {
   FirebaseAnalyticsObserver get analyticsObs =>
       _analyticsService.getAnalyticsObserver();
 
-  Future<void> setCurrentScreen(String screenName) async {
-    await _analyticsService.setCurrentScreen(screenName: screenName);
-  }
+  
 
   FirebaseAnalytics get analytics => _analyticsService.analytics;
 
