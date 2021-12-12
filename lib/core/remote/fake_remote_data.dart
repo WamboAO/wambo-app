@@ -34,7 +34,7 @@ class FakeRemoteData {
         "data": [
           {
             "id": 1,
-            "category": "Todo",
+            "category": "Tudo",
             "is_active": true,
           },
           {
@@ -70,17 +70,17 @@ class FakeRemoteData {
           "promo": [
             {
               "id": 1,
-              "image": _faker.image.image(),
+              "image": _faker.image.image(keywords: ["promotion", "sale"]),
               "tag": _faker.lorem.word()
             },
             {
               "id": 2,
-              "image": _faker.image.image(),
+              "image": _faker.image.image(keywords: ["promotion", "sale"]),
               "tag": _faker.lorem.word()
             },
             {
               "id": 3,
-              "image": _faker.image.image(),
+              "image": _faker.image.image(keywords: ["promotion", "sale"]),
               "tag": _faker.lorem.word()
             },
           ],
