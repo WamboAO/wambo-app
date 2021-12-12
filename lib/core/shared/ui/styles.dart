@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 const Color kcPrimary = Color(0xff26458F);
 const Color kcSecondary = Color(0xffE81463);
+const Color kcWhatsapp = Color(0xff25D366);
 const Color kcIconDark = Color(0xFF3D3D3D);
 const Color kcWhite = Color(0xFFffffff);
 const Color kcIconLight = Color(0xFFE9E9E9);
