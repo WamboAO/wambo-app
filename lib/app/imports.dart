@@ -47,3 +47,9 @@ export 'package:wambo/modules/store/data/repositories/get_store_info_repository_
 export 'package:wambo/modules/store/domain/repositories/get_store_info_repository.dart';
 export 'package:wambo/modules/store/domain/usecases/get_store_info_usecase.dart';
 export 'package:wambo/modules/store/presentation/services/get_store_info_service.dart';
+export 'package:wambo/modules/store/data/datasources/get_categories_datasource.dart';
+export 'package:wambo/modules/store/data/datasources/get_categories_datasource_implementation.dart';
+export 'package:wambo/modules/store/data/repositories/get_categories_repository_implementation.dart';
+export 'package:wambo/modules/store/domain/repositories/get_categories_repository.dart';
+export 'package:wambo/modules/store/domain/usecases/get_categories_usecase.dart';
+export 'package:wambo/modules/store/presentation/services/get_categories_service.dart';

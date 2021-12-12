@@ -1,3 +1,5 @@
+
+
 import 'imports.dart';
 
 final GetIt locator = GetIt.I;
@@ -73,10 +75,21 @@ void authentication() {
 }
 
 void store() {
+//Store info
   locator.registerLazySingleton(() => GetStoreInfoService(locator()));
   locator.registerLazySingleton(() => GetStoreInfoUsecase(locator()));
   locator.registerLazySingleton<IGetStoreInfoRepository>(
       () => GetStoreInfoRepositoryImplementation(locator()));
   locator.registerLazySingleton<IGetStoreInfoDatasource>(
       () => GetStoreInfoDatasourceImplementation(locator()));
+
+  //store categories
+  locator.registerLazySingleton(() => GetCategoriesService(locator()));
+  locator.registerLazySingleton(() => GetCategoriesUsecase(locator()));
+  locator.registerLazySingleton<IGetCategoriesRepository>(
+      () => GetCategoriesRepositoryImplementation(locator()));
+  locator.registerLazySingleton<IGetCategoriesDatasource>(
+      () => GetCategoriesDatasourceImplementation(locator()));
+
+  
 }

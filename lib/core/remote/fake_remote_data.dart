@@ -29,10 +29,45 @@ class FakeRemoteData {
           "app_token": _faker.jwt.expired()
         }
       };
+  Map<String, Object?> get fakeCategories => {
+     "message": "sucess",
+        "data": [
+          {
+            "id": 1,
+            "category": "Todo",
+            "is_active": true,
+          },
+          {
+            "id": 2,
+            "category": "Electrodomésticos",
+            "is_active": true,
+          },
+           {
+            "id": 3,
+            "category": "Eletrônicos",
+            "is_active": true,
+          },
+          {
+            "id": 4,
+            "category": "Saúde e cosméticos",
+            "is_active": true,
+          },
+           {
+            "id": 5,
+            "category": "Moda e acessórios",
+            "is_active": true,
+          },
+          {
+            "id": 6,
+            "category": "Esporte e lazer",
+            "is_active": true,
+          },
+        ]
+  };
   Map<String, Object?> get fakeStoreInfo => {
-    "message": "sucess",
+        "message": "sucess",
         "data": {
-          "promo":[
+          "promo": [
             {
               "id": 1,
               "image": _faker.image.image(),
@@ -55,17 +90,17 @@ class FakeRemoteData {
               "title": _faker.lorem.word(),
               "description": "${_faker.lorem.word()} ${_faker.lorem.word()}"
             },
-             {
+            {
               "id": 2,
               "title": _faker.lorem.word(),
               "description": "${_faker.lorem.word()} ${_faker.lorem.word()}"
             },
-             {
+            {
               "id": 3,
               "title": _faker.lorem.word(),
               "description": "${_faker.lorem.word()} ${_faker.lorem.word()}"
             }
           ]
         }
-  };
+      };
 }
