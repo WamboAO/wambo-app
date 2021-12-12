@@ -46,7 +46,7 @@ class MainView extends StatelessWidget {
                   index: model.currentIndex,
                   children: [
                     StoreNavigator(choice: model.availableChoices[0],),
-                    CartNavigator(choice: model.availableChoices[1],),
+                    FavoriteNavigator(choice: model.availableChoices[1],),
                     NotifyNavigator(choice: model.availableChoices[2],),
                     AccountNavigator(choice: model.availableChoices[3],)
                   ],
@@ -64,7 +64,7 @@ class MainView extends StatelessWidget {
               selectedColor: kcPrimary,
               iconSize: 28,
               height: screenHeightPercentage(context, percentage: 0.1),
-              color: kcIconLight,
+              color: kcIconDark,
             ),
           ),
         );

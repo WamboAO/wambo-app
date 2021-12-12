@@ -19,7 +19,7 @@ class MainViewModel extends IndexTrackingViewModel {
 
   List<NavChoice> get availableChoices => [
         NavChoice.home,
-        NavChoice.cart,
+        NavChoice.favorite,
         NavChoice.notify,
         NavChoice.account,
       ];
