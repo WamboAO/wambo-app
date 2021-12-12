@@ -23,8 +23,8 @@ class StoreNavigator extends StatelessWidget {
   }
 }
 
-class CartNavigator extends StatelessWidget {
-  const CartNavigator({Key? key, required this.choice}) : super(key: key);
+class FavoriteNavigator extends StatelessWidget {
+  const FavoriteNavigator({Key? key, required this.choice}) : super(key: key);
   final NavChoice choice;
 
   @override
@@ -33,7 +33,7 @@ class CartNavigator extends StatelessWidget {
       observers: [
         locator<AnalyticsHandler>().getAnalyticsObserver()
       ],
-      router: CartNavigatorRouter(),
+      router: FavoriteNavigatorRouter(),
       navigatorKey:StackedService.nestedNavigationKey(
           choice.nestedKeyValue()),
     );
