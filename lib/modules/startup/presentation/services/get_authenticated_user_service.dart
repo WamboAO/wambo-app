@@ -37,6 +37,6 @@ class GetAuthenticatedUserService extends Istoppable {
 
   @override
   void start() {
-    getUser();
+      getUser();
   }
 }
