@@ -20,7 +20,7 @@ class GetCategoriesService  {
 
   Sink<ApiResponse<CategoriesEntity>> get dataSink => _response.sink;
 
-  Future getStoreInfo() async {
+  Future getCategories() async {
     
     final result = await usecase(PageConfigEntity(
         perPage: 9,

@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:stacked/stacked.dart';
 import 'package:wambo/app/locator.dart';
 import 'package:wambo/core/shared/ui/sizing.dart';
@@ -57,11 +58,16 @@ class MainView extends StatelessWidget {
                 ),
               ],
             ),
+            floatingActionButton: FloatingActionButton(
+              backgroundColor: kcWhatsapp,
+              onPressed: ()=> print("object"),
+              child: const Icon(FontAwesomeIcons.whatsapp, size: 30,),
+              ),
             bottomNavigationBar: FABBottomAppBar(
               currentIndex: model.currentIndex,
               items: model.availableItems,
               onTabSelected: model.setIndex,
-              selectedColor: kcPrimary,
+              selectedColor: kcSecondary,
               iconSize: 28,
               height: screenHeightPercentage(context, percentage: 0.1),
               color: kcIconDark,
