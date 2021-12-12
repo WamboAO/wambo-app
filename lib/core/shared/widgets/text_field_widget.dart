@@ -49,6 +49,7 @@ class _NewFormTextFieldState extends State<NewFormTextField> {
         vertical: 2,
       ),
       child: TextFormField(
+      
         textCapitalization: widget.textCapitalization !=null? widget.textCapitalization! : TextCapitalization.none,
         focusNode: widget.focus,
         textInputAction: widget.textInputAction,
@@ -143,11 +144,11 @@ class SearchTextField extends StatelessWidget {
         fillColor: Colors.grey.shade100,
         enabledBorder:  OutlineInputBorder(
           borderSide: BorderSide(color: Colors.grey.shade200),
-          borderRadius: const BorderRadius.all(Radius.circular(30.0)),
+          borderRadius: const BorderRadius.all(Radius.circular(8.0)),
         ),
         focusedBorder:  OutlineInputBorder(
           borderSide: BorderSide(color: Colors.grey.shade200),
-          borderRadius: const BorderRadius.all(Radius.circular(30.0)),
+          borderRadius: const BorderRadius.all(Radius.circular(8.0)),
         ),
         prefixIcon: const Icon(
           Icons.search,
