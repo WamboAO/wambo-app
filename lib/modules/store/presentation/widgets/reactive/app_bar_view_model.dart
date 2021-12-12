@@ -11,4 +11,11 @@ class AppbarViewModel extends BaseViewModel {
 
  final log = getLogger('AppbarViewModel');
 
+goToSearch() {}
+
+  goToCart() {}
+
+  goToQrCode() {}
+
+
 }
