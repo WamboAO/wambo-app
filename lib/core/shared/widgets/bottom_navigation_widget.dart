@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:wambo/core/shared/widgets/new_bottom_app_bar_widget.dart';
 import 'package:wambo/app/setup.router.dart';
-enum NavChoice { home, notify, cart, account }
+enum NavChoice { home, notify, favorite, account }
 
 extension NavChoiceExtension on NavChoice {
   FABBottomAppBarItem navChoiceItem() {
@@ -16,9 +16,9 @@ extension NavChoiceExtension on NavChoice {
           tooltip: Tooltip(message: navTitle()),
         );
         break;
-      case NavChoice.cart:
+      case NavChoice.favorite:
         item = FABBottomAppBarItem(
-          icon: Icons.shopping_bag_rounded,
+          icon: Icons.favorite_rounded,
           label: "",
           tooltip: Tooltip(message: navTitle()),
         );
@@ -49,8 +49,8 @@ extension NavChoiceExtension on NavChoice {
       case NavChoice.home:
         selectedText = 'home';
         break;
-      case NavChoice.cart:
-        selectedText = 'cart';
+      case NavChoice.favorite:
+        selectedText = 'favorite';
         break;
       case NavChoice.notify:
         selectedText = 'notify';
@@ -70,8 +70,8 @@ extension NavChoiceExtension on NavChoice {
       case NavChoice.home:
         selectedText = MainViewRoutes.storeNavigator;
         break;
-      case NavChoice.cart:
-        selectedText = MainViewRoutes.cartNavigator;
+      case NavChoice.favorite:
+        selectedText = MainViewRoutes.favoriteNavigator;
         break;
       case NavChoice.notify:
         selectedText = MainViewRoutes.notifyNavigator;
@@ -91,7 +91,7 @@ extension NavChoiceExtension on NavChoice {
       case NavChoice.home:
         value = 0;
         break;
-      case NavChoice.cart:
+      case NavChoice.favorite:
         value = 1;
         break;
       case NavChoice.notify:
@@ -111,7 +111,7 @@ extension NavChoiceExtension on NavChoice {
 
   static final Map<NavChoice, PageStorageKey> _pageStorageKeys = {
     NavChoice.home: PageStorageKey(NavChoice.home.navTitle()),
-    NavChoice.cart: PageStorageKey(NavChoice.cart.navTitle()),
+    NavChoice.favorite: PageStorageKey(NavChoice.favorite.navTitle()),
     NavChoice.notify: PageStorageKey(NavChoice.notify.navTitle()),
     NavChoice.account: PageStorageKey(NavChoice.account.navTitle()),
   };
