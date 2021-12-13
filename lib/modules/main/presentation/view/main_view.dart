@@ -60,7 +60,7 @@ class MainView extends StatelessWidget {
             ),
             floatingActionButton: FloatingActionButton(
               backgroundColor: kcWhatsapp,
-              onPressed: ()=> print("object"),
+              onPressed: ()=> model.goToWhatsapp(),
               child: const Icon(FontAwesomeIcons.whatsapp, size: 30,),
               ),
             bottomNavigationBar: FABBottomAppBar(

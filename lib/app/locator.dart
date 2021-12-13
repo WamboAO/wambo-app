@@ -17,6 +17,7 @@ void setupLocator({String? enviroment}) {
   startup();
   authentication();
   store();
+  notification();
 
   // NETWORK
   locator.registerLazySingleton<INetworkInfo>(
@@ -90,6 +91,13 @@ void store() {
       () => GetCategoriesRepositoryImplementation(locator()));
   locator.registerLazySingleton<IGetCategoriesDatasource>(
       () => GetCategoriesDatasourceImplementation(locator()));
+}
 
-  
+void notification() {
+  locator.registerLazySingleton(() => GetNotificationService(locator()));
+  locator.registerLazySingleton(() => GetNotificationUsecase(locator()));
+  locator.registerLazySingleton<IGetNotificationRepository>(
+      () => GetNotificationRepositoryImplementation(locator()));
+  locator.registerLazySingleton<IGetNotificationDatasource>(
+      () => GetNotificationDatasourceImplementation(locator()));
 }

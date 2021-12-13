@@ -35,6 +35,9 @@ class RemoteFkImplementation implements IRemote {
     if (debugType == "get_categories") {
       value = _fake.fakeCategories;
     }
+    if (debugType == "get_notifications") {
+      value = _fake.fakeNotification;
+    }
     return value;
   }
 
