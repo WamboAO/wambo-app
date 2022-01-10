@@ -24,13 +24,9 @@ class GetStoreInfoService extends Istoppable {
 
   Sink<ApiResponse<StoreInfoEntity>> get dataSink => _response.sink;
 
-  Future getStoreInfo() async {
+  Future getStoreInfo({required PageConfigEntity config}) async {
     log.i(_response.value);
-    final result = await usecase(PageConfigEntity(
-        perPage: 0,
-        page: 0,
-        appToken: _getAuthenticatedUserService.currentUser!.appToken!,
-        token: ""));
+    final result = await usecase(config);
 
     ApiResponse<StoreInfoEntity> response =
         result.fold((l) => ApiResponse.error('$l'), (r) {
@@ -44,7 +40,11 @@ class GetStoreInfoService extends Istoppable {
   @override
   void start() {
     if(_getAuthenticatedUserService.currentUser != null){
-      getStoreInfo();
+      getStoreInfo(config: PageConfigEntity(
+        perPage: 0,
+        page: 0,
+        appToken: _getAuthenticatedUserService.currentUser!.appToken!,
+        ));
     }
     
   }
