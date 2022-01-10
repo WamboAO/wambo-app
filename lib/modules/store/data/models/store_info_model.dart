@@ -9,38 +9,25 @@ class StoreInfoModel extends StoreInfoEntity {
 }
 
 class StoreInfoDataModel extends StoreInfoDataEntity {
-  StoreInfoDataModel(
-      {required List<StoreInfoPromoModel> promo,
-      required List<StoreInfoTagsModel> tags})
-      : super(promo: promo, tags: tags);
+  StoreInfoDataModel({
+    required List<StoreInfoPromoModel> promo,
+  }) : super(
+          promo: promo,
+        );
   factory StoreInfoDataModel.fromJson(Map<String, dynamic> json) {
-    List<StoreInfoTagsModel> _tags = <StoreInfoTagsModel>[];
-    json['tags'].forEach((v) {
-      _tags.add(StoreInfoTagsModel.fromJson(v));
-    });
     List<StoreInfoPromoModel> _promo = <StoreInfoPromoModel>[];
     json['promo'].forEach((v) {
       _promo.add(StoreInfoPromoModel.fromJson(v));
     });
-    return StoreInfoDataModel(promo: _promo, tags: _tags);
+    return StoreInfoDataModel(promo: _promo);
   }
 }
 
 class StoreInfoPromoModel extends StoreInfoPromoEntity {
-  StoreInfoPromoModel({required int id, required String image, required String tag})
+  StoreInfoPromoModel(
+      {required int id, required String image, required String tag})
       : super(id: id, image: image, tag: tag);
   factory StoreInfoPromoModel.fromJson(Map<String, dynamic> json) =>
-      StoreInfoPromoModel(id: json['id'], image: json['image'], tag: json['tag']);
-}
-
-class StoreInfoTagsModel extends StoreInfoTagsEntity {
-  StoreInfoTagsModel(
-      {required int id, required String title, required String description})
-      : super(id: id, title: title, description: description);
-
-  factory StoreInfoTagsModel.fromJson(Map<String, dynamic> json) =>
-      StoreInfoTagsModel(
-          id: json['id'],
-          title: json['title'],
-          description: json['description']);
+      StoreInfoPromoModel(
+          id: json['id'], image: json['image'], tag: json['tag']);
 }

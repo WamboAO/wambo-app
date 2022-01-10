@@ -1,5 +1,5 @@
 import 'package:wambo/core/errors/exception.dart';
-import 'package:wambo/modules/store/data/datasources/get_store_info_datasource.dart';
+import 'package:wambo/modules/store/data/datasources/info/get_store_info_datasource.dart';
 import 'package:wambo/modules/store/domain/entities/store_info_entity.dart';
 import 'package:wambo/core/shared/entities/page_config_entity.dart';
 import 'package:wambo/core/errors/failures.dart';

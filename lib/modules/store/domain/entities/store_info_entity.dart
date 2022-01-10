@@ -15,13 +15,13 @@ class StoreInfoEntity extends Equatable {
 class StoreInfoDataEntity extends Equatable {
   StoreInfoDataEntity({
     required this.promo,
-    required this.tags,
+
   });
   final List<StoreInfoPromoEntity> promo;
-  final List<StoreInfoTagsEntity> tags;
+  
 
   @override
-  List<Object?> get props => [promo, tags];
+  List<Object?> get props => [promo];
 }
 
 class StoreInfoPromoEntity extends Equatable {
@@ -38,16 +38,4 @@ class StoreInfoPromoEntity extends Equatable {
   List<Object?> get props => [id, image, tag];
 }
 
-class StoreInfoTagsEntity extends Equatable {
-  StoreInfoTagsEntity({
-    required this.id,
-    required this.title,
-    required this.description,
-  });
-  final int id;
-  final String title;
-  final String description;
 
-  @override
-  List<Object?> get props => [id, title, description];
-}
