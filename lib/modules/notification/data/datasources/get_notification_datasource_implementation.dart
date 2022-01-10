@@ -15,7 +15,7 @@ class GetNotificationDatasourceImplementation
     try {
       final json = await client.get(
         query: "",
-        header: _header.setTokenHeaders(token: params.token, appToken: params.appToken),
+        header: _header.setTokenHeaders(token: params.token!, appToken: params.appToken),
         debugType: "get_notifications",
       );
       return NotificationModel.fromJson(json);
