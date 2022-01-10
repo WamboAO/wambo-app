@@ -66,25 +66,23 @@ class FakeRemoteData {
       };
   Map<String, Object?> get fakeStoreInfo => {
         "message": "sucess",
-        "data": {
-          "promo": [
-            {
-              "id": 1,
-              "image": _faker.image.image(keywords: ["promotion", "sale"]),
-              "tag": _faker.lorem.word()
-            },
-            {
-              "id": 2,
-              "image": _faker.image.image(keywords: ["promotion", "sale"]),
-              "tag": _faker.lorem.word()
-            },
-            {
-              "id": 3,
-              "image": _faker.image.image(keywords: ["promotion", "sale"]),
-              "tag": _faker.lorem.word()
-            },
-          ]
-        }
+        "data": [
+          {
+            "id": 1,
+            "image": _faker.image.image(keywords: ["promotion", "sale"]),
+            "tag": _faker.lorem.word()
+          },
+          {
+            "id": 2,
+            "image": _faker.image.image(keywords: ["flyer", "sale"]),
+            "tag": _faker.lorem.word()
+          },
+          {
+            "id": 3,
+            "image": _faker.image.image(keywords: ["promotion", "discount"]),
+            "tag": _faker.lorem.word()
+          },
+        ]
       };
   Map<String, Object?> get fakeNotification => {
         "message": "sucess",
@@ -136,60 +134,6 @@ class FakeRemoteData {
               "username": _faker.internet.userName(),
               "avatar": _faker.image.image(keywords: ['avatar', 'people']),
             }
-          },
-        ]
-      };
-
-  Map<String, Object?> get fakePromo => {
-        "message": "sucess",
-        "data": [
-          {
-            "id": 1,
-            "image": _faker.image.image(keywords: ["fashion"]),
-            "discount": _faker.randomGenerator.decimal(),
-            "price": _faker.randomGenerator.decimal(min: 1000.00),
-          },
-          {
-            "id": 2,
-            "image": _faker.image.image(keywords: ["fashion"]),
-            "discount": _faker.randomGenerator.decimal(),
-            "price": _faker.randomGenerator.decimal(min: 1000.00),
-          },
-          {
-            "id": 3,
-            "image": _faker.image.image(keywords: ["fashion"]),
-            "discount": _faker.randomGenerator.decimal(),
-            "price": _faker.randomGenerator.decimal(min: 1000.00),
-          },
-          {
-            "id": 4,
-            "image": _faker.image.image(keywords: ["fashion"]),
-            "discount": _faker.randomGenerator.decimal(),
-            "price": _faker.randomGenerator.decimal(min: 1000.00),
-          },
-          {
-            "id": 5,
-            "image": _faker.image.image(keywords: ["fashion"]),
-            "discount": _faker.randomGenerator.decimal(),
-            "price": _faker.randomGenerator.decimal(min: 1000.00),
-          },
-          {
-            "id": 6,
-            "image": _faker.image.image(keywords: ["fashion"]),
-            "discount": _faker.randomGenerator.decimal(),
-            "price": _faker.randomGenerator.decimal(min: 1000.00),
-          },
-          {
-            "id": 7,
-            "image": _faker.image.image(keywords: ["fashion"]),
-            "discount": _faker.randomGenerator.decimal(),
-            "price": _faker.randomGenerator.decimal(min: 1000.00),
-          },
-          {
-            "id": 8,
-            "image": _faker.image.image(keywords: ["fashion"]),
-            "discount": _faker.randomGenerator.decimal(),
-            "price": _faker.randomGenerator.decimal(min: 1000.00),
           },
         ]
       };
@@ -287,7 +231,7 @@ class FakeRemoteData {
           }
         ]
       };
-      Map<String, Object?> get fakePromos => {
+  Map<String, Object?> get fakePromos => {
         "message": "sucess",
         "data": [
           {
@@ -323,7 +267,6 @@ class FakeRemoteData {
             "created_at": DateTime.now().toString(),
             "details": null
           },
-         
         ]
       };
 }

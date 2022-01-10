@@ -1,33 +1,23 @@
 import 'package:wambo/modules/store/domain/entities/store_info_entity.dart';
 
 class StoreInfoModel extends StoreInfoEntity {
-  StoreInfoModel({required String message, required StoreInfoDataModel data})
+  StoreInfoModel(
+      {required String message, required List<StoreInfoDataModel> data})
       : super(message: message, data: data);
-  factory StoreInfoModel.fromJson(Map<String, dynamic> json) => StoreInfoModel(
-      message: json['message'],
-      data: StoreInfoDataModel.fromJson(json['data']));
-}
-
-class StoreInfoDataModel extends StoreInfoDataEntity {
-  StoreInfoDataModel({
-    required List<StoreInfoPromoModel> promo,
-  }) : super(
-          promo: promo,
-        );
-  factory StoreInfoDataModel.fromJson(Map<String, dynamic> json) {
-    List<StoreInfoPromoModel> _promo = <StoreInfoPromoModel>[];
-    json['promo'].forEach((v) {
-      _promo.add(StoreInfoPromoModel.fromJson(v));
+  factory StoreInfoModel.fromJson(Map<String, dynamic> json) {
+    List<StoreInfoDataModel> _data = <StoreInfoDataModel>[];
+    json['data'].forEach((v) {
+      _data.add(StoreInfoDataModel.fromJson(v));
     });
-    return StoreInfoDataModel(promo: _promo);
+    return StoreInfoModel(message: json['message'], data: _data);
   }
 }
 
-class StoreInfoPromoModel extends StoreInfoPromoEntity {
-  StoreInfoPromoModel(
+class StoreInfoDataModel extends StoreInfoDataEntity {
+  StoreInfoDataModel(
       {required int id, required String image, required String tag})
       : super(id: id, image: image, tag: tag);
-  factory StoreInfoPromoModel.fromJson(Map<String, dynamic> json) =>
-      StoreInfoPromoModel(
+  factory StoreInfoDataModel.fromJson(Map<String, dynamic> json) =>
+      StoreInfoDataModel(
           id: json['id'], image: json['image'], tag: json['tag']);
 }

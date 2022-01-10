@@ -6,7 +6,7 @@ class StoreInfoEntity extends Equatable {
     required this.data,
   });
   final String message;
-  final StoreInfoDataEntity data;
+  final List<StoreInfoDataEntity> data;
 
   @override
   List<Object?> get props => [message, data];
@@ -14,18 +14,6 @@ class StoreInfoEntity extends Equatable {
 
 class StoreInfoDataEntity extends Equatable {
   StoreInfoDataEntity({
-    required this.promo,
-
-  });
-  final List<StoreInfoPromoEntity> promo;
-  
-
-  @override
-  List<Object?> get props => [promo];
-}
-
-class StoreInfoPromoEntity extends Equatable {
-  StoreInfoPromoEntity({
     required this.id,
     required this.image,
     required this.tag,
