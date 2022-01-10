@@ -89,8 +89,9 @@ void store() {
       () => GetCategoriesRepositoryImplementation(locator()));
   locator.registerLazySingleton<IGetCategoriesDatasource>(
       () => GetCategoriesDatasourceImplementation(locator()));
-  //store categories
+  //store products
   locator.registerLazySingleton(() => GetProductsService(locator()));
+  locator.registerLazySingleton(() => GetPromoService(locator()));
   locator.registerLazySingleton(() => GetProductsUsecase(locator()));
   locator.registerLazySingleton<IGetProductsRepository>(
       () => GetProductsRepositoryImplementation(locator()));
