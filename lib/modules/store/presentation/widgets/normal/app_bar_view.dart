@@ -35,9 +35,9 @@ class AppbarView extends StatelessWidget {
               color: kcIconDark,
             ))
       ],
-      bottom: const PreferredSize(
-        preferredSize: Size.fromHeight(45),
-        child:  CategoriesView(),
+      bottom:  PreferredSize(
+        preferredSize: Size.fromHeight(screenHeightPercentage(context, percentage: 0.09)),
+        child:  const CategoriesView(),
       ),
     );
   }

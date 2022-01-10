@@ -20,6 +20,14 @@ class StoreInfoViewModel extends StreamViewModel<ApiResponse<StoreInfoEntity>> {
   StoreInfoEntity? get store =>
       dataReady && data!.status == Status.completed ? data!.data! : null;
   @override
-  Stream<ApiResponse<StoreInfoEntity>> get stream => _getStoreInfoService.dataStream;
+  Stream<ApiResponse<StoreInfoEntity>> get stream =>
+      _getStoreInfoService.dataStream;
 
+  int _currentIndex = 0;
+  get currentIndex => _currentIndex;
+
+  setIndex(int index) {
+    _currentIndex = index;
+    notifyListeners();
+  }
 }
