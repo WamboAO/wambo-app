@@ -287,4 +287,43 @@ class FakeRemoteData {
           }
         ]
       };
+      Map<String, Object?> get fakePromos => {
+        "message": "sucess",
+        "data": [
+          {
+            "id": 1,
+            "title": "${_faker.lorem.word()} ${_faker.lorem.word()}",
+            "thumbnail": _faker.image.image(keywords: ["fashion", "clothes"]),
+            "discount": 0.8,
+            "price": _faker.randomGenerator.integer(100000, min: 1000),
+            "in_stock": true,
+            "like_count": _faker.randomGenerator.integer(100000, min: 0),
+            "created_at": DateTime.now().toString(),
+            "details": null
+          },
+          {
+            "id": 2,
+            "title": "${_faker.lorem.word()} ${_faker.lorem.word()}",
+            "thumbnail": _faker.image.image(keywords: ["fashion", "shoes"]),
+            "discount": 0.2,
+            "price": _faker.randomGenerator.integer(100000, min: 1000),
+            "in_stock": true,
+            "like_count": _faker.randomGenerator.integer(100000, min: 0),
+            "created_at": DateTime.now().toString(),
+            "details": null
+          },
+          {
+            "id": 3,
+            "title": "${_faker.lorem.word()} ${_faker.lorem.word()}",
+            "thumbnail": _faker.image.image(keywords: ["fashion", "hats"]),
+            "discount": 0.1,
+            "price": _faker.randomGenerator.integer(100000, min: 1000),
+            "in_stock": true,
+            "like_count": _faker.randomGenerator.integer(100000, min: 0),
+            "created_at": DateTime.now().toString(),
+            "details": null
+          },
+         
+        ]
+      };
 }
