@@ -1,4 +1,5 @@
 import 'package:equatable/equatable.dart';
+import 'package:wambo/core/utils/enums.dart';
 
 class PageConfigEntity extends Equatable {
   PageConfigEntity({
@@ -7,17 +8,20 @@ class PageConfigEntity extends Equatable {
     this.filter,
     this.search,
     this.order,
+    this.productType,
     required this.appToken,
-    required this.token,
+     this.token,
   });
   final int? perPage;
   final int? page;
   final String? filter;
   final String? search;
   final String? order;
+  final ProductType? productType;
   final String appToken;
-  final String token;
+  final String? token;
 
   @override
-  List<Object?> get props => [perPage, page, filter, search, order, appToken, token];
+  List<Object?> get props =>
+      [perPage, page, filter, search, order, productType, appToken, token];
 }
