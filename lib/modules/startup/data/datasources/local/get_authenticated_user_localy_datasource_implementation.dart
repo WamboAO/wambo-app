@@ -1,8 +1,6 @@
 import 'dart:convert';
-
 import 'package:wambo/app/imports.dart';
 import 'package:wambo/core/errors/exception.dart';
-import 'package:wambo/modules/startup/data/datasources/local/get_authenticated_user_localy_datasource.dart';
 import 'package:wambo/core/shared/entities/authenticated_user_entity.dart';
 import 'package:wambo/core/shared/models/authenticated_user_model.dart';
 

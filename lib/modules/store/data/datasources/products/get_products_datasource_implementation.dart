@@ -42,7 +42,7 @@ class GetProductsDatasourceImplementation implements IGetProductsDatasource {
       final json = await client.get(
           query: "",
           header: _header.setAuthHeaders(params.appToken),
-          debugType: "get_products");
+          debugType: "get_promo");
       return ProductsModel.fromJson(json);
     } catch (e) {
       rethrow;

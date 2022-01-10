@@ -3,7 +3,6 @@ import 'package:stack_trace/stack_trace.dart';
 import 'package:wambo/app/imports.dart';
 import 'package:wambo/core/errors/exception.dart';
 import 'package:wambo/core/shared/entities/generic_entity.dart';
-import 'package:wambo/core/shared/entities/authenticated_user_entity.dart';
 import 'package:wambo/core/errors/failures.dart';
 import 'package:dartz/dartz.dart';
 import 'package:wambo/modules/startup/data/datasources/remote/logout_authenticated_user_datasource.dart';

@@ -3,7 +3,6 @@ import 'package:wambo/app/locator.dart';
 import 'package:wambo/core/shared/entities/authenticated_user_entity.dart';
 import 'package:wambo/core/utils/data_state_response.dart';
 import 'package:wambo/modules/authentication/domain/entities/user_registration_crendentials_entities.dart';
-import 'package:wambo/modules/authentication/domain/usecases/authentication_usecase.dart';
 
 class AuthenticationService {
   AuthenticationService(this.usecase);

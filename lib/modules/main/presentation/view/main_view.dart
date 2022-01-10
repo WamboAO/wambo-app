@@ -10,7 +10,6 @@ import 'package:wambo/core/shared/ui/styles.dart';
 import 'package:wambo/core/shared/widgets/new_bottom_app_bar_widget.dart';
 import 'package:wambo/modules/main/presentation/view/main_view_model.dart';
 import 'package:wambo/modules/main/presentation/widgets/navigator.dart';
-import 'package:wambo/modules/store/presentation/views/store_view.dart';
 
 class MainView extends StatelessWidget {
   const MainView({Key? key}) : super(key: key);
