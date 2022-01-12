@@ -8,11 +8,11 @@ class AppbarView extends StatelessWidget {
   const AppbarView({
     Key? key,
     required this.cart,
-    required this.qrcode,
+ 
     required this.search,
     
   }) : super(key: key);
-  final Function cart, search, qrcode;
+  final Function cart, search;
 
 
   @override
@@ -22,7 +22,7 @@ class AppbarView extends StatelessWidget {
       backgroundColor: kcWhite,
       title: AppBarTitle(
         search: () => search,
-        qrcode: () => qrcode(),
+        
       ),
       actions: [
         IconButton(
@@ -44,9 +44,9 @@ class AppbarView extends StatelessWidget {
 }
 
 class AppBarTitle extends StatelessWidget {
-  const AppBarTitle({Key? key, required this.search, required this.qrcode})
+  const AppBarTitle({Key? key, required this.search})
       : super(key: key);
-  final Function search, qrcode;
+  final Function search;
 
   @override
   Widget build(BuildContext context) {
@@ -76,11 +76,7 @@ class AppBarTitle extends StatelessWidget {
                 ],
               ),
             ),
-            Container(
-              padding: const EdgeInsets.all(8),
-              
-              child: const Icon(Icons.qr_code_scanner, size: 25, color: kcIconDark,),
-            )
+            
           ],
         ),
       ),
