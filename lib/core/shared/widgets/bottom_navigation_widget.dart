@@ -17,7 +17,7 @@ extension NavChoiceExtension on NavChoice {
         break;
       case NavChoice.favorite:
         item = FABBottomAppBarItem(
-          icon: Icons.favorite_rounded,
+          icon: Icons.bookmark_rounded,
           label: "",
           tooltip: Tooltip(message: navTitle()),
         );
