@@ -21,7 +21,7 @@ class AppbarView extends StatelessWidget {
       elevation: 0.3,
       backgroundColor: kcWhite,
       title: AppBarTitle(
-        search: () => search,
+        search: () => search(),
         
       ),
       actions: [
