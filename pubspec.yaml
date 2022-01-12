@@ -40,7 +40,7 @@ dependencies:
     sdk: flutter
   flutter_hooks: ^0.17.0
   flutter_login_facebook: ^1.1.0
-  flutter_multi_formatter: ^2.4.1
+  flutter_multi_formatter: ^2.5.1
   flutter_svg: ^0.22.0
   font_awesome_flutter: ^9.2.0
   get_it: ^7.2.0
