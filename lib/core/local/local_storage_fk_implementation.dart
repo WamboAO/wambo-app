@@ -12,8 +12,11 @@ class LocalStorageFkImplementation implements ILocalStorage {
   @override
   Future get({required String key, String? debugType}) async {
     if (debugType == "get_auth_user") {
-     
       var value = jsonEncode(_faker.fakeAuthValues);
+      return value;
+    }
+    if (debugType == "search_list") {
+      var value = jsonEncode(_faker.fakeSearchList);
       return value;
     }
   }
@@ -29,5 +32,3 @@ class LocalStorageFkImplementation implements ILocalStorage {
     return true;
   }
 }
-
-

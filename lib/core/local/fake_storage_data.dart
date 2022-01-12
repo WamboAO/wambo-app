@@ -18,4 +18,42 @@ class FakeLocalData {
         'app_id': _faker.guid.guid(),
         'app_token': _faker.jwt.expired()
       };
+
+      Map<String, Object?> get fakeSearchList => {
+    "message": "sucess",
+    "data": [
+      {
+        "id": 1,
+        "name": _faker.lorem.word()
+      },
+      {
+        "id": 2,
+        "name": _faker.lorem.word()
+      },
+      {
+        "id": 3,
+        "name": _faker.lorem.word()
+      },
+      {
+        "id": 4,
+        "name": _faker.lorem.word()
+      },
+      {
+        "id": 5,
+        "name": _faker.lorem.word()
+      },
+      {
+        "id": 6,
+        "name": _faker.lorem.word()
+      },
+      {
+        "id": 7,
+        "name": _faker.lorem.word()
+      },
+      {
+        "id": 8,
+        "name": _faker.lorem.word()
+      },
+    ]
+  };
 }

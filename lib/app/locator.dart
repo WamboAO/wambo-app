@@ -1,3 +1,5 @@
+
+
 import 'imports.dart';
 
 final GetIt locator = GetIt.I;
@@ -100,6 +102,17 @@ void store() {
       () => GetProductsRepositoryImplementation(locator()));
   locator.registerLazySingleton<IGetProductsDatasource>(
       () => GetProductsDatasourceImplementation(locator()));
+}
+
+void search(){
+   locator.registerLazySingleton(() => SearchService(locator()));
+  locator.registerLazySingleton(() => SearchUsecase(locator()));
+  locator.registerLazySingleton<ISearchRepository>(
+      () => SearchRepositoryImplementation(locator(), locator()));
+  locator.registerLazySingleton<ISearchLocalDatasource>(
+      () => SearchLocalDatasourceImplementation(locator()));
+      locator.registerLazySingleton<ISearchRemoteDatasource>(
+      () => SearchRemoteDatasourceImplementation(locator()));
 }
 
 void notification() {
