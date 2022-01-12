@@ -13,6 +13,7 @@ class CategoriesView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ViewModelBuilder<CategoriesViewModel>.reactive(
+      initialiseSpecialViewModelsOnce: true,
       builder: (context, model, child) {
         return Container(
             child: !model.dataReady || model.isLoading
@@ -48,6 +49,7 @@ class _IsLoading extends ViewModelWidget<CategoriesViewModel> {
       margin: const EdgeInsets.only(left: 5, bottom: 10),
       height: screenHeightPercentage(context, percentage: 0.068),
       child: ListView.builder(
+          key: const PageStorageKey('storage-key'),
           shrinkWrap: true,
           physics: const NeverScrollableScrollPhysics(),
           scrollDirection: Axis.horizontal,
