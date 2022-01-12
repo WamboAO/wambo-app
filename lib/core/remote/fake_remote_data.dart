@@ -79,6 +79,7 @@ class FakeRemoteData {
           },
           {
             "id": 3,
+            "bought_count": _faker.randomGenerator.integer(1000, min: 0),
             "image": _faker.image.image(keywords: ["promotion", "discount"]),
             "tag": _faker.lorem.word()
           },
@@ -145,7 +146,9 @@ class FakeRemoteData {
             "id": 1,
             "title": "${_faker.lorem.word()} ${_faker.lorem.word()}",
             "thumbnail": _faker.image.image(keywords: ["fashion", "clothes"]),
-            "discount": 0.8,
+            "bought_count": _faker.randomGenerator.integer(1000, min: 0),
+            "currency": "Kz",
+            "discount": null,
             "price": _faker.randomGenerator.integer(100000, min: 1000),
             "in_stock": true,
             "like_count": _faker.randomGenerator.integer(100000, min: 0),
@@ -156,7 +159,9 @@ class FakeRemoteData {
             "id": 2,
             "title": "${_faker.lorem.word()} ${_faker.lorem.word()}",
             "thumbnail": _faker.image.image(keywords: ["fashion", "shoes"]),
-            "discount": 0.2,
+            "bought_count": _faker.randomGenerator.integer(1000, min: 0),
+            "currency": "Kz",
+            "discount": null,
             "price": _faker.randomGenerator.integer(100000, min: 1000),
             "in_stock": true,
             "like_count": _faker.randomGenerator.integer(100000, min: 0),
@@ -167,7 +172,9 @@ class FakeRemoteData {
             "id": 3,
             "title": "${_faker.lorem.word()} ${_faker.lorem.word()}",
             "thumbnail": _faker.image.image(keywords: ["fashion", "hats"]),
-            "discount": 0.1,
+            "bought_count": _faker.randomGenerator.integer(1000, min: 0),
+            "currency": "Kz",
+            "discount": null,
             "price": _faker.randomGenerator.integer(100000, min: 1000),
             "in_stock": true,
             "like_count": _faker.randomGenerator.integer(100000, min: 0),
@@ -178,6 +185,8 @@ class FakeRemoteData {
             "id": 4,
             "title": "${_faker.lorem.word()} ${_faker.lorem.word()}",
             "thumbnail": _faker.image.image(keywords: ["fashion", "shirts"]),
+            "bought_count": _faker.randomGenerator.integer(1000, min: 0),
+            "currency": "Kz",
             "discount": 0.1,
             "price": _faker.randomGenerator.integer(100000, min: 1000),
             "in_stock": true,
@@ -189,9 +198,11 @@ class FakeRemoteData {
             "id": 5,
             "title": "${_faker.lorem.word()} ${_faker.lorem.word()}",
             "thumbnail": _faker.image.image(keywords: ["model"]),
-            "discount": 0.3,
+            "bought_count": _faker.randomGenerator.integer(1000, min: 0),
+            "currency": "Kz",
+            "discount": null,
             "price": _faker.randomGenerator.integer(100000, min: 1000),
-            "in_stock": true,
+            "in_stock": false,
             "like_count": _faker.randomGenerator.integer(100000, min: 0),
             "created_at": DateTime.now().toString(),
             "details": null
@@ -200,6 +211,8 @@ class FakeRemoteData {
             "id": 6,
             "title": "${_faker.lorem.word()} ${_faker.lorem.word()}",
             "thumbnail": _faker.image.image(keywords: ["fashion", "african"]),
+            "bought_count": _faker.randomGenerator.integer(1000, min: 0),
+            "currency": "Kz",
             "discount": 0.2,
             "price": _faker.randomGenerator.integer(100000, min: 1000),
             "in_stock": true,
@@ -211,6 +224,8 @@ class FakeRemoteData {
             "id": 7,
             "title": "${_faker.lorem.word()} ${_faker.lorem.word()}",
             "thumbnail": _faker.image.image(keywords: ["fashion", "sneakers"]),
+            "bought_count": _faker.randomGenerator.integer(1000, min: 0),
+            "currency": "Kz",
             "discount": 0.25,
             "price": _faker.randomGenerator.integer(100000, min: 1000),
             "in_stock": true,
@@ -222,7 +237,9 @@ class FakeRemoteData {
             "id": 8,
             "title": "${_faker.lorem.word()} ${_faker.lorem.word()}",
             "thumbnail": _faker.image.image(keywords: ["fashion", "blouse"]),
-            "discount": 0.5,
+            "bought_count": _faker.randomGenerator.integer(1000, min: 0),
+            "currency": "Kz",
+            "discount": null,
             "price": _faker.randomGenerator.integer(100000, min: 1000),
             "in_stock": true,
             "like_count": _faker.randomGenerator.integer(100000, min: 0),
@@ -238,6 +255,8 @@ class FakeRemoteData {
             "id": 1,
             "title": "${_faker.lorem.word()} ${_faker.lorem.word()}",
             "thumbnail": _faker.image.image(keywords: ["fashion", "clothes"]),
+            "bought_count": _faker.randomGenerator.integer(1000, min: 0),
+            "currency": "Kz",
             "discount": 0.8,
             "price": _faker.randomGenerator.integer(100000, min: 1000),
             "in_stock": true,
@@ -249,6 +268,8 @@ class FakeRemoteData {
             "id": 2,
             "title": "${_faker.lorem.word()} ${_faker.lorem.word()}",
             "thumbnail": _faker.image.image(keywords: ["fashion", "shoes"]),
+            "bought_count": _faker.randomGenerator.integer(1000, min: 0),
+            "currency": "Kz",
             "discount": 0.2,
             "price": _faker.randomGenerator.integer(100000, min: 1000),
             "in_stock": true,
@@ -260,6 +281,8 @@ class FakeRemoteData {
             "id": 3,
             "title": "${_faker.lorem.word()} ${_faker.lorem.word()}",
             "thumbnail": _faker.image.image(keywords: ["fashion", "hats"]),
+            "bought_count": _faker.randomGenerator.integer(1000, min: 0),
+            "currency": "Kz",
             "discount": 0.1,
             "price": _faker.randomGenerator.integer(100000, min: 1000),
             "in_stock": true,
@@ -267,6 +290,102 @@ class FakeRemoteData {
             "created_at": DateTime.now().toString(),
             "details": null
           },
+        ]
+      };
+
+  Map<String, Object?> get fakePopular => {
+        "message": "sucess",
+        "data": [
+          {
+            "id": 1,
+            "title": "${_faker.lorem.word()} ${_faker.lorem.word()}",
+            "thumbnail": _faker.image.image(keywords: ["fashion", "clothes"]),
+            "bought_count": _faker.randomGenerator.integer(1000, min: 0),
+            "currency": "Kz",
+            "discount": null,
+            "price": _faker.randomGenerator.integer(100000, min: 1000),
+            "in_stock": false,
+            "like_count": _faker.randomGenerator.integer(100000, min: 0),
+            "created_at": DateTime.now().toString(),
+            "details": null
+          },
+          {
+            "id": 2,
+            "title": "${_faker.lorem.word()} ${_faker.lorem.word()}",
+            "thumbnail": _faker.image.image(keywords: ["fashion", "shoes"]),
+            "bought_count": _faker.randomGenerator.integer(1000, min: 0),
+            "currency": "Kz",
+            "discount": null,
+            "price": _faker.randomGenerator.integer(100000, min: 1000),
+            "in_stock": true,
+            "like_count": _faker.randomGenerator.integer(100000, min: 0),
+            "created_at": DateTime.now().toString(),
+            "details": null
+          },
+        ]
+      };
+
+  Map<String, Object?> get fakeRecent => {
+        "message": "sucess",
+        "data": [
+          {
+            "id": 7,
+            "title": "${_faker.lorem.word()} ${_faker.lorem.word()}",
+            "thumbnail": _faker.image.image(keywords: ["fashion", "sneakers"]),
+            "bought_count": _faker.randomGenerator.integer(1000, min: 0),
+            "currency": "Kz",
+            "discount": 0.25,
+            "price": _faker.randomGenerator.integer(100000, min: 1000),
+            "in_stock": true,
+            "like_count": _faker.randomGenerator.integer(100000, min: 0),
+            "created_at": DateTime.now().toString(),
+            "details": null
+          },
+          {
+            "id": 8,
+            "title": "${_faker.lorem.word()} ${_faker.lorem.word()}",
+            "thumbnail": _faker.image.image(keywords: ["fashion", "blouse"]),
+            "bought_count": _faker.randomGenerator.integer(1000, min: 0),
+            "currency": "Kz",
+            "discount": null,
+            "price": _faker.randomGenerator.integer(100000, min: 1000),
+            "in_stock": true,
+            "like_count": _faker.randomGenerator.integer(100000, min: 0),
+            "created_at": DateTime.now().toString(),
+            "details": null
+          }
+        ]
+      };
+
+  Map<String, Object?> get fakeForyou => {
+        "message": "sucess",
+        "data": [
+          {
+            "id": 7,
+            "title": "${_faker.lorem.word()} ${_faker.lorem.word()}",
+            "thumbnail": _faker.image.image(keywords: ["kitchenware"]),
+            "bought_count": _faker.randomGenerator.integer(1000, min: 0),
+            "currency": "Kz",
+            "discount": null,
+            "price": _faker.randomGenerator.integer(100000, min: 1000),
+            "in_stock": true,
+            "like_count": _faker.randomGenerator.integer(100000, min: 0),
+            "created_at": DateTime.now().toString(),
+            "details": null
+          },
+          {
+            "id": 8,
+            "title": "${_faker.lorem.word()} ${_faker.lorem.word()}",
+            "thumbnail": _faker.image.image(keywords: ["gadget"]),
+            "bought_count": _faker.randomGenerator.integer(1000, min: 0),
+            "currency": "Kz",
+            "discount": 0.15,
+            "price": _faker.randomGenerator.integer(100000, min: 1000),
+            "in_stock": true,
+            "like_count": _faker.randomGenerator.integer(100000, min: 0),
+            "created_at": DateTime.now().toString(),
+            "details": null
+          }
         ]
       };
 }

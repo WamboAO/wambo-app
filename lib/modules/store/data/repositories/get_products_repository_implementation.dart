@@ -68,7 +68,21 @@ class GetProductsRepositoryImplementation implements IGetProductsRepository {
       return Left(FetchDataFailure("$e"));
     }
     
-  } else {
+  } else if(params.productType == ProductType.forYou){
+    try {
+      final result = await datasource.getForYou(params);
+      return Right(result);
+    } on FetchDataException catch (e) {
+      return Left(FetchDataFailure("$e"));
+    } on BadRequestException catch (e) {
+      return Left(FetchDataFailure("$e"));
+    } on UnauthorisedException catch (e) {
+      return Left(FetchDataFailure("$e"));
+    } on NotFoundException catch (e) {
+      return Left(FetchDataFailure("$e"));
+    }
+    
+  }else {
      return Left(FetchDataFailure("Missing Product Type"));
   }
    } 

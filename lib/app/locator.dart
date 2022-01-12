@@ -92,6 +92,9 @@ void store() {
   //store products
   locator.registerLazySingleton(() => GetProductsService(locator()));
   locator.registerLazySingleton(() => GetPromoService(locator()));
+  locator.registerLazySingleton(() => GetPopularService(locator()));
+  locator.registerLazySingleton(() => GetRecentService(locator()));
+  locator.registerLazySingleton(() => GetForYouService(locator()));
   locator.registerLazySingleton(() => GetProductsUsecase(locator()));
   locator.registerLazySingleton<IGetProductsRepository>(
       () => GetProductsRepositoryImplementation(locator()));

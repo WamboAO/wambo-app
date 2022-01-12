@@ -6,4 +6,5 @@ abstract class IGetProductsDatasource {
   Future<ProductsModel> getPopular(PageConfigEntity params);
   Future<ProductsModel> getRecent(PageConfigEntity params);
   Future<ProductsModel> getProducts(PageConfigEntity params);
+  Future<ProductsModel> getForYou(PageConfigEntity params);
 }

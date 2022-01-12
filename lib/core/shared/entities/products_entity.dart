@@ -1,7 +1,7 @@
 import 'package:equatable/equatable.dart';
 
 class ProductsEntity extends Equatable {
-  ProductsEntity({required this.message,  this.data});
+  ProductsEntity({required this.message, this.data});
 
   final String message;
   final List<ProductDataEntity>? data;
@@ -10,7 +10,7 @@ class ProductsEntity extends Equatable {
 }
 
 class ProductEntity extends Equatable {
-  ProductEntity({required this.message,  this.data});
+  ProductEntity({required this.message, this.data});
 
   final String message;
   final ProductDataEntity? data;
@@ -25,7 +25,9 @@ class ProductDataEntity extends Equatable {
       required this.likeCount,
       required this.createdAt,
       required this.thumbnail,
+      required this.boughtCount,
       required this.inStock,
+      required this.currency,
       this.discount,
       this.details,
       required this.price});
@@ -35,6 +37,8 @@ class ProductDataEntity extends Equatable {
   final String thumbnail;
   final bool inStock;
   final int likeCount;
+  final int boughtCount;
+  final String currency;
   final double? discount;
   final int price;
   final ProductDetailsEntity? details;
@@ -44,7 +48,9 @@ class ProductDataEntity extends Equatable {
         id,
         title,
         thumbnail,
+        currency,
         likeCount,
+        boughtCount,
         inStock,
         discount,
         price,
@@ -67,10 +73,8 @@ class ProductDetailsEntity extends Equatable {
   final List<ProductTagsEntity>? tags;
   final String category;
 
-
   @override
-  List<Object?> get props =>
-      [stock, images, category, tags,   description];
+  List<Object?> get props => [stock, images, category, tags, description];
 }
 
 class ProductImageEntity extends Equatable {

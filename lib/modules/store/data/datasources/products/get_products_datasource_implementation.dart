@@ -16,7 +16,7 @@ class GetProductsDatasourceImplementation implements IGetProductsDatasource {
       final json = await client.get(
           query: "",
           header: _header.setAuthHeaders(params.appToken),
-          debugType: "get_products");
+          debugType: "get_popular");
       return ProductsModel.fromJson(json);
     } catch (e) {
       rethrow;
@@ -55,7 +55,20 @@ class GetProductsDatasourceImplementation implements IGetProductsDatasource {
       final json = await client.get(
           query: "",
           header: _header.setAuthHeaders(params.appToken),
-          debugType: "get_products");
+          debugType: "get_recent");
+      return ProductsModel.fromJson(json);
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  @override
+  Future<ProductsModel> getForYou(PageConfigEntity params) async{
+    try {
+      final json = await client.get(
+          query: "",
+          header: _header.setAuthHeaders(params.appToken),
+          debugType: "get_foryou");
       return ProductsModel.fromJson(json);
     } catch (e) {
       rethrow;
