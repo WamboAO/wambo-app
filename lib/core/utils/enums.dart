@@ -8,4 +8,4 @@ enum AccessType {social, login, register, reset, edit}
 
 enum LayoutType {login, forgot, register}
 
-enum ProductType {promo, recent, all, popular, custom} 
+enum ProductType {promo, recent, all, popular, forYou} 
