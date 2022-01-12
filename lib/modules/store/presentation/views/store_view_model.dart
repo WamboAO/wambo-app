@@ -2,7 +2,9 @@ import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 import 'package:wambo/app/locator.dart';
 import 'package:wambo/app/setup.logger.dart';
+import 'package:wambo/app/setup.router.dart';
 import 'package:wambo/core/shared/entities/page_config_entity.dart';
+import 'package:wambo/core/shared/widgets/bottom_navigation_widget.dart';
 import 'package:wambo/core/utils/enums.dart';
 import 'package:wambo/modules/startup/presentation/services/get_authenticated_user_service.dart';
 import 'package:wambo/modules/store/presentation/services/get_categories_service.dart';
@@ -15,6 +17,7 @@ class StoreViewModel extends BaseViewModel {
   }
 
   final log = getLogger('StoreViewModel');
+  final _navigationService = locator<NavigationService>();
   final _getCategoriesService = locator<GetCategoriesService>();
   final _getStoreInfoService = locator<GetStoreInfoService>();
   final _getAuthenticatedUserService = locator<GetAuthenticatedUserService>();
@@ -25,14 +28,13 @@ class StoreViewModel extends BaseViewModel {
   final _getForYouService = locator<GetForYouService>();
 
   Future int() async {
-    await _getCategoriesService.getCategories(
-        config: PageConfigEntity(
-      perPage: 9,
-      page: 1,
-      appToken: _getAuthenticatedUserService.currentUser!.appToken!,
-    ));
-
     await Future.wait([
+      _getCategoriesService.getCategories(
+          config: PageConfigEntity(
+        perPage: 9,
+        page: 1,
+        appToken: _getAuthenticatedUserService.currentUser!.appToken!,
+      )),
       _getStoreInfoService.getStoreInfo(
           config: PageConfigEntity(
         appToken: _getAuthenticatedUserService.currentUser!.appToken!,
@@ -51,9 +53,11 @@ class StoreViewModel extends BaseViewModel {
     ));
   }
 
-
-
   goToCart() {}
 
-  goToSearch() {}
+  Future goToSearch() async {
+    return _navigationService.navigateTo(StoreNavigatorRoutes.searchView,
+        id: NavChoice.home.nestedKeyValue(),
+        arguments: SearchViewArguments(choice: NavChoice.home));
+  }
 }

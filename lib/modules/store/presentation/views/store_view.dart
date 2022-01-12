@@ -18,15 +18,20 @@ class StoreView extends StatelessWidget {
   Widget build(BuildContext context) {
     return ViewModelBuilder<StoreViewModel>.nonReactive(
       onModelReady: (model) => model.int(),
+      fireOnModelReadyOnce: true,
+      disposeViewModel: false,
       builder: (context, model, child) {
         return Scaffold(
             backgroundColor: kcIconLight,
             appBar: PreferredSize(
                 preferredSize: Size.fromHeight(
                     screenHeightPercentage(context, percentage: 0.16)),
-                child: AppbarView(
-                  search: () => model.goToSearch(),
-                  cart: () => model.goToCart(),
+                child: Hero(
+                  tag: "appBar",
+                  child: AppbarView(
+                    search: () => model.goToSearch(),
+                    cart: () => model.goToCart(),
+                  ),
                 )),
             body: SingleChildScrollView(
               child: Column(children: [
