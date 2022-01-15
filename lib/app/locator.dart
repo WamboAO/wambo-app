@@ -1,5 +1,3 @@
-
-
 import 'imports.dart';
 
 final GetIt locator = GetIt.I;
@@ -18,6 +16,7 @@ void setupLocator({String? enviroment}) {
   authentication();
   store();
   notification();
+  search();
 
   // NETWORK
   locator.registerLazySingleton<INetworkInfo>(
@@ -104,14 +103,14 @@ void store() {
       () => GetProductsDatasourceImplementation(locator()));
 }
 
-void search(){
-   locator.registerLazySingleton(() => SearchService(locator()));
+void search() {
+  locator.registerLazySingleton(() => SearchService(locator()));
   locator.registerLazySingleton(() => SearchUsecase(locator()));
   locator.registerLazySingleton<ISearchRepository>(
       () => SearchRepositoryImplementation(locator(), locator()));
   locator.registerLazySingleton<ISearchLocalDatasource>(
       () => SearchLocalDatasourceImplementation(locator()));
-      locator.registerLazySingleton<ISearchRemoteDatasource>(
+  locator.registerLazySingleton<ISearchRemoteDatasource>(
       () => SearchRemoteDatasourceImplementation(locator()));
 }
 
