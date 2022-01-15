@@ -69,9 +69,9 @@ class AppBarTitle extends StatelessWidget {
               child: const Icon(Icons.search, size: 25, color: kcIcon,),
             ),
                   AutoSizeText(
-                    "search",
+                    "Pesquisa",
                     style: ktsSmallBodyText.copyWith(
-                        color: kcIcon, fontSize: 16, fontWeight: FontWeight.w300),
+                        color: kcIcon, fontSize: 14, fontWeight: FontWeight.w100),
                   ),
                 ],
               ),
