@@ -54,9 +54,7 @@ class StoreView extends StatelessWidget {
                   ),
                 ),
                 const ProductsView(),
-                SizedBox(
-                  height: screenHeightPercentage(context, percentage: 0.07),
-                )
+               
               ]),
             ));
       },
