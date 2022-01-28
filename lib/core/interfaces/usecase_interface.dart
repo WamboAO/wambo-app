@@ -1,6 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
-import 'package:wambo/core/errors/failures.dart';
+import 'package:errors/errors.dart';
 
 abstract class Usecase<Output, Input> {
   Future<Either<Failure, Output>> call(Input params);
