@@ -35,3 +35,21 @@ class SearchService {
     dataSink.add(response);
   }
 }
+
+class AddSearchService {
+  AddSearchService(this.usecase);
+
+  final AddSearchUsecase usecase;
+
+  ApiResponse<int> _response = ApiResponse.loading("loading...");
+
+  Future<ApiResponse<int>> addSearch(
+      String params) async {
+    final result = await usecase(params);
+
+    _response = result.fold((l) => ApiResponse.error('$l'), (r) {
+      return ApiResponse.completed(r);
+    });
+    return _response;
+  }
+}

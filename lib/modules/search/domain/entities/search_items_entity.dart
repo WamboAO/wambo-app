@@ -11,11 +11,11 @@ class SearchItemsEntity extends Equatable {
 
 class SearchItemsDataEntity extends Equatable {
   SearchItemsDataEntity({
-    required this.id,
+     this.id,
     required this.name,
   });
 
-  final int id;
+   final int? id;
   final String name;
 
   @override

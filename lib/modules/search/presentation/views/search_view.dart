@@ -22,20 +22,17 @@ class SearchView extends HookWidget {
             appBar: PreferredSize(
                 preferredSize: Size.fromHeight(
                     screenHeightPercentage(context, percentage: 0.1)),
-                child: Hero(
-                  tag: "appBar",
-                  child: SearchBar(
-                      controller: search,
-                      back: () => model.goToHome(choice),
-                      search: (text) => model.search(text),
-                      navigation: () => model.goToProducts(
-                          text: search.text, choice: choice)),
-                )),
-            body: const SearchItemsView());
+                child: SearchBar(
+                    controller: search,
+                    back: () => model.goToHome(choice),
+                    search: (text) => model.search(text),
+                    navigation: () =>
+                        model.goToProducts(text: search.text, choice: choice))),
+            body: SearchItemsView(
+              choice: choice,
+            ));
       },
       viewModelBuilder: () => SearchViewModel(),
     );
   }
 }
-
-

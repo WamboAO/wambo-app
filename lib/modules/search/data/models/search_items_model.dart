@@ -1,21 +1,35 @@
 import 'package:wambo/modules/search/domain/entities/search_items_entity.dart';
 
 class SearchItemsModel extends SearchItemsEntity {
-  SearchItemsModel({required List<SearchItemsDataModel> data}) : super(data: data);
-  factory SearchItemsModel.fromJson(Map<String, dynamic> json) {
-    List<SearchItemsDataModel> _data = <SearchItemsDataModel>[];
-    json['data'].forEach((v) {
-      _data.add(SearchItemsDataModel.fromJson(v));
-    });
+  SearchItemsModel({required List<SearchItemsDataModel> data})
+      : super(data: data);
 
-    return SearchItemsModel(data: _data);
+
+  factory SearchItemsModel.fromJson(Map<String, dynamic> json) {
+    List<SearchItemsDataModel> data = <SearchItemsDataModel>[];
+    json['data'].forEach((v) {
+      data.add(SearchItemsDataModel.fromJson(v));
+    });
+    return SearchItemsModel(data: data);
   }
+
+  Map<String, dynamic> toJson() => {
+        "data": [
+          for (var item in data) {
+            "id": item.id,
+            "name": item.name,
+            
+          }
+        ]
+      };
 }
 
 class SearchItemsDataModel extends SearchItemsDataEntity {
-  SearchItemsDataModel({required int id, required String name})
+  SearchItemsDataModel({ int? id, required String name})
       : super(id: id, name: name);
-
+  
   factory SearchItemsDataModel.fromJson(Map<String, dynamic> json) =>
       SearchItemsDataModel(id: json['id'], name: json['name']);
+
+  Map<String, dynamic> toJson() => {"id": id, "name": name};
 }
