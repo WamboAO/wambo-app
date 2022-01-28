@@ -7,9 +7,9 @@ import 'package:wambo/core/shared/entities/page_config_entity.dart';
 import 'package:wambo/core/shared/widgets/bottom_navigation_widget.dart';
 import 'package:wambo/core/utils/enums.dart';
 import 'package:wambo/modules/startup/presentation/services/get_authenticated_user_service.dart';
-import 'package:wambo/modules/store/presentation/services/get_categories_service.dart';
-import 'package:wambo/modules/store/presentation/services/get_products_service.dart';
-import 'package:wambo/modules/store/presentation/services/get_store_info_service.dart';
+import 'package:wambo/modules/categories/presentation/services/get_categories_service.dart';
+import 'package:wambo/modules/product/presentation/services/get_products_service.dart';
+import 'package:wambo/modules/posters/presentation/services/get_store_info_service.dart';
 
 class StoreViewModel extends BaseViewModel {
   StoreViewModel() {
@@ -21,43 +21,37 @@ class StoreViewModel extends BaseViewModel {
   final _getCategoriesService = locator<GetCategoriesService>();
   final _getStoreInfoService = locator<GetStoreInfoService>();
   final _getAuthenticatedUserService = locator<GetAuthenticatedUserService>();
-  final _getProductsService = locator<GetProductsService>();
+  final _getProductsService = locator<ProductsService>();
   final _getPromosService = locator<GetPromoService>();
   final _getPopularService = locator<GetPopularService>();
   final _getRecentService = locator<GetRecentService>();
   final _getForYouService = locator<GetForYouService>();
+  final _getSuggestionService = locator<GetSuggestionService>();
+
+  NavChoice get choice => NavChoice.home;
 
   Future int() async {
     await Future.wait([
-      _getCategoriesService.getCategories(
-          config: PageConfigEntity(
-        perPage: 9,
-        page: 1,
-        appToken: _getAuthenticatedUserService.currentUser!.appToken!,
-      )),
+      _getCategoriesService.getCategories(true),
       _getStoreInfoService.getStoreInfo(
+          isRefresh: true,
           config: PageConfigEntity(
-        appToken: _getAuthenticatedUserService.currentUser!.appToken!,
-      )),
-      _getPromosService.getPromos(),
-      _getPopularService.getPopular(),
-      _getRecentService.getRecent(),
-      _getForYouService.getForYou()
+            appToken: _getAuthenticatedUserService.currentUser!.appToken!,
+          )),
+      _getPromosService.getPromos(true),
+      _getPopularService.getPopular(true),
+      _getRecentService.getRecent(true),
+      _getSuggestionService.getSuggestions(true),
+      _getForYouService.getForYou(true)
     ]);
-    await _getProductsService.getProducts(
-        config: PageConfigEntity(
-      perPage: 15,
-      page: 1,
-      productType: ProductType.all,
-      appToken: _getAuthenticatedUserService.currentUser!.appToken!,
-    ));
+    await _getProductsService.getProducts(true);
   }
 
   goToCart() {}
 
-  Future goToSearch() async {
+  Future goToSearch(NavChoice choice) async {
     return _navigationService.navigateTo(StoreNavigatorRoutes.searchView,
-        id: NavChoice.home.nestedKeyValue(),
-        arguments: SearchViewArguments(choice: NavChoice.home));
+        id: choice.nestedKeyValue(),
+        arguments: SearchViewArguments(choice: choice));
   }
 }

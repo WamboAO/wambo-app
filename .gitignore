@@ -11,6 +11,7 @@
 .svn/
 .vscode
 lib/app/setup.**.dart
+packages
 
 # IntelliJ related
 *.iml

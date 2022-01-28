@@ -2,7 +2,7 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:wambo/core/shared/ui/sizing.dart';
 import 'package:wambo/core/shared/ui/styles.dart';
-import 'package:wambo/modules/store/presentation/widgets/reactive/categories/categories_view.dart';
+import 'package:wambo/modules/categories/presentation/views/categories_view.dart';
 
 class AppbarView extends StatelessWidget {
   const AppbarView({
@@ -26,7 +26,7 @@ class AppbarView extends StatelessWidget {
       ),
       actions: [
         IconButton(
-            iconSize: 32,
+           iconSize: 28,
             padding: const EdgeInsets.only(right: 15),
             splashRadius: 20,
             onPressed: () => cart(),
@@ -36,7 +36,7 @@ class AppbarView extends StatelessWidget {
             ))
       ],
       bottom:  PreferredSize(
-        preferredSize: Size.fromHeight(screenHeightPercentage(context, percentage: 0.09)),
+        preferredSize: Size.fromHeight(screenHeightPercentage(context, percentage: 0.02)),
         child:  const CategoriesView(),
       ),
     );
@@ -53,7 +53,7 @@ class AppBarTitle extends StatelessWidget {
     return GestureDetector(
       onTap: () => search(),
       child: Container(
-        height: screenHeightPercentage(context, percentage: 0.06),
+        height: screenHeightPercentage(context, percentage: 0.053),
         decoration: BoxDecoration(
             color: kcIconLight, borderRadius: BorderRadius.circular(4)),
         child: Row(
@@ -62,16 +62,17 @@ class AppBarTitle extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 8.0),
               child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Container(
               padding: const EdgeInsets.all(8),
               
-              child: const Icon(Icons.search, size: 25, color: kcIcon,),
+              child: const Icon(Icons.search,  color: kcIcon,),
             ),
                   AutoSizeText(
                     "Pesquisa",
                     style: ktsSmallBodyText.copyWith(
-                        color: kcIcon, fontSize: 14, fontWeight: FontWeight.w100),
+                        color: kcIcon, fontSize: 13, fontWeight: FontWeight.w100),
                   ),
                 ],
               ),

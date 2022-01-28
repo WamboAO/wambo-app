@@ -5,6 +5,8 @@ An e-commerce Saas.
 ## Getting Started
 ##### Flutter Icon Launcher
 `flutter pub run flutter_launcher_icons:main` 
+##### Flutter create packages
+`flutter create --template=package <NAME>`
 ##### Flutter Splash
 `flutter pub run flutter_native_splash:create`
 ##### Flutter generate code

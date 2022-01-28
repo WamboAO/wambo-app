@@ -1,8 +1,7 @@
-import 'package:wambo/core/errors/exception.dart';
+import 'package:errors/errors.dart';
 import 'package:wambo/modules/notification/data/datasources/get_notification_datasource.dart';
 import 'package:wambo/modules/notification/domain/entities/notification_entity.dart';
 import 'package:wambo/core/shared/entities/page_config_entity.dart';
-import 'package:wambo/core/errors/failures.dart';
 import 'package:dartz/dartz.dart';
 import 'package:wambo/modules/notification/domain/repositories/get_notification_repository.dart';
 

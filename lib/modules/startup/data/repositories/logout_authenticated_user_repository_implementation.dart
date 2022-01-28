@@ -1,11 +1,10 @@
 import 'package:catcher/core/catcher.dart';
 import 'package:stack_trace/stack_trace.dart';
 import 'package:wambo/app/imports.dart';
-import 'package:wambo/core/errors/exception.dart';
+import 'package:errors/errors.dart';
 import 'package:wambo/core/shared/entities/generic_entity.dart';
-import 'package:wambo/core/errors/failures.dart';
 import 'package:dartz/dartz.dart';
-import 'package:wambo/modules/startup/data/datasources/remote/logout_authenticated_user_datasource.dart';
+import 'package:wambo/modules/startup/data/datasources/remote/logout/logout_authenticated_user_datasource.dart';
 import 'package:wambo/modules/startup/domain/repositories/logout_authenticated_user_repository.dart';
 
 class LogoutAuthenticatedUserRepositoryImplementation
@@ -36,7 +35,7 @@ class LogoutAuthenticatedUserRepositoryImplementation
       return Left(FetchDataFailure("$e"));
     } on CachedException catch (e) {
       Catcher.reportCheckedError(e, Trace.current());
-      return Left(FetchDataFailure("O que procuras não existe"));
+      return const Left(FetchDataFailure("O que procuras não existe"));
     }
   }
 }

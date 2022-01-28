@@ -3,8 +3,8 @@ import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 import 'package:wambo/app/locator.dart';
 import 'package:wambo/app/setup.router.dart';
-import 'package:wambo/core/shared/hooks/analytics_handler.dart';
 import 'package:wambo/core/shared/widgets/bottom_navigation_widget.dart';
+import 'package:wambo/modules/startup/presentation/view/startup_view_model.dart';
 
 class StoreNavigator extends StatelessWidget {
   const StoreNavigator({Key? key, required this.choice}) : super(key: key);
@@ -14,7 +14,7 @@ class StoreNavigator extends StatelessWidget {
   Widget build(BuildContext context) {
     return ExtendedNavigator(
       observers: [
-        locator<AnalyticsHandler>().getAnalyticsObserver()
+        locator<StartupViewModel>().analyticsObs
       ],
       router: StoreNavigatorRouter(),
       navigatorKey: StackedService.nestedNavigationKey(
@@ -31,7 +31,7 @@ class FavoriteNavigator extends StatelessWidget {
   Widget build(BuildContext context) {
     return ExtendedNavigator(
       observers: [
-        locator<AnalyticsHandler>().getAnalyticsObserver()
+        locator<StartupViewModel>().analyticsObs
       ],
       router: FavoriteNavigatorRouter(),
       navigatorKey:StackedService.nestedNavigationKey(
@@ -48,7 +48,7 @@ class NotifyNavigator extends StatelessWidget {
   Widget build(BuildContext context) {
     return ExtendedNavigator(
       observers: [
-        locator<AnalyticsHandler>().getAnalyticsObserver()
+        locator<StartupViewModel>().analyticsObs
       ],
       router: NotifyNavigatorRouter(),
       navigatorKey: StackedService.nestedNavigationKey(
@@ -65,7 +65,7 @@ class AccountNavigator extends StatelessWidget {
   Widget build(BuildContext context) {
     return ExtendedNavigator(
       observers: [
-        locator<AnalyticsHandler>().getAnalyticsObserver()
+        locator<StartupViewModel>().analyticsObs
       ],
       router: AccountNavigatorRouter(),
       navigatorKey: StackedService.nestedNavigationKey(
