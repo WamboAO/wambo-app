@@ -1,20 +1,23 @@
 import 'dart:convert';
+import 'package:local/local.dart';
 import 'package:wambo/app/imports.dart';
-import 'package:wambo/core/errors/exception.dart';
-import 'package:wambo/core/shared/entities/authenticated_user_entity.dart';
-import 'package:wambo/core/shared/models/authenticated_user_model.dart';
+import 'package:errors/errors.dart';
+import 'package:wambo/modules/authentication/domain/entities/authenticated_user_entity.dart';
+import 'package:wambo/modules/authentication/data/models/authenticated_user_model.dart';
+import 'package:wambo/modules/startup/data/datasources/local/authenticated_user_localy_data.dart';
 
 class GetAuthenticatedUserLocalyDatasourceImplementation
     implements IGetAuthenticatedUserLocalyDatasource {
   GetAuthenticatedUserLocalyDatasourceImplementation(this.local);
   final ILocalStorage local;
+  final _data = AuthenticatedUserLocalyData();
 
   @override
   Future<bool> addUserLocaly(AuthenticatedUserEntity params) async {
     try {
       String encoded = encodeData(params);
-      final result = await local.put(
-          key: "auth", value: encoded, debugType: "add_auth_user");
+      final result =
+          await local.put(key: "auth", value: encoded, debugData: true);
       return result;
     } catch (e) {
       rethrow;
@@ -24,12 +27,14 @@ class GetAuthenticatedUserLocalyDatasourceImplementation
   @override
   Future<AuthenticatedUserModel> getUserLocaly() async {
     try {
-      final response = await local.get(key: "auth", debugType: "get_auth_user");
+      final response =
+          await local.get(key: "auth", debugData: _data.fakeAuthValues);
       if (response != null) {
+        
         var data = json.decode(response);
         return AuthenticatedUserModel.fromJson(data);
       } else {
-        throw FetchDataException('O que procuras não existe');
+        throw const FetchDataException('O que procuras não existe');
       }
     } catch (e) {
       rethrow;
@@ -57,8 +62,7 @@ class GetAuthenticatedUserLocalyDatasourceImplementation
   @override
   Future<bool> removeUser() async {
     try {
-      final result =
-          await local.delete(key: "auth", debugType: "remove_auth_user");
+      final result = await local.delete(key: "auth", debugData: true);
       return result;
     } catch (e) {
       rethrow;

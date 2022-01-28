@@ -3,7 +3,7 @@
 import 'package:rxdart/rxdart.dart';
 import 'package:wambo/core/interfaces/stoppable_interface.dart';
 import 'package:wambo/core/utils/data_state_response.dart';
-import 'package:wambo/core/shared/entities/authenticated_user_entity.dart';
+import 'package:wambo/modules/authentication/domain/entities/authenticated_user_entity.dart';
 import 'package:wambo/modules/startup/domain/usecases/get_authenticated_user_usecase.dart';
 import 'package:wambo/app/setup.logger.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';

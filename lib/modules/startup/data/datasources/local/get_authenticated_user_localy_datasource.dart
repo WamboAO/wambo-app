@@ -1,6 +1,6 @@
 
-import 'package:wambo/core/shared/models/authenticated_user_model.dart';
-import 'package:wambo/core/shared/entities/authenticated_user_entity.dart';
+import 'package:wambo/modules/authentication/data/models/authenticated_user_model.dart';
+import 'package:wambo/modules/authentication/domain/entities/authenticated_user_entity.dart';
 
 abstract class IGetAuthenticatedUserLocalyDatasource {
   Future<AuthenticatedUserModel> getUserLocaly();

@@ -1,12 +1,11 @@
 import 'package:catcher/catcher.dart';
-import 'package:wambo/core/errors/exception.dart';
-import 'package:wambo/core/errors/failures.dart';
+import 'package:errors/errors.dart';
 import 'package:dartz/dartz.dart';
-import 'package:wambo/core/interfaces/network_interface.dart';
+import 'package:network/network.dart';
 import 'package:wambo/modules/startup/data/datasources/local/get_authenticated_user_localy_datasource.dart';
-import 'package:wambo/modules/startup/data/datasources/remote/get_authenticated_user_remotely_datasource.dart';
-import 'package:wambo/core/shared/models/authenticated_user_response_model.dart';
-import 'package:wambo/core/shared/entities/authenticated_user_entity.dart';
+import 'package:wambo/modules/startup/data/datasources/remote/user/get_authenticated_user_remotely_datasource.dart';
+import 'package:wambo/modules/authentication/data/models/authenticated_user_response_model.dart';
+import 'package:wambo/modules/authentication/domain/entities/authenticated_user_entity.dart';
 import 'package:wambo/modules/startup/domain/entities/app_configuration_entity.dart';
 import 'package:wambo/modules/startup/domain/repositories/get_authenticated_user_repository.dart';
 import 'package:stack_trace/stack_trace.dart';
@@ -14,15 +13,15 @@ import 'package:stack_trace/stack_trace.dart';
 class GetAuthenticatedUserRepositoryImplementation
     implements IGetAuthenticatedUserRepository {
   GetAuthenticatedUserRepositoryImplementation(
-      this.networkInfo, this.localyDatasource, this.remotelyDatasource);
-  final INetworkInfo networkInfo;
+      this.network, this.localyDatasource, this.remotelyDatasource);
+  final INetwork network;
   final IGetAuthenticatedUserLocalyDatasource localyDatasource;
   final IGetAuthenticatedUserRemotelyDatasource remotelyDatasource;
 
   @override
   Future<Either<Failure, AuthenticatedUserEntity>> getUser(
       String params) async {
-    if (await networkInfo.isConnected) {
+    if (await network.isConnected) {
       try {
         final app = await remotelyDatasource.getAppConfig(params);
         try {
@@ -37,12 +36,12 @@ class GetAuthenticatedUserRepositoryImplementation
                 return Right(data);
               } else {
                 await localyDatasource.removeUser();
-                return Left(FetchDataFailure("Erro ao inserir dados"));
+                return const Left(FetchDataFailure("Erro ao inserir dados"));
               }
             } on CachedException catch (e) {
               await localyDatasource.removeUser();
               Catcher.reportCheckedError(e, Trace.current());
-              return Left(FetchDataFailure("Erro ao inserir dados"));
+              return const Left(FetchDataFailure("Erro ao inserir dados"));
             }
           } on FetchDataException catch (e) {
             await localyDatasource.removeUser();
@@ -61,7 +60,7 @@ class GetAuthenticatedUserRepositoryImplementation
           return Left(FetchDataFailure("$e"));
         } on CachedException catch (e) {
           Catcher.reportCheckedError(e, Trace.current());
-          return Left(FetchDataFailure("O que procuras não existe"));
+          return const Left(FetchDataFailure("O que procuras não existe"));
         }
       } on FetchDataException catch (e) {
         return Left(FetchDataFailure("$e"));
@@ -73,7 +72,7 @@ class GetAuthenticatedUserRepositoryImplementation
         return Left(FetchDataFailure("$e"));
       }
     } else {
-      return Left(FetchDataFailure("Sem conexão com a Internet"));
+      return const Left(FetchDataFailure("Sem conexão com a Internet"));
     }
   }
 
