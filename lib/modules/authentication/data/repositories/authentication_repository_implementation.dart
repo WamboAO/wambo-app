@@ -1,18 +1,17 @@
 import 'package:dartz/dartz.dart';
 import 'package:wambo/app/imports.dart';
-import 'package:wambo/core/errors/exception.dart';
+import 'package:errors/errors.dart';
 import 'package:wambo/core/utils/enums.dart';
 import 'package:wambo/modules/authentication/domain/entities/user_registration_crendentials_entities.dart';
-import 'package:wambo/core/shared/entities/authenticated_user_entity.dart';
-import 'package:wambo/core/errors/failures.dart';
+import 'package:wambo/modules/authentication/domain/entities/authenticated_user_entity.dart';
+
 
 class AuthenticationRepositoryImplementation
     implements IAuthenticationRepository {
   AuthenticationRepositoryImplementation(
-      this.regularDatasource, this.socialDatasource);
+      this.regularDatasource);
 
   final IAuthenticationDatasource regularDatasource;
-  final IAuthenticationWithSocialDatasource socialDatasource;
   @override
   Future<Either<Failure, AuthenticatedUserEntity>> access(
       UserRegistrationCredentialsEntity params) async {
@@ -42,31 +41,7 @@ class AuthenticationRepositoryImplementation
       } on NotFoundException catch (e) {
         return Left(FetchDataFailure("$e"));
       }
-    } else if (params.type == AccessType.social) {
-      try {
-        final social = await socialDatasource.loginWithSocial(params.social!);
-        try {
-          final socialResult = await regularDatasource.social(social);
-          return Right(socialResult);
-        } on FetchDataException catch (e) {
-          return Left(FetchDataFailure("$e"));
-        } on BadRequestException catch (e) {
-          return Left(FetchDataFailure("$e"));
-        } on UnauthorisedException catch (e) {
-          return Left(FetchDataFailure("$e"));
-        } on NotFoundException catch (e) {
-          return Left(FetchDataFailure("$e"));
-        }
-      } on FetchDataException catch (e) {
-        return Left(FetchDataFailure("$e"));
-      } on BadRequestException catch (e) {
-        return Left(FetchDataFailure("$e"));
-      } on UnauthorisedException catch (e) {
-        return Left(FetchDataFailure("$e"));
-      } on NotFoundException catch (e) {
-        return Left(FetchDataFailure("$e"));
-      }
-    } else if (params.type == AccessType.edit) {
+    }  else if (params.type == AccessType.edit) {
       try {
         final editResult = await regularDatasource.edit(params);
         return Right(editResult);
@@ -93,7 +68,7 @@ class AuthenticationRepositoryImplementation
         return Left(FetchDataFailure("$e"));
       }
     } else {
-      return Left(FetchDataFailure("Missing access Type"));
+      return const Left(FetchDataFailure("Missing access Type"));
     }
   }
 }
