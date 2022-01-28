@@ -1,5 +1,4 @@
-import 'package:wambo/core/errors/exception.dart';
-import 'package:wambo/core/errors/failures.dart';
+import 'package:errors/errors.dart';
 import 'package:dartz/dartz.dart';
 import 'package:wambo/modules/authentication/data/datasources/url_launcher_datasource.dart';
 import 'package:wambo/modules/authentication/domain/repositories/url_launcher_repositorties.dart';
