@@ -1,5 +1,5 @@
 import 'package:permission_handler/permission_handler.dart';
-import 'package:wambo/core/errors/exception.dart';
+import 'package:errors/errors.dart';
 
 class PermissionHandler {
   Future requestPermission() async {
@@ -14,7 +14,7 @@ class PermissionHandler {
       var result = await openAppSettings();
       return result;
     } catch (e) {
-      throw FetchDataException('erro');
+      throw const FetchDataException('erro');
     }
   }
 }
