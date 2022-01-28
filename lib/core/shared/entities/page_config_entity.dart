@@ -10,7 +10,8 @@ class PageConfigEntity extends Equatable {
     this.order,
     this.productType,
     required this.appToken,
-     this.token,
+    this.token,
+    this.id
   });
   final int? perPage;
   final int? page;
@@ -20,8 +21,9 @@ class PageConfigEntity extends Equatable {
   final ProductType? productType;
   final String appToken;
   final String? token;
+  final int? id;
 
   @override
   List<Object?> get props =>
-      [perPage, page, filter, search, order, productType, appToken, token];
+      [perPage, page, filter, search, order, productType, appToken, token, id];
 }
