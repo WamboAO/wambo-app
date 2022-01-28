@@ -1,4 +1,5 @@
-import 'package:wambo/core/errors/failures.dart';
+import 'package:errors/errors.dart';
+
 
 FetchDataFailure? validateEmail(String? value) {
   String pattern =
@@ -7,10 +8,10 @@ FetchDataFailure? validateEmail(String? value) {
   RegExp regExp = RegExp(pattern);
   
   if (value== null || value.isEmpty) {
-    return FetchDataFailure('Email não pode estar vazio');
+    return const FetchDataFailure('Email não pode estar vazio');
   }
   if (!regExp.hasMatch(value)) {
-    return FetchDataFailure('Digite um email valido');
+    return const FetchDataFailure('Digite um email valido');
   }
   return null;
 }
@@ -21,10 +22,10 @@ FetchDataFailure? validatePass(String? value) {
   //     r"^\s*(?:\+?(\d{1,3}))?[-. (]*(\d{3})[-. )]*(\d{3})[-. ]*(\d{3})(?: *x(\d+))?\s*$";
   // RegExp regExp = RegExp(pattern);
   if (value== null || value.isEmpty) {
-    return FetchDataFailure("Senha não pode ser vazio");
+    return const FetchDataFailure("Senha não pode ser vazio");
   }
   if (value.length < 6) {
-    return FetchDataFailure(
+    return const FetchDataFailure(
         'Mínimo de 6 caracteres');
   }
   return null;
@@ -35,10 +36,10 @@ FetchDataFailure? validatePhone(String? value) {
       r"^\s*(?:\+?(\d{1,3}))?[-. (]*(\d{3})[-. )]*(\d{3})[-. ]*(\d{3})(?: *x(\d+))?\s*$";
   RegExp regExp = RegExp(pattern);
   if (value== null || value.isEmpty) {
-    return FetchDataFailure("Telefone não pode ser vazio");
+    return const FetchDataFailure("Telefone não pode ser vazio");
   }
   if (!regExp.hasMatch(value)) {
-    return FetchDataFailure(
+    return const FetchDataFailure(
         'Digite um número de telefone valido');
   }
   return null;
