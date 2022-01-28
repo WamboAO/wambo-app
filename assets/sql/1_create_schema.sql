@@ -1,0 +1,20 @@
+
+DROP TABLE IF EXISTS searchItems;
+
+
+
+
+
+
+CREATE TABLE searchItems(
+id INTEGER PRIMARY KEY AUTOINCREMENT,
+name VARCHAR
+);
+
+
+
+
+
+
+
+
