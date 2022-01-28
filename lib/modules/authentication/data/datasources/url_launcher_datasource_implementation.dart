@@ -1,5 +1,6 @@
+import 'package:errors/errors.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'package:wambo/core/errors/exception.dart';
+
 import 'package:wambo/modules/authentication/data/datasources/url_launcher_datasource.dart';
 
 class UrlLauncherDatasourceImplementation implements IUrlLauncherDatasource {
@@ -13,10 +14,10 @@ class UrlLauncherDatasourceImplementation implements IUrlLauncherDatasource {
           forceWebView: false
         );
       } else {
-        throw FetchDataException("A operação falhou. Tente novamente!");
+        throw const FetchDataException("A operação falhou. Tente novamente!");
       }
     } catch (e) {
-      throw FetchDataException("A operação falhou. Tente novamente!");
+      throw const FetchDataException("A operação falhou. Tente novamente!");
     }
   }
 }
