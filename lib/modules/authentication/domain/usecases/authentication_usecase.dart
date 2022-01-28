@@ -1,8 +1,8 @@
 import 'package:wambo/app/imports.dart';
-import 'package:wambo/core/errors/failures.dart';
+import 'package:errors/errors.dart';
 import 'package:dartz/dartz.dart';
 import 'package:wambo/core/interfaces/usecase_interface.dart';
-import 'package:wambo/core/shared/entities/authenticated_user_entity.dart';
+import 'package:wambo/modules/authentication/domain/entities/authenticated_user_entity.dart';
 import 'package:wambo/core/shared/entities/validation_helpers.dart';
 import 'package:wambo/core/utils/enums.dart';
 import 'package:wambo/modules/authentication/domain/entities/user_registration_crendentials_entities.dart';
