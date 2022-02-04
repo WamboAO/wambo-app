@@ -34,32 +34,9 @@ class BusyBtn extends StatelessWidget {
       onPressed: busy == true ? null : () => tap(),
       child: !busy
           ? Padding(
-              padding: const EdgeInsets.all(15),
+              padding: const EdgeInsets.symmetric(vertical: 13, horizontal:6),
               child: icon != null
-                  ? Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Flexible(flex: 1, child: icon!),
-                        Expanded(
-                          flex: 5,
-                          child: Center(
-                            child: AutoSizeText(
-                              text!,
-                              style: TextStyle(
-                                  color: txtColor,
-                                  fontWeight: FontWeight.w500,
-                                  fontSize: 15),
-                            ),
-                          ),
-                        ),
-                        const Flexible(
-                            flex: 1,
-                            child: SizedBox(
-                              height: 10,
-                              width: 10,
-                            ))
-                      ],
-                    )
+                  ? Center(child: icon!)
                   : Center(
                       child: AutoSizeText(
                         text!,
