@@ -1,5 +1,4 @@
 import 'package:remote/remote.dart';
-import 'package:wambo/core/shared/helpers/api_header_helpers.dart';
 import 'package:wambo/modules/product/data/models/products_model.dart';
 import 'package:wambo/core/shared/entities/page_config_entity.dart';
 import 'package:wambo/modules/product/data/datasources/products_data.dart';

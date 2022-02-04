@@ -1,7 +1,6 @@
 
 import 'package:remote/remote.dart';
 import 'package:wambo/core/shared/entities/generic_entity.dart';
-import 'package:wambo/core/shared/helpers/api_header_helpers.dart';
 import 'package:wambo/modules/authentication/data/datasources/forgot_password/authentication_forgot_password_data.dart';
 import 'package:wambo/modules/authentication/data/datasources/forgot_password/authentication_forgot_password_datasource.dart';
 import 'package:wambo/modules/authentication/data/models/user_registration_credentials_model.dart';

@@ -1,5 +1,4 @@
 import 'package:wambo/app/imports.dart';
-import 'package:wambo/core/shared/helpers/api_header_helpers.dart';
 import 'package:wambo/modules/authentication/data/models/authenticated_user_response_model.dart';
 import 'package:wambo/modules/authentication/domain/entities/authenticated_user_entity.dart';
 import 'package:wambo/modules/startup/data/datasources/remote/user/authenticated_user_remote_data.dart';

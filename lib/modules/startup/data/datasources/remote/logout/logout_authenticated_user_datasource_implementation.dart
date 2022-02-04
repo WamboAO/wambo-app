@@ -3,7 +3,6 @@ import 'package:remote/remote.dart';
 import 'package:wambo/core/shared/entities/generic_entity.dart';
 import 'package:wambo/modules/authentication/domain/entities/authenticated_user_entity.dart';
 import 'package:wambo/core/shared/entities/validation_helpers.dart';
-import 'package:wambo/core/shared/helpers/api_header_helpers.dart';
 import 'package:wambo/modules/startup/data/datasources/remote/logout/logout_authenticated_user_data.dart';
 import 'package:wambo/modules/startup/data/datasources/remote/logout/logout_authenticated_user_datasource.dart';
 

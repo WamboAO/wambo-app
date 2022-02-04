@@ -1,6 +1,5 @@
 import 'package:remote/remote.dart';
 import 'package:wambo/core/shared/entities/page_config_entity.dart';
-import 'package:wambo/core/shared/helpers/api_header_helpers.dart';
 import 'package:wambo/modules/categories/data/datasources/categories_data.dart';
 import 'package:wambo/modules/categories/data/datasources/get_categories_datasource.dart';
 import 'package:wambo/modules/categories/data/models/categories_model.dart';
