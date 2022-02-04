@@ -1,4 +1,3 @@
-
 import 'imports.dart';
 
 final GetIt locator = GetIt.I;
@@ -25,6 +24,7 @@ void setupLocator(String? baseURL, {String? enviroment}) {
   notification();
   search();
   products();
+  url();
 
   // NETWORK
   locator.registerLazySingleton<INetwork>(() => NetworkImplementation());
@@ -77,13 +77,10 @@ void authentication() {
       () => AuthenticationForgotPasswordRepositoryImplementation(locator()));
   locator.registerLazySingleton<IAuthenticationForgotPasswordDatasource>(
       () => AuthenticationForgotPasswordDatasourceImplementation(locator()));
-  //urLauncher
-  locator.registerFactory(() => UrlLauncherService(locator()));
-  locator.registerLazySingleton(() => UrlLauncherUsecase(locator()));
-  locator.registerLazySingleton<IUrlLauncherRepository>(
-      () => UrlLauncherRepositoryImplementation(locator()));
-  locator.registerLazySingleton<IUrlLauncherDatasource>(
-      () => UrlLauncherDatasourceImplementation());
+  
+  
+
+  
 }
 
 void store() {
@@ -140,4 +137,13 @@ void notification() {
       () => GetNotificationRepositoryImplementation(locator()));
   locator.registerLazySingleton<IGetNotificationDatasource>(
       () => GetNotificationDatasourceImplementation(locator()));
+}
+
+void url() {
+  locator.registerFactory(() => UrlLauncherService(locator()));
+  locator.registerLazySingleton(() => UrlLauncherUsecase(locator()));
+  locator.registerLazySingleton<IUrlLauncherRepository>(
+      () => UrlLauncherRepositoryImplementation(locator()));
+  locator.registerLazySingleton<IUrlLauncherDatasource>(
+      () => UrlLauncherDatasourceImplementation());
 }
