@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:wambo/app/imports.dart';
 import 'package:wambo/app/locator.dart';
-import 'package:wambo/core/interfaces/stoppable_interface.dart';
+import 'package:interfaces/interfaces.dart';
 
 
 
