@@ -153,6 +153,111 @@ class ProductDetails extends StatelessWidget {
   }
 }
 
+class ProductPrice extends StatelessWidget {
+  const ProductPrice({
+    Key? key,
+    required this.product,
+  }) : super(key: key);
+
+  final ProductDataEntity product;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.end,
+      children: [
+        Container(
+          child: product.price >= 1000000
+              ? AutoSizeText(
+                  toCurrencyString(
+                          product.onSale == true
+                              ? '${product.salePrice}'
+                              : '${product.price}',
+                          shorteningPolicy: ShorteningPolicy.Automatic,
+                          thousandSeparator: ThousandSeparator.Period) +
+                      ' ${product.currency}',
+                  style: ktsMediumBodyText.copyWith(
+                      fontWeight: FontWeight.w600,
+                      
+                      color: product.inStock == false ? kcIcon : product.onSale == true? kcSecondary : kcIconDark),
+                )
+              : product.price >= 100000
+                  ? AutoSizeText(
+                      toCurrencyString(
+                              product.onSale == true
+                                  ? '${product.salePrice}'
+                                  : '${product.price}',
+                              shorteningPolicy: ShorteningPolicy.Automatic,
+                              thousandSeparator: ThousandSeparator.Period) +
+                          ' ${product.currency}',
+                      style: ktsMediumBodyText.copyWith(
+                          fontWeight: FontWeight.w600,
+                          
+                          color: product.inStock == false ? kcIcon : product.onSale == true? kcSecondary : kcIconDark),
+                    )
+                  : AutoSizeText(
+                      toCurrencyString(
+                              product.onSale == true
+                                  ? '${product.salePrice}'
+                                  : '${product.price}',
+                              shorteningPolicy: ShorteningPolicy.NoShortening,
+                              thousandSeparator: ThousandSeparator.Period) +
+                          ' ${product.currency}',
+                      style: ktsMediumBodyText.copyWith(
+                          fontWeight: FontWeight.w600,
+                          
+                          color: product.inStock == false ? kcIcon : product.onSale == true? kcSecondary : kcIconDark),
+                    ),
+        ),
+        const SizedBox(height: 4),
+        if(product.onSale == true && product.inStock == true)...[
+          Container(
+          child: product.price >= 1000000
+              ? AutoSizeText(
+                  toCurrencyString(
+                           '${product.price}',
+                          shorteningPolicy: ShorteningPolicy.Automatic,
+                          thousandSeparator: ThousandSeparator.Period) +
+                      ' ${product.currency}',
+                  style: ktsSmallBodyText.copyWith(
+                      fontWeight: FontWeight.w400,
+                      decoration: TextDecoration.lineThrough,
+                      color:  kcIcon),
+                )
+              : product.price >= 100000
+                  ? AutoSizeText(
+                      toCurrencyString(
+                              '${product.price}',
+                              shorteningPolicy: ShorteningPolicy.Automatic,
+                              thousandSeparator: ThousandSeparator.Period) +
+                          ' ${product.currency}',
+                      style: ktsSmallBodyText.copyWith(
+                          fontWeight: FontWeight.w400,
+                          decoration: TextDecoration.lineThrough,
+                          color:  kcIcon),
+                    )
+                  : AutoSizeText(
+                      toCurrencyString(
+                               '${product.price}',
+                              shorteningPolicy: ShorteningPolicy.NoShortening,
+                              thousandSeparator: ThousandSeparator.Period) +
+                          ' ${product.currency}',
+                      style: ktsSmallBodyText.copyWith(
+                          fontWeight: FontWeight.w400,
+                          decoration: TextDecoration.lineThrough,
+                          color:  kcIcon),
+                    ),
+        ),
+        ],
+        if(product.inStock == false)...[
+          
+          AutoSizeText("ESGOTADO".toUpperCase(), style: ktsMediumBodyText.copyWith(fontWeight: FontWeight.bold),)
+        ]
+      ],
+    );
+  }
+}
+
 class ProductImage extends StatelessWidget {
   const ProductImage({
     Key? key,
@@ -244,11 +349,11 @@ class ProductCardAlternative extends StatelessWidget {
       {Key? key,
       required this.product,
       required this.navigate,
-      required this.bookmark})
+      })
       : super(key: key);
 
   final ProductDataEntity product;
-  final Function bookmark, navigate;
+  final Function  navigate;
 
   @override
   Widget build(BuildContext context) {
@@ -313,18 +418,18 @@ class ProductCardAlternative extends StatelessWidget {
                             ),
                           ),
                         ),
-                      Align(
-                        alignment: Alignment.topRight,
-                        child: Container(
-                          child: IconButton(
-                              onPressed: () => bookmark(),
-                              icon: Icon(
-                                Icons.bookmark_rounded,
-                                size: 35,
-                                color: kcIcon.withOpacity(0.8),
-                              )),
-                        ),
-                      )
+                      // Align(
+                      //   alignment: Alignment.topRight,
+                      //   child: Container(
+                      //     child: IconButton(
+                      //         onPressed: () => bookmark(),
+                      //         icon: Icon(
+                      //           Icons.bookmark_rounded,
+                      //           size: 35,
+                      //           color: kcIcon.withOpacity(0.8),
+                      //         )),
+                      //   ),
+                      // )
                     ],
                   ],
                 ),

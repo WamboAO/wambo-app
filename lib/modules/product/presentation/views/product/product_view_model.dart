@@ -1,10 +1,10 @@
-import 'dart:io';
 import 'package:stacked/stacked.dart';
-import 'package:stacked_services/stacked_services.dart';
 import 'package:wambo/app/imports.dart';
 import 'package:wambo/app/locator.dart';
 import 'package:wambo/app/setup.logger.dart';
+import 'package:wambo/app/setup.router.dart';
 import 'package:interfaces/interfaces.dart';
+import 'package:wambo/core/shared/widgets/bottom_navigation_widget.dart';
 import 'package:wambo/modules/product/domain/entities/products_entity.dart';
 
 class ProductViewModel extends FutureViewModel<ApiResponse<ProductEntity>> {
@@ -13,6 +13,7 @@ class ProductViewModel extends FutureViewModel<ApiResponse<ProductEntity>> {
   }
   final int id;
   final log = getLogger('ProductViewModel');
+  final _navigationService = locator<NavigationService>();
   final _productService = locator<ProductService>();
   final _urlLauncherService = locator<UrlLauncherService>();
   bool get isError => dataReady && data!.status == Status.error;
@@ -36,5 +37,15 @@ class ProductViewModel extends FutureViewModel<ApiResponse<ProductEntity>> {
 
   Future url(String link) async {
     await _urlLauncherService.link(link);
+  }
+
+  goToCart(NavChoice choice) {}
+
+  setValue({Object? value, required NavChoice choice}) {
+    if (value == 1) {}
+    if (value == 2) {
+      _navigationService.pushNamedAndRemoveUntil(StoreNavigatorRoutes.storeView,
+          id: choice.nestedKeyValue());
+    }
   }
 }

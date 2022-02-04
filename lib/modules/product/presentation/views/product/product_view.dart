@@ -3,11 +3,10 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+
 import 'package:linkfy_text/linkfy_text.dart';
-import 'package:markdown/markdown.dart' as md;
+
 import 'package:shimmer/shimmer.dart';
 import 'package:stacked/stacked.dart';
 import 'package:wambo/core/shared/ui/sizing.dart';
@@ -17,9 +16,11 @@ import 'package:wambo/core/shared/widgets/busy_button_widget.dart';
 
 import 'package:wambo/modules/product/domain/entities/products_entity.dart';
 import 'package:wambo/modules/product/presentation/views/product/product_view_model.dart';
+import 'package:wambo/modules/product/presentation/widgets/product_card.dart';
 
 class ProductView extends StatelessWidget {
-  const ProductView({Key? key, required this.id, required this.choice}) : super(key: key);
+  const ProductView({Key? key, required this.id, required this.choice})
+      : super(key: key);
   final int id;
   final NavChoice choice;
 
@@ -34,18 +35,50 @@ class ProductView extends StatelessWidget {
             iconTheme: const IconThemeData(color: kcIconDark, size: 28),
             actions: [
               IconButton(
-                  onPressed: () => print(""),
+                  onPressed: () => model.goToCart(choice),
                   icon: const Icon(Icons.shopping_bag_rounded, size: 28)),
-              IconButton(
-                  onPressed: () => print(""),
-                  icon: const Icon(Icons.ios_share, size: 28)),
-              IconButton(
-                  onPressed: () => print(""),
-                  icon: const Icon(
-                    FontAwesomeIcons.telegram,
-                    size: 28,
-                    color: Color(0xff229ED9),
-                  )),
+              PopupMenuButton(
+                onSelected: (value) => model.setValue(value: value, choice: choice),
+                icon: const Icon(
+                  Icons.more_vert,
+                  size: 28,
+                ),
+                itemBuilder: (BuildContext context) => [
+                  PopupMenuItem(
+                    child: Row(
+                      children: [
+                        const Icon(Icons.messenger),
+                        const SizedBox(
+                          width: 4,
+                        ),
+                        Text(
+                          "Mensagem",
+                          style: ktsSmallBodyText.copyWith(fontSize: 13),
+                        ),
+                      ],
+                    ),
+                    value: 1,
+                  ),
+                  PopupMenuItem(
+                    child: Row(
+                      children: [
+                        const Icon(
+                          Icons.home,
+                          
+                        ),
+                        const SizedBox(
+                          width: 4,
+                        ),
+                        Text(
+                          "Início",
+                          style: ktsSmallBodyText.copyWith(fontSize: 13),
+                        ),
+                      ],
+                    ),
+                    value: 2,
+                  ),
+                ],
+              ),
             ],
           ),
           body: Container(
@@ -118,49 +151,10 @@ class _IsCompleted extends ViewModelWidget<ProductViewModel> {
               setIndex: (index) => model.setIndex(index),
             ),
             ProductOverview(
+                busy: model.isBusy,
                 product: product,
+                searchLink: (link) => model.url(link),
                 searchCategory: (text) => model.goToSearch(category: text)),
-
-            // Container(
-            //   padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 15),
-            //   child: Column(
-            //     crossAxisAlignment: CrossAxisAlignment.start,
-            //     children: [
-            //       Row(
-            //         children: [
-            //           const Icon(Icons.check_circle_outline_rounded),
-            //           const SizedBox(width: 5),
-            //           const AutoSizeText("free shipping"),
-            //         ],
-            //       ),
-            //       Row(
-            //         children: [
-            //           const Icon(Icons.check_circle_outline_rounded),
-            //           const SizedBox(width: 5),
-            //           const AutoSizeText("Money back guarante"),
-            //         ],
-            //       ),
-            //       AutoSizeText(
-            //         "descrição".toUpperCase(),
-            //         style:
-            //             ktsMediumBodyText.copyWith(fontWeight: FontWeight.w600),
-            //       ),
-            //       const SizedBox(height: 8),
-            //       LinkifyText(product.description,
-            //           textStyle: ktsSmallBodyText,
-            //           linkStyle: ktsSmallBodyText.copyWith(color: Colors.blue),
-            //           onTap: (link) {
-            //         if (link.value != null) {
-            //           model.url(link.value!);
-            //         }
-            //       }),
-            //       ProductData(
-            //           data: product.details!.shippingTax.toString() +
-            //               product.currency,
-            //           title: "Taxa de Entrega")
-            //     ],
-            //   ),
-            // ),
           ],
         ),
       ),
@@ -170,11 +164,16 @@ class _IsCompleted extends ViewModelWidget<ProductViewModel> {
 
 class ProductOverview extends StatelessWidget {
   const ProductOverview(
-      {Key? key, required this.product, required this.searchCategory})
+      {Key? key,
+      required this.product,
+      required this.searchCategory,
+      required this.searchLink,
+      required this.busy})
       : super(key: key);
 
   final ProductDataEntity product;
-  final Function(String) searchCategory;
+  final Function(String) searchCategory, searchLink;
+  final bool busy;
 
   @override
   Widget build(BuildContext context) {
@@ -189,45 +188,25 @@ class ProductOverview extends StatelessWidget {
             children: [
               Expanded(
                 flex: 6,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    AutoSizeText(
-                      product.name,
-                      maxLines: 2,
-                      overflow: TextOverflow.fade,
-                      style: ktsLargeBodyText.copyWith(
-                          fontWeight: FontWeight.bold),
-                    ),
-                    const SizedBox(height: 5),
-                    // AutoSizeText(
-                    //   product.tldr
-                    //   ,
-                    //   maxLines: 2,
-                    //   overflow: TextOverflow.fade,
-                    //   style: ktsMediumBodyText,
-                    // ),
-                    AutoSizeText(
-                      product.price.toString() + " ${product.currency}",
-                      style: ktsLargeBodyText,
-                    ),
-                  ],
+                child: AutoSizeText(
+                  product.name,
+                  maxLines: 3,
+                  overflow: TextOverflow.ellipsis,
+                  softWrap: true,
+                  style: ktsLargeBodyText.copyWith(fontWeight: FontWeight.w500),
                 ),
               ),
-              Flexible(
-                  child: IconButton(
-                      onPressed: () {},
-                      icon: const Icon(
-                        Icons.bookmark,
-                        size: 35,
-                        color: kcIcon,
-                      )))
+              const Flexible(
+                  child: SizedBox(
+                width: 10,
+              )),
+              Expanded(flex: 3, child: ProductPrice(product: product))
             ],
           ),
           Container(
             color: kcWhite,
             margin: const EdgeInsets.only(top: 8),
-            height: screenHeightPercentage(context, percentage: 0.058),
+            height: screenHeightPercentage(context, percentage: 0.062),
             child: ListView.builder(
                 shrinkWrap: true,
                 scrollDirection: Axis.horizontal,
@@ -257,14 +236,75 @@ class ProductOverview extends StatelessWidget {
                   );
                 }),
           ),
+          SizedBox(
+            height: screenHeightPercentage(context, percentage: 0.02),
+          ),
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 10),
-            child: BusyBtn(
-              tap: () {},
-              txtColor: kcWhite,
-              btnColor: kcSecondary,
-              text: "adicionar ao carrinho",
+            padding: const EdgeInsets.symmetric(vertical: 10),
+            child: Row(
+              children: [
+                Expanded(
+                  flex: 18,
+                  child: BusyBtn(
+                    tap: () {},
+                    busy: busy,
+                    txtColor: kcWhite,
+                    btnColor: kcSecondary,
+                    text: "Adicionar ao carrinho",
+                  ),
+                ),
+                const Spacer(),
+                Expanded(
+                  flex: 4,
+                  child: GestureDetector(
+                    onTap: () {},
+                    child: Container(
+                        padding: const EdgeInsets.symmetric(
+                            vertical: 12, horizontal: 8),
+                        decoration: BoxDecoration(
+                             color: kcIconLight,
+                            borderRadius: BorderRadius.circular(4)),
+                        child: const Icon(
+                          Icons.bookmark_add,
+                   
+                        )),
+                  ),
+                ),
+                const Spacer(),
+                Expanded(
+                  flex: 4,
+                  child: GestureDetector(
+                    onTap: () {},
+                    child: Container(
+                        padding: const EdgeInsets.symmetric(
+                            vertical: 12, horizontal: 8),
+                        decoration: BoxDecoration(
+                             color: kcIconLight,
+                            borderRadius: BorderRadius.circular(4)),
+                        child: const Icon(
+                          Icons.ios_share,
+                        )),
+                  ),
+                ),
+              ],
             ),
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 8.0),
+            child: AutoSizeText(
+              "descrição".toUpperCase(),
+              style: ktsMediumBodyText.copyWith(fontWeight: FontWeight.w600),
+            ),
+          ),
+          LinkifyText(
+            product.description,
+            textStyle: ktsSmallBodyText,
+            linkStyle: ktsSmallBodyText.copyWith(color: Colors.blue),
+            onTap: (link) {
+              if (link.value != null) {
+                searchLink(link.value!);
+              }
+            },
           )
         ],
       ),
@@ -339,17 +379,36 @@ class ProductImage extends StatelessWidget {
             },
           ),
           Align(
-            alignment: Alignment.bottomRight,
-            child: Container(
-              margin: const EdgeInsets.all(20),
-              padding: const EdgeInsets.all(8),
-              decoration: BoxDecoration(
-                  color: kcIconDark.withOpacity(0.8),
-                  borderRadius: BorderRadius.circular(10)),
-              child: AutoSizeText(
-                "$currentIndex/${product.details!.images.length}",
-                style: ktsSmallBodyText.copyWith(color: kcWhite),
-              ),
+            alignment: Alignment.bottomCenter,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Container(
+                  margin: const EdgeInsets.all(20),
+                  padding: const EdgeInsets.all(8),
+                  decoration: BoxDecoration(
+                      color: kcIconDark.withOpacity(0.8),
+                      borderRadius: BorderRadius.circular(10)),
+                  child: AutoSizeText(
+                    "$currentIndex/${product.details!.images.length}",
+                    style: ktsSmallBodyText.copyWith(color: kcWhite),
+                  ),
+                ),
+                GestureDetector(
+                  child: Container(
+                    margin: const EdgeInsets.all(20),
+                    padding: const EdgeInsets.all(6),
+                    decoration: BoxDecoration(
+                        color: kcIconDark.withOpacity(0.8),
+                        borderRadius: BorderRadius.circular(10)),
+                    child: const Icon(
+                      Icons.fit_screen,
+                      color: kcWhite,
+                      size: 18,
+                    ),
+                  ),
+                ),
+              ],
             ),
           )
         ],
