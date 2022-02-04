@@ -13,7 +13,8 @@ class RecentViewModel extends StreamViewModel<ApiResponse<ProductsEntity>> {
   }
 
   final log = getLogger('RecentViewModel');
-  final _getRecentService = locator<GetRecentService>();
+  final _addSearchService = locator<AddSearchService>();
+  final _getProductsService = locator<ProductsService>();
   final _navigationService = locator<NavigationService>();
   final _analyticsService = locator<AnalyticsService>();
   bool get isError => dataReady && data!.status == Status.error;
@@ -24,9 +25,17 @@ class RecentViewModel extends StreamViewModel<ApiResponse<ProductsEntity>> {
 
   @override
   Stream<ApiResponse<ProductsEntity>> get stream =>
-      _getRecentService.dataStream;
+      _getProductsService.dataStream;
 
-  goToBlock() {}
+  Future goToSearch(
+      {required String category, required NavChoice choice}) async {
+    await _analyticsService.logSearch(category);
+    await _addSearchService.addSearch(category);
+    return _navigationService.navigateTo(StoreNavigatorRoutes.productsView,
+        id: choice.nestedKeyValue(),
+        arguments: ProductsViewArguments(search: category, choice: choice));
+  }
+
   Future goToProduct(
       {required int index,
       required ProductDataEntity product,
@@ -35,10 +44,10 @@ class RecentViewModel extends StreamViewModel<ApiResponse<ProductsEntity>> {
         id: product.id.toString(),
         itemListId: index.toString(),
         name: product.name,
-        listName: "RECENT",
+        listName: "MAIN PRODUCTS",
         currency: product.currency,
         price: product.salePrice ?? product.price);
-   return _navigationService.navigateTo(StoreNavigatorRoutes.productView,
+    return _navigationService.navigateTo(StoreNavigatorRoutes.productView,
         id: choice.nestedKeyValue(),
         arguments: ProductViewArguments(id: product.id, choice: choice));
   }

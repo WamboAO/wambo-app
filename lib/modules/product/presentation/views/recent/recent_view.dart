@@ -14,69 +14,35 @@ class RecentView extends StatelessWidget {
   Widget build(BuildContext context) {
     return ViewModelBuilder<RecentViewModel>.reactive(
       builder: (context, model, child) {
-        return Container(
-            child: !model.dataReady || model.isLoading
-                ? const _IsLoading()
-                : model.isError
-                    ? _IsError(error: model.data!.message!)
-                    : _IsCompleted(choice: choice));
+        return model.isComplete && model.product!.data.isNotEmpty
+            ? ProductBlock(
+                title: "recente",
+                onTap: () => model.goToSearch(category: "Recente", choice: choice ),
+                child: Container(
+                    margin: const EdgeInsets.all(15),
+                    child: GridView.builder(
+                        shrinkWrap: true,
+                        itemCount: model.product!.data.length,
+                        physics: const NeverScrollableScrollPhysics(),
+                        gridDelegate:
+                            const SliverGridDelegateWithFixedCrossAxisCount(
+                                crossAxisCount: 2,
+                                crossAxisSpacing: 10,
+                                mainAxisSpacing: 10),
+                        itemBuilder: (context, index) {
+                          ProductDataEntity product =
+                              model.product!.data[index];
+
+                          return ProductCardAlternative(
+                              navigate: () => model.goToProduct(
+                                  index: index,
+                                  product: product,
+                                  choice: choice),
+                              product: product);
+                        })))
+            : const SizedBox();
       },
       viewModelBuilder: () => RecentViewModel(),
     );
-  }
-}
-
-class _IsError extends ViewModelWidget<RecentViewModel> {
-  const _IsError({Key? key, required this.error}) : super(key: key);
-  final String error;
-
-  @override
-  Widget build(BuildContext context, RecentViewModel model) {
-    return const SizedBox();
-  }
-}
-
-class _IsLoading extends ViewModelWidget<RecentViewModel> {
-  const _IsLoading({
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context, RecentViewModel model) {
-    return Container(
-      padding: const EdgeInsets.all(5),
-      child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          mainAxisSize: MainAxisSize.min,
-          children: List.generate(2, (index) {
-            return const Expanded(child: ProductsCardLoading());
-          })),
-    );
-  }
-}
-
-class _IsCompleted extends ViewModelWidget<RecentViewModel> {
-  const _IsCompleted({Key? key, required this.choice}) : super(key: key);
-  final NavChoice choice;
-
-  @override
-  Widget build(BuildContext context, RecentViewModel model) {
-    return ProductBlock(
-        title: "recente",
-        onTap: () => model.goToBlock(),
-        child: Container(
-          child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              mainAxisSize: MainAxisSize.min,
-              children: List.generate(model.product!.data.length, (index) {
-                ProductDataEntity product = model.product!.data[index];
-
-                return Expanded(
-                    child: ProductsCard(
-                  navigate: () => model.goToProduct(index: index, product: product, choice: choice),
-                  product: product,
-                ));
-              })),
-        ));
   }
 }

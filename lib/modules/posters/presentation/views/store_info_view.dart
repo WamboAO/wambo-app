@@ -6,12 +6,13 @@ import 'package:shimmer/shimmer.dart';
 import 'package:stacked/stacked.dart';
 import 'package:wambo/core/shared/ui/sizing.dart';
 import 'package:wambo/core/shared/ui/styles.dart';
+import 'package:wambo/core/shared/widgets/bottom_navigation_widget.dart';
 import 'package:wambo/modules/posters/domain/entities/store_info_entity.dart';
 import 'package:wambo/modules/posters/presentation/views/store_info_view_model.dart';
 
 class StoreInfoView extends StatelessWidget {
-  const StoreInfoView({Key? key}) : super(key: key);
-
+  const StoreInfoView({Key? key, required this.choice}) : super(key: key);
+  final NavChoice choice;
   @override
   Widget build(BuildContext context) {
     return ViewModelBuilder<StoreInfoViewModel>.reactive(
@@ -21,7 +22,7 @@ class StoreInfoView extends StatelessWidget {
                 ? const _IsLoading()
                 : model.isError
                     ? _IsError(error: model.data!.message!)
-                    : const _IsCompleted());
+                    :  _IsCompleted(choice: choice));
       },
       viewModelBuilder: () => StoreInfoViewModel(),
     );
@@ -64,8 +65,8 @@ class _IsLoading extends ViewModelWidget<StoreInfoViewModel> {
 }
 
 class _IsCompleted extends ViewModelWidget<StoreInfoViewModel> {
-  const _IsCompleted({Key? key}) : super(key: key);
-
+  const _IsCompleted({Key? key, required this.choice}) : super(key: key);
+  final NavChoice choice;
   @override
   Widget build(BuildContext context, StoreInfoViewModel model) {
     return Container(
@@ -95,10 +96,14 @@ class _IsCompleted extends ViewModelWidget<StoreInfoViewModel> {
               StoreInfoDataEntity info = model.store!.data[index];
               return CachedNetworkImage(
                 imageUrl: info.image,
-                imageBuilder: (context, url) => Container(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(4),
-                    image: DecorationImage(fit: BoxFit.cover, image: url),
+                imageBuilder: (context, url) => GestureDetector(
+                  onTap: () =>
+                      model.goToSearch(category: info.tag, choice: choice),
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(4),
+                      image: DecorationImage(fit: BoxFit.cover, image: url),
+                    ),
                   ),
                 ),
                 placeholder: (context, url) => Shimmer.fromColors(

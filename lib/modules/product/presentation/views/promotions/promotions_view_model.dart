@@ -13,20 +13,27 @@ class PromotionsViewModel extends StreamViewModel<ApiResponse<ProductsEntity>> {
   }
 
   final log = getLogger('PromotionsViewModel');
-  final _getPromoService = locator<GetPromoService>();
+   final _addSearchService = locator<AddSearchService>();
+final _getPromoService = locator<GetPromoService>();
   final _navigationService = locator<NavigationService>();
   final _analyticsService = locator<AnalyticsService>();
-    bool get isError => dataReady && data!.status == Status.error;
+  bool get isError => dataReady && data!.status == Status.error;
   bool get isLoading => dataReady && data!.status == Status.loading;
   bool get isComplete => dataReady && data!.status == Status.completed;
-  ProductsEntity? get promo =>
+  ProductsEntity? get product =>
       dataReady && data!.status == Status.completed ? data!.data! : null;
 
   @override
+  Stream<ApiResponse<ProductsEntity>> get stream =>
+      _getPromoService.dataStream;
 
-  Stream<ApiResponse<ProductsEntity>> get stream => _getPromoService.dataStream;
-
-  goToBlock() {}
+  Future goToSearch({required String category, required NavChoice choice}) async{
+    await _analyticsService.logSearch(category);
+    await _addSearchService.addSearch(category);
+     return _navigationService.navigateTo(StoreNavigatorRoutes.productsView,
+        id: choice.nestedKeyValue(),
+        arguments: ProductsViewArguments(search: category, choice: choice));
+  }
 
   Future goToProduct(
       {required int index,
@@ -36,7 +43,7 @@ class PromotionsViewModel extends StreamViewModel<ApiResponse<ProductsEntity>> {
         id: product.id.toString(),
         itemListId: index.toString(),
         name: product.name,
-        listName: "PROMOTION",
+        listName: "RECENT",
         currency: product.currency,
         price: product.salePrice ?? product.price);
    return _navigationService.navigateTo(StoreNavigatorRoutes.productView,

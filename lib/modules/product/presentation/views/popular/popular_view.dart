@@ -65,7 +65,7 @@ class _IsCompleted extends ViewModelWidget<PopularViewModel> {
   Widget build(BuildContext context, PopularViewModel model) {
     return ProductBlock(
         title: "popular",
-        onTap: () => model.goToBlock(),
+        onTap: () => model.goToSearch(category: "Popular", choice: choice ),
         child: Container(
           child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,

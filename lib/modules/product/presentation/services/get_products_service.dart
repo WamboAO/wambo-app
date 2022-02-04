@@ -65,6 +65,8 @@ class ProductsService {
       }
     }
   }
+
+  
 }
 
 class GetPromoService {
@@ -84,7 +86,7 @@ class GetPromoService {
   Future getPromos(bool isRefresh) async {
     if (isRefresh == true) dataSink.add(ApiResponse.loading("loading..."));
     final result = await usecase(PageConfigEntity(
-      perPage: 3,
+      perPage: 2,
       page: 1,
       productType: ProductType.promo,
       appToken: _getAuthenticatedUserService.currentUser!.appToken!,

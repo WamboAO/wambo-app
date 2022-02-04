@@ -26,7 +26,7 @@ class SearchView extends HookWidget {
                     controller: search,
                     back: () => model.goToHome(choice),
                     search: (text) => model.search(text),
-                    navigation: () =>
+                    navigation:  () => search.text.isEmpty? null :
                         model.goToProducts(text: search.text, choice: choice))),
             body: SearchItemsView(
               choice: choice,

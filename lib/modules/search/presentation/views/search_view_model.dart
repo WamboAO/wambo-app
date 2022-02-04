@@ -25,9 +25,11 @@ class SearchViewModel extends FutureViewModel<dynamic> {
   Future goToProducts({required String text, required NavChoice choice}) async {
         await _analyticsService.logSearch(text);
 
-    final result = await _addSearchService.addSearch(text);
-    log.w(result);
-    //TODO: products page
+ await _addSearchService.addSearch(text);
+     return _navigationService.navigateTo(StoreNavigatorRoutes.productsView,
+        id: choice.nestedKeyValue(),
+        arguments: ProductsViewArguments(search: text, choice: choice));
+   
   }
 
   bool goToHome(NavChoice choice) {

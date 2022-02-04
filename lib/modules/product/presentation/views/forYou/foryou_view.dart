@@ -63,7 +63,7 @@ class _IsCompleted extends ViewModelWidget<ForYouViewModel> {
   Widget build(BuildContext context, ForYouViewModel model) {
     return ProductBlock(
         title: "para ti",
-        onTap: () => model.goToBlock(),
+        onTap: () => model.goToSearch(category: "Para ti", choice: choice ),
         child: Container(
           child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,

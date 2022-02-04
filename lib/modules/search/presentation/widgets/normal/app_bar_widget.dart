@@ -25,8 +25,13 @@ class SearchBar extends StatelessWidget {
         elevation: 0.6,
         backgroundColor: kcWhite,
         automaticallyImplyLeading: false,
+        leading: GestureDetector(
+          onTap: ()=> back(),
+          child: const Icon(Icons.arrow_back, color: kcIconDark,),
+        ),
         title: Container(
           height: screenHeightPercentage(context, percentage: 0.06),
+          
           child: Row(
             children: <Widget>[
               Expanded(
@@ -73,10 +78,10 @@ class SearchBar extends StatelessWidget {
                 child: Container(
                     margin: const EdgeInsets.only(right: 10, left: 10),
                     child: AutoSizeText(
-                      'Cancelar',
+                      'Pesquisar',
                       style: ktsSmallBodyText.copyWith(color: kcSecondary),
                     )),
-                onTap: () => back(),
+                onTap: () => navigation(),
               )
             ],
           ),

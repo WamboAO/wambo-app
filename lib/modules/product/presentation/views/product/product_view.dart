@@ -1,19 +1,14 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
-
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-
 import 'package:linkfy_text/linkfy_text.dart';
-
 import 'package:shimmer/shimmer.dart';
 import 'package:stacked/stacked.dart';
 import 'package:wambo/core/shared/ui/sizing.dart';
 import 'package:wambo/core/shared/ui/styles.dart';
 import 'package:wambo/core/shared/widgets/bottom_navigation_widget.dart';
 import 'package:wambo/core/shared/widgets/busy_button_widget.dart';
-
 import 'package:wambo/modules/product/domain/entities/products_entity.dart';
 import 'package:wambo/modules/product/presentation/views/product/product_view_model.dart';
 import 'package:wambo/modules/product/presentation/widgets/product_card.dart';
@@ -38,7 +33,8 @@ class ProductView extends StatelessWidget {
                   onPressed: () => model.goToCart(choice),
                   icon: const Icon(Icons.shopping_bag_rounded, size: 28)),
               PopupMenuButton(
-                onSelected: (value) => model.setValue(value: value, choice: choice),
+                onSelected: (value) =>
+                    model.setValue(value: value, choice: choice),
                 icon: const Icon(
                   Icons.more_vert,
                   size: 28,
@@ -64,7 +60,6 @@ class ProductView extends StatelessWidget {
                       children: [
                         const Icon(
                           Icons.home,
-                          
                         ),
                         const SizedBox(
                           width: 4,
@@ -87,6 +82,7 @@ class ProductView extends StatelessWidget {
                   : model.isError
                       ? _IsError(error: model.data!.message!)
                       : _IsCompleted(
+                        choice: choice,
                           product: model.product!.data!,
                         )),
           // bottomNavigationBar: BottomAppBar(
@@ -133,8 +129,9 @@ class _IsLoading extends ViewModelWidget<ProductViewModel> {
 }
 
 class _IsCompleted extends ViewModelWidget<ProductViewModel> {
-  const _IsCompleted({Key? key, required this.product}) : super(key: key);
+  const _IsCompleted({Key? key, required this.product, required this.choice}) : super(key: key);
   final ProductDataEntity product;
+  final NavChoice choice;
 
   @override
   Widget build(BuildContext context, ProductViewModel model) {
@@ -154,7 +151,8 @@ class _IsCompleted extends ViewModelWidget<ProductViewModel> {
                 busy: model.isBusy,
                 product: product,
                 searchLink: (link) => model.url(link),
-                searchCategory: (text) => model.goToSearch(category: text)),
+                searchCategory: (text) =>
+                    model.goToSearch(category: text, choice: choice)),
           ],
         ),
       ),
@@ -262,11 +260,10 @@ class ProductOverview extends StatelessWidget {
                         padding: const EdgeInsets.symmetric(
                             vertical: 12, horizontal: 8),
                         decoration: BoxDecoration(
-                             color: kcIconLight,
+                            color: kcIconLight,
                             borderRadius: BorderRadius.circular(4)),
                         child: const Icon(
                           Icons.bookmark_add,
-                   
                         )),
                   ),
                 ),
@@ -279,7 +276,7 @@ class ProductOverview extends StatelessWidget {
                         padding: const EdgeInsets.symmetric(
                             vertical: 12, horizontal: 8),
                         decoration: BoxDecoration(
-                             color: kcIconLight,
+                            color: kcIconLight,
                             borderRadius: BorderRadius.circular(4)),
                         child: const Icon(
                           Icons.ios_share,

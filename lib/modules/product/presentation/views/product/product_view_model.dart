@@ -13,7 +13,9 @@ class ProductViewModel extends FutureViewModel<ApiResponse<ProductEntity>> {
   }
   final int id;
   final log = getLogger('ProductViewModel');
+   final _addSearchService = locator<AddSearchService>();
   final _navigationService = locator<NavigationService>();
+  final _analyticsService = locator<AnalyticsService>();
   final _productService = locator<ProductService>();
   final _urlLauncherService = locator<UrlLauncherService>();
   bool get isError => dataReady && data!.status == Status.error;
@@ -33,7 +35,13 @@ class ProductViewModel extends FutureViewModel<ApiResponse<ProductEntity>> {
     notifyListeners();
   }
 
-  goToSearch({category}) {}
+  Future goToSearch({required String category, required NavChoice choice}) async{
+    await _analyticsService.logSearch(category);
+    await _addSearchService.addSearch(category);
+     return _navigationService.navigateTo(StoreNavigatorRoutes.productsView,
+        id: choice.nestedKeyValue(),
+        arguments: ProductsViewArguments(search: category, choice: choice));
+  }
 
   Future url(String link) async {
     await _urlLauncherService.link(link);

@@ -5,7 +5,6 @@ import 'package:wambo/core/shared/ui/sizing.dart';
 import 'package:wambo/core/shared/ui/styles.dart';
 import 'package:wambo/modules/product/presentation/views/forYou/foryou_view.dart';
 import 'package:wambo/modules/product/presentation/views/popular/popular_view.dart';
-import 'package:wambo/modules/product/presentation/views/products/products_view.dart';
 import 'package:wambo/modules/product/presentation/views/promotions/promotions_view.dart';
 import 'package:wambo/modules/product/presentation/views/recent/recent_view.dart';
 import 'package:wambo/modules/product/presentation/views/suggestions/suggestions_view.dart';
@@ -29,6 +28,7 @@ class StoreView extends StatelessWidget {
                 preferredSize: Size.fromHeight(
                     screenHeightPercentage(context, percentage: 0.16)),
                 child: AppbarView(
+                  choice: model.choice,
                   search: () => model.goToSearch(model.choice),
                   cart: () => model.goToCart(),
                 )),
@@ -44,8 +44,8 @@ class StoreView extends StatelessWidget {
               },
               child: SingleChildScrollView(
                 child: Column(children: [
-                  PromotionView(choice: model.choice),
-                  const StoreInfoView(),
+                 // PromotionView(choice: model.choice),
+                   StoreInfoView(choice: model.choice),
                   Container(
                     color: kcWhite,
                     child: GridView.count(
@@ -56,13 +56,13 @@ class StoreView extends StatelessWidget {
                       crossAxisCount: 2,
                       children: [
                         PopularView(choice: model.choice),
-                        RecentView(choice: model.choice),
+                        PromotionsView(choice: model.choice),
                         SuggestionsView(choice: model.choice),
                         ForYouView(choice: model.choice),
                       ],
                     ),
                   ),
-                  ProductsView(choice: model.choice),
+                  RecentView(choice: model.choice),
                 ]),
               ),
             ));

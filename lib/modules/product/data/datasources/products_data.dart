@@ -309,29 +309,29 @@ class ProductsData {
             "in_stock": true,
             "details": null
           },
-          {
-            "id": 3,
-            "thumbnail": _faker.image.image(keywords: ["car"]),
-            "name": "${_faker.lorem.word()} ${_faker.lorem.word()}",
-            "permalink": _faker.internet.httpsUrl(),
-            "currency": _faker.currency.code(),
-            "created_at":
-                _faker.date.dateTime(minYear: 2020, maxYear: 2022).toString(),
-          "tldr": _faker.lorem.sentence(),
-            "description":
-                "Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.\n",
-            "price": _faker.randomGenerator.integer(100000, min: 0),
-            "regular_price": _faker.randomGenerator.integer(100000, min: 0),
-            "sale_price": _faker.randomGenerator.integer(100000, min: 0),
-            "date_on_sale_from":
-                _faker.date.dateTime(minYear: 2020, maxYear: 2021).toString(),
-            "date_on_sale_to":
-                _faker.date.dateTime(minYear: 2022, maxYear: 2023).toString(),
-            "on_sale": true,
-            "stock_quantity": _faker.randomGenerator.integer(10, min: 5),
-            "in_stock": true,
-            "details": null
-          },
+          // {
+          //   "id": 3,
+          //   "thumbnail": _faker.image.image(keywords: ["car"]),
+          //   "name": "${_faker.lorem.word()} ${_faker.lorem.word()}",
+          //   "permalink": _faker.internet.httpsUrl(),
+          //   "currency": _faker.currency.code(),
+          //   "created_at":
+          //       _faker.date.dateTime(minYear: 2020, maxYear: 2022).toString(),
+          // "tldr": _faker.lorem.sentence(),
+          //   "description":
+          //       "Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.\n",
+          //   "price": _faker.randomGenerator.integer(100000, min: 0),
+          //   "regular_price": _faker.randomGenerator.integer(100000, min: 0),
+          //   "sale_price": _faker.randomGenerator.integer(100000, min: 0),
+          //   "date_on_sale_from":
+          //       _faker.date.dateTime(minYear: 2020, maxYear: 2021).toString(),
+          //   "date_on_sale_to":
+          //       _faker.date.dateTime(minYear: 2022, maxYear: 2023).toString(),
+          //   "on_sale": true,
+          //   "stock_quantity": _faker.randomGenerator.integer(10, min: 5),
+          //   "in_stock": true,
+          //   "details": null
+          // },
         ]
       };
 

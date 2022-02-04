@@ -4,11 +4,13 @@ import 'package:shimmer/shimmer.dart';
 import 'package:stacked/stacked.dart';
 import 'package:wambo/core/shared/ui/sizing.dart';
 import 'package:wambo/core/shared/ui/styles.dart';
+import 'package:wambo/core/shared/widgets/bottom_navigation_widget.dart';
 import 'package:wambo/modules/categories/domain/entities/categories_entity.dart';
 import 'package:wambo/modules/categories/presentation/views/categories_view_model.dart';
 
 class CategoriesView extends StatelessWidget {
-  const CategoriesView({Key? key}) : super(key: key);
+  const CategoriesView({Key? key, required this.choice}) : super(key: key);
+  final NavChoice choice;
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +22,7 @@ class CategoriesView extends StatelessWidget {
                 ? const _IsLoading()
                 : model.isError
                     ? _IsError(error: model.data!.message!)
-                    : const _IsCompleted());
+                    : _IsCompleted(choice: choice,));
       },
       viewModelBuilder: () => CategoriesViewModel(),
     );
@@ -46,7 +48,7 @@ class _IsLoading extends ViewModelWidget<CategoriesViewModel> {
   Widget build(BuildContext context, CategoriesViewModel model) {
     return Container(
       color: kcWhite,
-       margin: const EdgeInsets.only(left: 5, bottom: 5),
+      margin: const EdgeInsets.only(left: 5, bottom: 5),
       height: screenHeightPercentage(context, percentage: 0.064),
       child: ListView.builder(
           key: const PageStorageKey('storage-key'),
@@ -74,7 +76,8 @@ class _IsLoading extends ViewModelWidget<CategoriesViewModel> {
 }
 
 class _IsCompleted extends ViewModelWidget<CategoriesViewModel> {
-  const _IsCompleted({Key? key}) : super(key: key);
+  const _IsCompleted({Key? key, required this.choice}) : super(key: key);
+  final NavChoice choice;
 
   @override
   Widget build(BuildContext context, CategoriesViewModel model) {
@@ -89,13 +92,14 @@ class _IsCompleted extends ViewModelWidget<CategoriesViewModel> {
           itemBuilder: (context, index) {
             CategoriesDataEntity category = model.categories!.data[index];
             return InkWell(
-              onTap: () => model.goToSearch(category: category.category),
+              onTap: () =>
+                  model.goToSearch(category: category.category, choice: choice),
               child: Container(
                 margin: const EdgeInsets.all(5),
                 padding: const EdgeInsets.all(10),
                 decoration: BoxDecoration(
                     color:
-                        index == 0 ? kcSecondary.withOpacity(0.4) : kcIconLight,
+                        kcIconLight,
                     borderRadius: BorderRadius.circular(4)),
                 child: Center(
                   child: FittedBox(
@@ -103,7 +107,7 @@ class _IsCompleted extends ViewModelWidget<CategoriesViewModel> {
                     child: AutoSizeText(
                       category.category.toUpperCase(),
                       style: ktsSmallBodyText.copyWith(
-                          color: index == 0 ? kcSecondary : kcIconDark),
+                          color:  kcIconDark),
                     ),
                   ),
                 ),

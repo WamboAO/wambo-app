@@ -7,11 +7,7 @@ class CategoriesData {
   Map<String, Object?> get fakeCategories => {
         "message": "sucess",
         "data": [
-          {
-            "id": 1,
-            "category": "Tudo",
-            "is_active": true,
-          },
+          
           {
             "id": 2,
             "category": "Electrodomésticos",

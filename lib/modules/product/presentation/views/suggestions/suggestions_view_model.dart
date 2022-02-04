@@ -15,6 +15,8 @@ class SuggestionsViewModel extends StreamViewModel<ApiResponse<ProductsEntity>> 
  }
 
  final log = getLogger('SuggestionsViewModel');
+    final _addSearchService = locator<AddSearchService>();
+
  final _getSuggestionsService = locator<GetSuggestionService>();
  final _navigationService = locator<NavigationService>();
  final _analyticsService = locator<AnalyticsService>();
@@ -28,7 +30,13 @@ class SuggestionsViewModel extends StreamViewModel<ApiResponse<ProductsEntity>> 
   Stream<ApiResponse<ProductsEntity>> get stream =>
       _getSuggestionsService.dataStream;
 
-  goToBlock() {}
+  Future goToSearch({required String category, required NavChoice choice}) async{
+    await _analyticsService.logSearch(category);
+    await _addSearchService.addSearch(category);
+     return _navigationService.navigateTo(StoreNavigatorRoutes.productsView,
+        id: choice.nestedKeyValue(),
+        arguments: ProductsViewArguments(search: category, choice: choice));
+  }
 
    Future goToProduct(
       {required int index,

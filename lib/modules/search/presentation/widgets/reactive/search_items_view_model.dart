@@ -2,6 +2,7 @@ import 'package:stacked/stacked.dart';
 import 'package:wambo/app/imports.dart';
 import 'package:wambo/app/locator.dart';
 import 'package:wambo/app/setup.logger.dart';
+import 'package:wambo/app/setup.router.dart';
 import 'package:wambo/core/shared/widgets/bottom_navigation_widget.dart';
 import 'package:interfaces/interfaces.dart';
 import 'package:wambo/modules/search/domain/entities/search_items_entity.dart';
@@ -15,6 +16,7 @@ class SearchItemsViewModel extends StreamViewModel<ApiResponse<SearchItemsEntity
 
  final log = getLogger('SearchItemsViewModel');
   final _searchService = locator<SearchService>();
+  final _navigationService = locator<NavigationService>();
     final _addSearchService = locator<AddSearchService>();
 final _analyticsService = locator<AnalyticsService>();
   bool get isError => dataReady && data!.status == Status.error;
@@ -28,7 +30,9 @@ final _analyticsService = locator<AnalyticsService>();
     
     await _analyticsService.logSearch(text);
     final result = await _addSearchService.addSearch(text);
-    log.w(result);
+         return _navigationService.navigateTo(StoreNavigatorRoutes.productsView,
+        id: choice.nestedKeyValue(),
+        arguments: ProductsViewArguments(search: text, choice: choice));
     
   }
 
