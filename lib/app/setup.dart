@@ -7,6 +7,7 @@ import 'package:wambo/modules/main/presentation/view/main_view.dart';
 import 'package:wambo/modules/main/presentation/widgets/navigator.dart';
 import 'package:wambo/modules/notification/presentation/views/notification_view.dart';
 import 'package:wambo/modules/product/presentation/views/product/product_view.dart';
+import 'package:wambo/modules/product/presentation/views/products/products_view.dart';
 import 'package:wambo/modules/search/presentation/views/search_view.dart';
 import 'package:wambo/modules/store/presentation/views/store_view.dart';
 
@@ -17,6 +18,7 @@ import 'package:wambo/modules/store/presentation/views/store_view.dart';
       StackedRoute(page: StoreView, initial: true),
       StackedRoute(page: CartView),
       StackedRoute(page: SearchView),
+      StackedRoute(page: ProductsView),
       StackedRoute(page: ProductView),
     ]),
     StackedRoute(
