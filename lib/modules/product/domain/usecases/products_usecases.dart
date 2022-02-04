@@ -1,6 +1,6 @@
 import 'package:errors/errors.dart';
 import 'package:dartz/dartz.dart';
-import 'package:wambo/core/interfaces/usecase_interface.dart';
+import 'package:interfaces/interfaces.dart';
 import 'package:wambo/core/shared/entities/page_config_entity.dart';
 import 'package:wambo/modules/product/domain/entities/products_entity.dart';
 import 'package:wambo/modules/product/domain/repositories/products_repository.dart';

@@ -1,8 +1,7 @@
 // ignore_for_file: must_call_super
 
 import 'package:rxdart/rxdart.dart';
-import 'package:wambo/core/interfaces/stoppable_interface.dart';
-import 'package:wambo/core/utils/data_state_response.dart';
+import 'package:interfaces/interfaces.dart';
 import 'package:wambo/modules/authentication/domain/entities/authenticated_user_entity.dart';
 import 'package:wambo/modules/startup/domain/usecases/get_authenticated_user_usecase.dart';
 import 'package:wambo/app/setup.logger.dart';

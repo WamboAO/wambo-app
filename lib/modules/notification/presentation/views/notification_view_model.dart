@@ -1,6 +1,6 @@
 import 'package:wambo/app/locator.dart';
-import 'package:wambo/core/utils/data_state_response.dart';
-import 'package:wambo/core/utils/enums.dart';
+import 'package:interfaces/interfaces.dart';
+
 import 'package:wambo/modules/notification/domain/entities/notification_entity.dart';
 import 'package:wambo/modules/notification/presentation/services/get_notificaion_service.dart';
 import 'package:stacked/stacked.dart';

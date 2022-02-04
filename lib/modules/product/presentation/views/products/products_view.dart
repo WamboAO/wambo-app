@@ -35,7 +35,7 @@ class ProductsView extends StatelessWidget {
 
                           return ProductCardAlternative(
                               bookmark: () => model.bookmark(product.id),
-                              navigate: () => model.goToProduct(id: product.id, choice: choice),
+                  navigate: () => model.goToProduct(index: index, product: product, choice: choice),
                               product: product);
                         })))
             : const SizedBox();

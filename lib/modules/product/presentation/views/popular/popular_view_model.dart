@@ -1,13 +1,11 @@
 import 'package:stacked/stacked.dart';
-import 'package:stacked_services/stacked_services.dart';
+import 'package:wambo/app/imports.dart';
 import 'package:wambo/app/locator.dart';
 import 'package:wambo/app/setup.logger.dart';
 import 'package:wambo/app/setup.router.dart';
 import 'package:wambo/core/shared/widgets/bottom_navigation_widget.dart';
 import 'package:wambo/modules/product/domain/entities/products_entity.dart';
-import 'package:wambo/core/utils/data_state_response.dart';
-import 'package:wambo/core/utils/enums.dart';
-import 'package:wambo/modules/product/presentation/services/get_products_service.dart';
+import 'package:interfaces/interfaces.dart';
 
 class PopularViewModel extends StreamViewModel<ApiResponse<ProductsEntity>> {
   PopularViewModel() {
@@ -17,6 +15,7 @@ class PopularViewModel extends StreamViewModel<ApiResponse<ProductsEntity>> {
   final log = getLogger('PopularViewModel');
   final _getPopularService = locator<GetPopularService>();
   final _navigationService = locator<NavigationService>();
+  final _analyticsService = locator<AnalyticsService>();
   bool get isError => dataReady && data!.status == Status.error;
   bool get isLoading => dataReady && data!.status == Status.loading;
   bool get isComplete => dataReady && data!.status == Status.completed;
@@ -29,9 +28,19 @@ class PopularViewModel extends StreamViewModel<ApiResponse<ProductsEntity>> {
 
   goToBlock() {}
 
-   Future goToProduct({required int id, required NavChoice choice}) async {
+   Future goToProduct(
+      {required int index,
+      required ProductDataEntity product,
+      required NavChoice choice}) async {
+    await _analyticsService.logProduct(
+        id: product.id.toString(),
+        itemListId: index.toString(),
+        name: product.name,
+        listName: "POPULAR",
+        currency: product.currency,
+        price: product.salePrice ?? product.price);
     return _navigationService.navigateTo(StoreNavigatorRoutes.productView,
         id: choice.nestedKeyValue(),
-        arguments: ProductViewArguments(id: id, choice: choice));
+        arguments: ProductViewArguments(id: product.id, choice: choice));
   }
 }

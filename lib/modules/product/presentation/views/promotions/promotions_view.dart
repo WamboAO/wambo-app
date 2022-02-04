@@ -82,7 +82,7 @@ class _IsCompleted extends ViewModelWidget<PromotionsViewModel> {
               ProductDataEntity product = model.promo!.data[index];
 
               return ProductCard(
-                navigate: () => model.goToProduct(id: product.id, choice: choice),
+                  navigate: () => model.goToProduct(index: index, product: product, choice: choice),
                 product: product,
               );
             }),

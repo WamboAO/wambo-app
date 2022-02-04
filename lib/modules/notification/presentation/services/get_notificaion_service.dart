@@ -1,9 +1,8 @@
 // ignore_for_file: must_call_super
 
 import 'package:wambo/app/locator.dart';
-import 'package:wambo/core/interfaces/stoppable_interface.dart';
 import 'package:wambo/core/shared/entities/page_config_entity.dart';
-import 'package:wambo/core/utils/data_state_response.dart';
+import 'package:interfaces/interfaces.dart';
 import 'package:wambo/modules/notification/domain/entities/notification_entity.dart';
 import 'package:wambo/modules/notification/domain/usecases/get_notification_usecase.dart';
 import 'package:wambo/modules/startup/presentation/services/get_authenticated_user_service.dart';

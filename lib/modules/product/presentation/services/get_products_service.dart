@@ -1,7 +1,7 @@
 import 'package:rxdart/rxdart.dart';
 import 'package:wambo/app/locator.dart';
 import 'package:wambo/core/shared/entities/page_config_entity.dart';
-import 'package:wambo/core/utils/data_state_response.dart';
+import 'package:interfaces/interfaces.dart';
 import 'package:wambo/modules/product/domain/entities/products_entity.dart';
 import 'package:wambo/core/utils/enums.dart';
 import 'package:wambo/modules/product/domain/usecases/products_usecases.dart';

@@ -1,12 +1,10 @@
 import 'package:stacked/stacked.dart';
-import 'package:stacked_services/stacked_services.dart';
+import 'package:wambo/app/imports.dart';
 import 'package:wambo/app/locator.dart';
 import 'package:wambo/app/setup.logger.dart';
 import 'package:wambo/core/shared/widgets/bottom_navigation_widget.dart';
-import 'package:wambo/core/utils/data_state_response.dart';
-import 'package:wambo/core/utils/enums.dart';
+import 'package:interfaces/interfaces.dart';
 import 'package:wambo/modules/search/domain/entities/search_items_entity.dart';
-import 'package:wambo/modules/search/presentation/services/search_service.dart';
 
 
 class SearchItemsViewModel extends StreamViewModel<ApiResponse<SearchItemsEntity>> {
@@ -18,7 +16,7 @@ class SearchItemsViewModel extends StreamViewModel<ApiResponse<SearchItemsEntity
  final log = getLogger('SearchItemsViewModel');
   final _searchService = locator<SearchService>();
     final _addSearchService = locator<AddSearchService>();
-
+final _analyticsService = locator<AnalyticsService>();
   bool get isError => dataReady && data!.status == Status.error;
   bool get isLoading => dataReady && data!.status == Status.loading;
   bool get isComplete => dataReady && data!.status == Status.completed;
@@ -27,6 +25,8 @@ class SearchItemsViewModel extends StreamViewModel<ApiResponse<SearchItemsEntity
 
 
   Future goToProducts({required String text, required NavChoice choice}) async {
+    
+    await _analyticsService.logSearch(text);
     final result = await _addSearchService.addSearch(text);
     log.w(result);
     

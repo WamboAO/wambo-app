@@ -1,7 +1,7 @@
 import 'package:wambo/app/imports.dart';
 import 'package:wambo/app/locator.dart';
 import 'package:wambo/modules/authentication/domain/entities/authenticated_user_entity.dart';
-import 'package:wambo/core/utils/data_state_response.dart';
+import 'package:interfaces/interfaces.dart';
 import 'package:wambo/modules/authentication/domain/entities/user_registration_crendentials_entities.dart';
 
 class AuthenticationService {

@@ -3,8 +3,7 @@ import 'package:stacked_services/stacked_services.dart';
 import 'package:wambo/app/imports.dart';
 import 'package:wambo/app/locator.dart';
 import 'package:wambo/app/setup.logger.dart';
-import 'package:wambo/core/utils/data_state_response.dart';
-import 'package:wambo/core/utils/enums.dart';
+import 'package:interfaces/interfaces.dart';import 'package:wambo/core/utils/enums.dart';
 import 'package:wambo/modules/categories/domain/entities/categories_entity.dart';
 
 class CategoriesViewModel

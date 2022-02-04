@@ -2,9 +2,8 @@
 
 import 'package:rxdart/rxdart.dart';
 import 'package:wambo/app/locator.dart';
-import 'package:wambo/core/interfaces/stoppable_interface.dart';
+import 'package:interfaces/interfaces.dart';
 import 'package:wambo/core/shared/entities/page_config_entity.dart';
-import 'package:wambo/core/utils/data_state_response.dart';
 import 'package:wambo/modules/startup/presentation/services/get_authenticated_user_service.dart';
 import 'package:wambo/modules/posters/domain/entities/store_info_entity.dart';
 import 'package:wambo/modules/posters/domain/usecases/get_store_info_usecase.dart';

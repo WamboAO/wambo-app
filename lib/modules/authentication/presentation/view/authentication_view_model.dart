@@ -1,7 +1,6 @@
 import 'package:stacked/stacked.dart';
 import 'package:wambo/app/setup.logger.dart';
-import 'package:wambo/core/mixins/status_checker_mixin.dart';
-
+import 'package:interfaces/interfaces.dart';
 class AuthenticationViewModel extends BaseViewModel with StatusCheckerMixin {
   AuthenticationViewModel() {
     log.d('created');

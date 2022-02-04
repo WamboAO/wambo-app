@@ -1,20 +1,22 @@
 import 'package:faker/faker.dart';
 
 class ProductsData {
-    final _faker = Faker();
-    Map<String, Object?> get fakeProduct => {
+  final _faker = Faker();
+  
+  Map<String, Object?> get fakeProduct => {
         "message": "sucess",
         "data": {
           "id": 1,
           "thumbnail":
               _faker.image.image(keywords: ["streetwear"], random: true),
-          "name": "${_faker.lorem.word()} ${_faker.lorem.word()}",
+          "name": "${_faker.lorem.word()} ${_faker.lorem.word()} ${_faker.lorem.word()} ${_faker.lorem.word()} ${_faker.lorem.word()}",
           "permalink": _faker.internet.httpsUrl(),
           "currency": _faker.currency.code(),
           "created_at":
               _faker.date.dateTime(minYear: 2020, maxYear: 2022).toString(),
+        "tldr": _faker.lorem.sentence(),
           "description":
-              "<p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.</p>\n",
+              "Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.\n\n Vestibulum tortor quam, https://pub.dev/packages/linkfy_text,  feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.\n",
           "price": _faker.randomGenerator.integer(100000, min: 0),
           "regular_price": _faker.randomGenerator.integer(100000, min: 0),
           "sale_price": _faker.randomGenerator.integer(100000, min: 0),
@@ -49,8 +51,7 @@ class ProductsData {
               {
                 "id": 792,
                 "created_at": "2017-03-23T14:01:13",
-                "src":
-                    "https://example.com/wp-content/uploads/2017/03/T_2_front-4.jpg",
+                "src": _faker.image.image(keywords: ["fashion"], random: true),
                 "name": "",
                 "alt": "",
                 "is_thumbnail": true
@@ -58,8 +59,7 @@ class ProductsData {
               {
                 "id": 793,
                 "created_at": "2017-03-23T14:01:14",
-                "src":
-                    "https://example.com/wp-content/uploads/2017/03/T_2_back-2.jpg",
+                "src": _faker.image.image(keywords: ["clothes"], random: true),
                 "name": "",
                 "alt": "",
                 "is_thumbnail": false,
@@ -85,7 +85,7 @@ class ProductsData {
         }
       };
 
-   Map<String, Object?> get fakeProducts => {
+  Map<String, Object?> get fakeProducts => {
         "message": "sucess",
         "data": [
           {
@@ -96,8 +96,9 @@ class ProductsData {
             "currency": _faker.currency.code(),
             "created_at":
                 _faker.date.dateTime(minYear: 2020, maxYear: 2022).toString(),
+          "tldr": _faker.lorem.sentence(),
             "description":
-                "<p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.</p>\n",
+                "Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.\n Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.\n",
             "price": _faker.randomGenerator.integer(100000, min: 0),
             "regular_price": _faker.randomGenerator.integer(100000, min: 0),
             "sale_price": null,
@@ -116,8 +117,9 @@ class ProductsData {
             "currency": _faker.currency.code(),
             "created_at":
                 _faker.date.dateTime(minYear: 2020, maxYear: 2022).toString(),
+          "tldr": _faker.lorem.sentence(),
             "description":
-                "<p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.</p>\n",
+                "Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.\n",
             "price": _faker.randomGenerator.integer(100000, min: 0),
             "regular_price": _faker.randomGenerator.integer(100000, min: 0),
             "sale_price": _faker.randomGenerator.integer(100000, min: 0),
@@ -138,8 +140,9 @@ class ProductsData {
             "currency": _faker.currency.code(),
             "created_at":
                 _faker.date.dateTime(minYear: 2020, maxYear: 2022).toString(),
+         "tldr": _faker.lorem.sentence(),
             "description":
-                "<p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.</p>\n",
+                "Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.\n",
             "price": _faker.randomGenerator.integer(100000, min: 0),
             "regular_price": _faker.randomGenerator.integer(100000, min: 0),
             "sale_price": null,
@@ -158,8 +161,9 @@ class ProductsData {
             "currency": _faker.currency.code(),
             "created_at":
                 _faker.date.dateTime(minYear: 2020, maxYear: 2022).toString(),
+         "tldr": _faker.lorem.sentence(),
             "description":
-                "<p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.</p>\n",
+                "Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.\n",
             "price": _faker.randomGenerator.integer(100000, min: 0),
             "regular_price": _faker.randomGenerator.integer(100000, min: 0),
             "sale_price": null,
@@ -178,8 +182,9 @@ class ProductsData {
             "currency": _faker.currency.code(),
             "created_at":
                 _faker.date.dateTime(minYear: 2020, maxYear: 2022).toString(),
+         "tldr": _faker.lorem.sentence(),
             "description":
-                "<p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.</p>\n",
+                "Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.\n",
             "price": _faker.randomGenerator.integer(100000, min: 0),
             "regular_price": _faker.randomGenerator.integer(100000, min: 0),
             "sale_price": null,
@@ -198,8 +203,9 @@ class ProductsData {
             "currency": _faker.currency.code(),
             "created_at":
                 _faker.date.dateTime(minYear: 2020, maxYear: 2022).toString(),
+         "tldr": _faker.lorem.sentence(),
             "description":
-                "<p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.</p>\n",
+                "Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.\n",
             "price": _faker.randomGenerator.integer(100000, min: 0),
             "regular_price": _faker.randomGenerator.integer(100000, min: 0),
             "sale_price": null,
@@ -218,8 +224,9 @@ class ProductsData {
             "currency": _faker.currency.code(),
             "created_at":
                 _faker.date.dateTime(minYear: 2020, maxYear: 2022).toString(),
+         "tldr": _faker.lorem.sentence(),
             "description":
-                "<p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.</p>\n",
+                "Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.\n",
             "price": _faker.randomGenerator.integer(100000, min: 0),
             "regular_price": _faker.randomGenerator.integer(100000, min: 0),
             "sale_price": null,
@@ -238,8 +245,9 @@ class ProductsData {
             "currency": _faker.currency.code(),
             "created_at":
                 _faker.date.dateTime(minYear: 2020, maxYear: 2022).toString(),
+          "tldr": _faker.lorem.sentence(),
             "description":
-                "<p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.</p>\n",
+                "Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.\n",
             "price": _faker.randomGenerator.integer(100000, min: 0),
             "regular_price": _faker.randomGenerator.integer(100000, min: 0),
             "sale_price": null,
@@ -263,8 +271,9 @@ class ProductsData {
             "currency": _faker.currency.code(),
             "created_at":
                 _faker.date.dateTime(minYear: 2020, maxYear: 2022).toString(),
+          "tldr": _faker.lorem.sentence(),
             "description":
-                "<p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.</p>\n",
+                "Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.\n",
             "price": _faker.randomGenerator.integer(100000, min: 0),
             "regular_price": _faker.randomGenerator.integer(100000, min: 0),
             "sale_price": _faker.randomGenerator.integer(100000, min: 0),
@@ -285,8 +294,9 @@ class ProductsData {
             "currency": _faker.currency.code(),
             "created_at":
                 _faker.date.dateTime(minYear: 2020, maxYear: 2022).toString(),
+          "tldr": _faker.lorem.sentence(),
             "description":
-                "<p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.</p>\n",
+                "Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.\n",
             "price": _faker.randomGenerator.integer(100000, min: 0),
             "regular_price": _faker.randomGenerator.integer(100000, min: 0),
             "sale_price": _faker.randomGenerator.integer(100000, min: 0),
@@ -307,8 +317,9 @@ class ProductsData {
             "currency": _faker.currency.code(),
             "created_at":
                 _faker.date.dateTime(minYear: 2020, maxYear: 2022).toString(),
+          "tldr": _faker.lorem.sentence(),
             "description":
-                "<p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.</p>\n",
+                "Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.\n",
             "price": _faker.randomGenerator.integer(100000, min: 0),
             "regular_price": _faker.randomGenerator.integer(100000, min: 0),
             "sale_price": _faker.randomGenerator.integer(100000, min: 0),
@@ -335,8 +346,9 @@ class ProductsData {
             "currency": _faker.currency.code(),
             "created_at":
                 _faker.date.dateTime(minYear: 2020, maxYear: 2022).toString(),
+         "tldr": _faker.lorem.sentence(),
             "description":
-                "<p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.</p>\n",
+                "Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.\n",
             "price": _faker.randomGenerator.integer(100000, min: 0),
             "regular_price": _faker.randomGenerator.integer(100000, min: 0),
             "sale_price": null,
@@ -355,8 +367,9 @@ class ProductsData {
             "currency": _faker.currency.code(),
             "created_at":
                 _faker.date.dateTime(minYear: 2020, maxYear: 2022).toString(),
+         "tldr": _faker.lorem.sentence(),
             "description":
-                "<p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.</p>\n",
+                "Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.\n",
             "price": _faker.randomGenerator.integer(100000, min: 0),
             "regular_price": _faker.randomGenerator.integer(100000, min: 0),
             "sale_price": null,
@@ -381,8 +394,9 @@ class ProductsData {
             "currency": _faker.currency.code(),
             "created_at":
                 _faker.date.dateTime(minYear: 2020, maxYear: 2022).toString(),
+         "tldr": _faker.lorem.sentence(),
             "description":
-                "<p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.</p>\n",
+                "Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.\n",
             "price": _faker.randomGenerator.integer(100000, min: 0),
             "regular_price": _faker.randomGenerator.integer(100000, min: 0),
             "sale_price": null,
@@ -401,8 +415,9 @@ class ProductsData {
             "currency": _faker.currency.code(),
             "created_at":
                 _faker.date.dateTime(minYear: 2020, maxYear: 2022).toString(),
+          "tldr": _faker.lorem.sentence(),
             "description":
-                "<p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.</p>\n",
+                "Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.\n",
             "price": _faker.randomGenerator.integer(100000, min: 0),
             "regular_price": _faker.randomGenerator.integer(100000, min: 0),
             "sale_price": null,
@@ -415,7 +430,7 @@ class ProductsData {
           },
         ]
       };
-Map<String, Object?> get fakeSuggestions => {
+  Map<String, Object?> get fakeSuggestions => {
         "message": "sucess",
         "data": [
           {
@@ -426,8 +441,9 @@ Map<String, Object?> get fakeSuggestions => {
             "currency": _faker.currency.code(),
             "created_at":
                 _faker.date.dateTime(minYear: 2020, maxYear: 2022).toString(),
+          "tldr": _faker.lorem.sentence(),
             "description":
-                "<p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.</p>\n",
+                "Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.\n",
             "price": _faker.randomGenerator.integer(100000, min: 0),
             "regular_price": _faker.randomGenerator.integer(100000, min: 0),
             "sale_price": null,
@@ -446,8 +462,9 @@ Map<String, Object?> get fakeSuggestions => {
             "currency": _faker.currency.code(),
             "created_at":
                 _faker.date.dateTime(minYear: 2020, maxYear: 2022).toString(),
+          "tldr": _faker.lorem.sentence(),
             "description":
-                "<p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.</p>\n",
+                "Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.\n",
             "price": _faker.randomGenerator.integer(100000, min: 0),
             "regular_price": _faker.randomGenerator.integer(100000, min: 0),
             "sale_price": null,
@@ -471,8 +488,9 @@ Map<String, Object?> get fakeSuggestions => {
             "currency": _faker.currency.code(),
             "created_at":
                 _faker.date.dateTime(minYear: 2020, maxYear: 2022).toString(),
+          "tldr": _faker.lorem.sentence(),
             "description":
-                "<p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.</p>\n",
+                "Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.\n",
             "price": _faker.randomGenerator.integer(100000, min: 0),
             "regular_price": _faker.randomGenerator.integer(100000, min: 0),
             "sale_price": null,
@@ -491,8 +509,9 @@ Map<String, Object?> get fakeSuggestions => {
             "currency": _faker.currency.code(),
             "created_at":
                 _faker.date.dateTime(minYear: 2020, maxYear: 2022).toString(),
+         "tldr": _faker.lorem.sentence(),
             "description":
-                "<p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.</p>\n",
+                "Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.\n",
             "price": _faker.randomGenerator.integer(100000, min: 0),
             "regular_price": _faker.randomGenerator.integer(100000, min: 0),
             "sale_price": null,

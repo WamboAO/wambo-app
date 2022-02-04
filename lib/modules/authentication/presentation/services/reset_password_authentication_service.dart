@@ -1,5 +1,5 @@
 import 'package:wambo/core/shared/entities/generic_entity.dart';
-import 'package:wambo/core/utils/data_state_response.dart';
+import 'package:interfaces/interfaces.dart';
 import 'package:wambo/modules/authentication/domain/entities/user_registration_crendentials_entities.dart';
 import 'package:wambo/modules/authentication/domain/usecases/authentication_forgot_password_usecase.dart';
 

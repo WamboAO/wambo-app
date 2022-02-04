@@ -29,6 +29,7 @@ class ProductDataEntity extends Equatable {
       required this.price,
       required this.currency,
       required this.regularPrice,
+      required this.tldr,
       this.salePrice,
       this.dateOnSaleFrom,
       this.dateOnSaleTo,
@@ -43,6 +44,7 @@ class ProductDataEntity extends Equatable {
   final String currency;
   final String createdAt;
   final String description;
+  final String tldr;
   final int price;
   final int regularPrice;
   final int? salePrice;
@@ -59,6 +61,7 @@ class ProductDataEntity extends Equatable {
         thumbnail,
         name,
         permaLink,
+        tldr,
         createdAt,
         description,
         price,
@@ -158,6 +161,8 @@ class ProductCategoriesEntity extends Equatable {
 
   @override
   List<Object?> get props => [id, name, slug];
+
+  get category => null;
 }
 
 class ProductTagsEntity extends Equatable {

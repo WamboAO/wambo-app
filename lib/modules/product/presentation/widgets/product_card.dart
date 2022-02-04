@@ -103,49 +103,52 @@ class ProductDetails extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.only(top: 4),
-      child: product.price >= 1000000
-          ? AutoSizeText(
-              toCurrencyString(
-                      product.onSale == true
-                          ? '${product.salePrice}'
-                          : '${product.price}',
-                      shorteningPolicy: ShorteningPolicy.Automatic,
-                      thousandSeparator: ThousandSeparator.Period) +
-                  ' ${product.currency}',
-              style: ktsSmallBodyText.copyWith(
-                  fontWeight: FontWeight.w600,
-                  fontSize: 12,
-                  color: product.inStock == false ? kcIcon : kcIconDark),
-            )
-          : product.price >= 100000
-              ? AutoSizeText(
-                  toCurrencyString(
-                          product.onSale == true
-                              ? '${product.salePrice}'
-                              : '${product.price}',
-                          shorteningPolicy: ShorteningPolicy.Automatic,
-                          thousandSeparator: ThousandSeparator.Period) +
-                      ' ${product.currency}',
-                  style: ktsSmallBodyText.copyWith(
-                      fontWeight: FontWeight.w600,
-                      fontSize: 12,
-                      color: product.inStock == false ? kcIcon : kcIconDark),
-                )
-              : AutoSizeText(
-                  toCurrencyString(
-                          product.onSale == true
-                              ? '${product.salePrice}'
-                              : '${product.price}',
-                          shorteningPolicy: ShorteningPolicy.NoShortening,
-                          thousandSeparator: ThousandSeparator.Period) +
-                      ' ${product.currency}',
-                  style: ktsSmallBodyText.copyWith(
-                      fontWeight: FontWeight.w600,
-                      fontSize: 12,
-                      color: product.inStock == false ? kcIcon : kcIconDark),
-                ),
+    return FittedBox(
+      fit: BoxFit.fitWidth,
+      child: Container(
+        margin: const EdgeInsets.only(top: 4),
+        child: product.price >= 1000000
+            ? AutoSizeText(
+                toCurrencyString(
+                        product.onSale == true
+                            ? '${product.salePrice}'
+                            : '${product.price}',
+                        shorteningPolicy: ShorteningPolicy.Automatic,
+                        thousandSeparator: ThousandSeparator.Period) +
+                    ' ${product.currency}',
+                style: ktsSmallBodyText.copyWith(
+                    fontWeight: FontWeight.w600,
+                    fontSize: 12,
+                    color: product.inStock == false ? kcIcon : kcIconDark),
+              )
+            : product.price >= 100000
+                ? AutoSizeText(
+                    toCurrencyString(
+                            product.onSale == true
+                                ? '${product.salePrice}'
+                                : '${product.price}',
+                            shorteningPolicy: ShorteningPolicy.Automatic,
+                            thousandSeparator: ThousandSeparator.Period) +
+                        ' ${product.currency}',
+                    style: ktsSmallBodyText.copyWith(
+                        fontWeight: FontWeight.w600,
+                        fontSize: 12,
+                        color: product.inStock == false ? kcIcon : kcIconDark),
+                  )
+                : AutoSizeText(
+                    toCurrencyString(
+                            product.onSale == true
+                                ? '${product.salePrice}'
+                                : '${product.price}',
+                            shorteningPolicy: ShorteningPolicy.NoShortening,
+                            thousandSeparator: ThousandSeparator.Period) +
+                        ' ${product.currency}',
+                    style: ktsSmallBodyText.copyWith(
+                        fontWeight: FontWeight.w600,
+                        fontSize: 12,
+                        color: product.inStock == false ? kcIcon : kcIconDark),
+                  ),
+      ),
     );
   }
 }

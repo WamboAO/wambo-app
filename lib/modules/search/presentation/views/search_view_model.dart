@@ -5,8 +5,7 @@ import 'package:wambo/app/locator.dart';
 import 'package:wambo/app/setup.logger.dart';
 import 'package:wambo/app/setup.router.dart';
 import 'package:wambo/core/shared/widgets/bottom_navigation_widget.dart';
-import 'package:wambo/core/utils/debounce.dart';
-import 'package:wambo/modules/search/domain/entities/search_items_entity.dart';
+import 'package:interfaces/interfaces.dart';
 
 class SearchViewModel extends FutureViewModel<dynamic> {
   SearchViewModel() {
@@ -17,12 +16,15 @@ class SearchViewModel extends FutureViewModel<dynamic> {
   final _searchService = locator<SearchService>();
   final _addSearchService = locator<AddSearchService>();
   final _navigationService = locator<NavigationService>();
-  final _debouncer = Debouncer(milliseconds: 500);
+  final _analyticsService = locator<AnalyticsService>();
+  final _debouncer = Debouncer(milliseconds: 350);
 
   @override
   Future futureToRun() => _searchService.search("");
 
   Future goToProducts({required String text, required NavChoice choice}) async {
+        await _analyticsService.logSearch(text);
+
     final result = await _addSearchService.addSearch(text);
     log.w(result);
     //TODO: products page
@@ -32,7 +34,7 @@ class SearchViewModel extends FutureViewModel<dynamic> {
     return _navigationService.back(id: choice.nestedKeyValue());
   }
 
-  search(String text) {
+   search(String text)  {
     _debouncer.run(() async => await _searchService.search(text));
   }
 }

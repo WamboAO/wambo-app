@@ -75,8 +75,7 @@ class _IsCompleted extends ViewModelWidget<PopularViewModel> {
 
                 return Expanded(
                     child: ProductsCard(
-                  navigate: () =>
-                      model.goToProduct(id: product.id, choice: choice),
+                  navigate: () => model.goToProduct(index: index, product: product, choice: choice),
                   product: product,
                 ));
               })),

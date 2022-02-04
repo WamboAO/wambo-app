@@ -2,7 +2,7 @@ import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 import 'package:wambo/app/locator.dart';
 import 'package:wambo/app/setup.logger.dart';
-import 'package:wambo/core/mixins/status_checker_mixin.dart';
+import 'package:interfaces/interfaces.dart';
 import 'package:wambo/modules/authentication/domain/entities/user_registration_crendentials_entities.dart';
 import 'package:wambo/modules/authentication/presentation/services/reset_password_authentication_service.dart';
 import 'package:wambo/modules/startup/presentation/view/startup_view_model.dart';

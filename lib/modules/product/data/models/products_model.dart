@@ -32,6 +32,7 @@ class ProductDataModel extends ProductDataEntity {
     required String permaLink,
     required String createdAt,
     required String description,
+    required String tldr,
     required int price,
     required String currency,
     required int regularPrice,
@@ -48,6 +49,7 @@ class ProductDataModel extends ProductDataEntity {
             currency: currency,
             name: name,
             permaLink: permaLink,
+            tldr: tldr,
             description: description,
             regularPrice: regularPrice,
             salePrice: salePrice,
@@ -64,6 +66,7 @@ class ProductDataModel extends ProductDataEntity {
       ProductDataModel(
           id: json['id'],
           thumbnail: json['thumbnail'],
+          tldr: json['tldr'],
           name: json['name'],
           currency: json['currency'],
           permaLink: json['permalink'],
@@ -180,27 +183,29 @@ class ProductImagesModel extends ProductImagesEntity {
           isThumbnail: json['is_thumbnail'],
           src: json['src']);
 }
+
 class ProductAttributesModel extends ProductAttributesEntity {
   ProductAttributesModel({
     required int id,
-  required String name,
-  required int position,
-  required bool variation,
-  required List<String> options,
-  }) : super(id:id, name: name, position: position, variation: variation, options: options);
-  
+    required String name,
+    required int position,
+    required bool variation,
+    required List<String> options,
+  }) : super(
+            id: id,
+            name: name,
+            position: position,
+            variation: variation,
+            options: options);
 
   factory ProductAttributesModel.fromJson(Map<String, dynamic> json) =>
       ProductAttributesModel(
-        id: json['id'],
-        name: json['name'],
-        position: json['position'],
-        variation: json['variation'],
-        options: json['options'].cast<String>()
-      );
+          id: json['id'],
+          name: json['name'],
+          position: json['position'],
+          variation: json['variation'],
+          options: json['options'].cast<String>());
 }
-
-
 
 class ProductCategoriesModel extends ProductCategoriesEntity {
   ProductCategoriesModel({
@@ -215,8 +220,6 @@ class ProductCategoriesModel extends ProductCategoriesEntity {
         slug: json['slug'],
       );
 }
-
-
 
 class ProductTagsModel extends ProductTagsEntity {
   ProductTagsModel({
