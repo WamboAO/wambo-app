@@ -1,5 +1,6 @@
 
 DROP TABLE IF EXISTS searchItems;
+DROP TABLE IF EXISTS bookmarks;
 
 
 
@@ -9,6 +10,12 @@ DROP TABLE IF EXISTS searchItems;
 CREATE TABLE searchItems(
 id INTEGER PRIMARY KEY AUTOINCREMENT,
 name VARCHAR
+);
+
+CREATE TABLE bookmarks(
+id INTEGER PRIMARY KEY AUTOINCREMENT,
+productId INTEGER,
+thumbnail VARCHAR
 );
 
 
